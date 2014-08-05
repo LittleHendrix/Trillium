@@ -5,11 +5,11 @@
 
     public class EmailDispatcher
     {
-        public static void SendContactUsEmail(ContactViewModel model)
+        public static void SendContactEmail(ContactViewModel model)
         {
             var em = new EmailManager();
-            string toEmailAddress = ConfigurationManager.AppSettings["ContactUsEmailAddress"] ?? "luchen_sv@msn.com";
-            em.SendMail(toEmailAddress, "Website contact us", "EmailContactUs", model);
+            string toEmailAddress = ConfigurationManager.AppSettings["ContactEmailAddress"] ?? "luchen_sv@msn.com";
+            em.SendMail(toEmailAddress, "Website contact form", "EmailContact", model);
         }
 
         public static void SendSystemAlert(string warning)

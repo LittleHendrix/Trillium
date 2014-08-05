@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Configuration;
     using System.IO;
+    using System.Net;
     using System.Net.Mail;
     using System.Web.Hosting;
     using RazorEngine;
@@ -14,30 +15,36 @@
         private readonly string _mailFromAddress;
 
         private readonly string _mailFromName;
-        private readonly string _smtpServer;
+        private readonly string _smtpHost;
 
         private readonly string _testMailFromAddress;
 
         private readonly string _testMailToAddress;
         private readonly bool _testMode;
 
-        private readonly string _testSmtpServer;
+        private readonly string _testSmtpHost;
+        private readonly int _testSmtpPort;
+        private readonly string _testSmtpUsername;
+        private readonly string _testSmtpPassword;
 
 
         public EmailManager()
         {
-            _smtpServer = ConfigurationManager.AppSettings["SmtpServer"] ?? "127.0.0.1";
-            _mailFromAddress = ConfigurationManager.AppSettings["MailFromAddress"] ?? "noreply@domain.com";
-            _mailFromName = ConfigurationManager.AppSettings["MailFromName"] ?? "MyDomain.com";
-            _testMode = Convert.ToBoolean(ConfigurationManager.AppSettings["TestMode"] ?? "false");
-            _testSmtpServer = ConfigurationManager.AppSettings["TestSmtpServer"] ?? "127.0.0.1";
-            _testMailFromAddress = ConfigurationManager.AppSettings["TestMailFromAddress"] ?? "noreply@domain.com";
-            _testMailToAddress = ConfigurationManager.AppSettings["TestMailToAddress"] ?? "luchen_sv@msn.com";
+            this._smtpHost = ConfigurationManager.AppSettings["SmtpHost"] ?? "127.0.0.1";
+            this._mailFromAddress = ConfigurationManager.AppSettings["MailFromAddress"] ?? "noreply@mydomain.com";
+            this._mailFromName = ConfigurationManager.AppSettings["MailFromName"] ?? "MyDomain.com";
+            this._testMode = Convert.ToBoolean(ConfigurationManager.AppSettings["TestMode"] ?? "false");
+            this._testSmtpHost = ConfigurationManager.AppSettings["TestSmtpHost"] ?? "127.0.0.1";
+            //this._testSmtpPort = Convert.ToInt32(ConfigurationManager.AppSettings["TestSmtpPort"] ?? "25");
+            //this._testSmtpUsername = ConfigurationManager.AppSettings["TestSmtpUsername"] ?? "username";
+            //this._testSmtpPassword = ConfigurationManager.AppSettings["TestSmtpPassword"] ?? "password";
+            this._testMailFromAddress = ConfigurationManager.AppSettings["TestMailFromAddress"] ?? "noreply@mydomain.com";
+            this._testMailToAddress = ConfigurationManager.AppSettings["TestMailToAddress"] ?? "luchen_sv@msn.com";
         }
 
         public void SendMail(string toAddress, string subject, string templateName, dynamic emailModelData)
         {
-            SendMail(toAddress, subject, templateName, emailModelData, _mailFromAddress, _mailFromName);
+            SendMail(toAddress, subject, templateName, emailModelData, this._mailFromAddress, this._mailFromName);
         }
 
         public void SendMail(string toAddress, string subject, string templateName, dynamic emailModelData,
@@ -47,7 +54,7 @@
 
             if (string.IsNullOrEmpty(fromName))
             {
-                fromName = _mailFromName;
+                fromName = this._mailFromName;
             }
 
             SendMail(mac, subject, templateName, emailModelData, new MailAddress(fromAddress, fromName), null);
@@ -61,7 +68,7 @@
             {
                 if (fromAddress == null)
                 {
-                    fromAddress = new MailAddress(_mailFromAddress, _mailFromName);
+                    fromAddress = new MailAddress(this._mailFromAddress, this._mailFromName);
                 }
 
                 mm.IsBodyHtml = true;
@@ -76,24 +83,31 @@
                 }
 
                 SmtpClient smtp;
-                if (_testMode)
+                if (this._testMode)
                 {
+                    //smtp = new SmtpClient(this._testSmtpHost, this._testSmtpPort)
+                    //{
+                    //    Credentials = new NetworkCredential(this._testSmtpUsername, this._testSmtpPassword),
+                    //    EnableSsl = true
+                    //};
+
+                    smtp = new SmtpClient(this._testSmtpHost);
+
                     mm.To.Clear();
-                    mm.From = new MailAddress(_testMailFromAddress);
-                    mm.To.Add(_testMailToAddress);
-                    smtp = new SmtpClient(_testSmtpServer);
+                    mm.From = new MailAddress(this._testMailFromAddress);
+                    mm.To.Add(this._testMailToAddress);
                     mm.Body = "<p>Test Mode E-mail From:" + fromAddress.Address + " To:" + toAddresses[0].Address
                               + "</p>" + mm.Body;
                 }
                 else
                 {
+                    smtp = new SmtpClient(this._smtpHost);
+
                     mm.From = fromAddress;
                     foreach (var toAddress in toAddresses)
                     {
                         mm.To.Add(toAddress);
                     }
-
-                    smtp = new SmtpClient(_smtpServer);
                 }
 
                 if (attachments != null)

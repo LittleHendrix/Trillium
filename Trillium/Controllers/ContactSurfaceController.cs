@@ -31,7 +31,7 @@
                 return this.CurrentUmbracoPage();
             }
 
-            EmailDispatcher.SendContactUsEmail(model);
+            EmailDispatcher.SendContactEmail(model);
 
             this.TempData.Add("FormCompeted", "true");
             return this.RedirectToCurrentUmbracoPage();

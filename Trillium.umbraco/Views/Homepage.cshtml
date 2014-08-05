@@ -1,4 +1,7 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using Trillium.ViewModels
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = "Base.cshtml";
 }
+
+@Html.Partial("ContactForm", new ContactViewModel())
