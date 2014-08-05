@@ -4,9 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-
-    using Trillium.Models;
-
+    using Trillium.ViewModels;
     using Umbraco.Core.Models;
     using Umbraco.Web;
     using Umbraco.Web.Mvc;
@@ -14,21 +12,21 @@
     public class BlogController : RenderMvcController
     {
         [OutputCache(Duration = 60, VaryByParam = "*")]
-        public ActionResult Blog(Blog model)
+        public ActionResult Blog(BlogViewModel model)
         {
             model.BlogPost = GetPagedBlogPost(model);
-            //model.LastUpdated = DateTime.Now;
+            
             return this.CurrentTemplate(model);
         }
 
-        private static IEnumerable<IPublishedContent> GetPagedBlogPost(Blog model)
+        private static IEnumerable<IPublishedContent> GetPagedBlogPost(BlogViewModel model)
         {
             if (model.Page == default(int))
             {
                 model.Page = 1;
             }
 
-            var pageSise = model.Content.HasValue("postsPerPage") ? Convert.ToInt32(model.Content.GetPropertyValue("postsPerPage")) : 5;
+            var pageSise = model.Content.HasValue("postsPerPage") ? Convert.ToInt32(model.Content.GetPropertyValue("postsPerPage")) : model.PageSize;
             var skipItems = (pageSise * model.Page) - pageSise;
 
             var posts = model.Content.Children.Where(x => x.IsVisible()).OrderByDescending(x => x.HasValue("publishDate") ? x.GetPropertyValue<DateTime>("publishDate") : x.CreateDate).ToList();

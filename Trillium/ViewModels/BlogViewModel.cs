@@ -1,18 +1,21 @@
-﻿namespace Trillium.Models
+﻿namespace Trillium.ViewModels
 {
     using System.Collections.Generic;
     using Umbraco.Core.Models;
     using Umbraco.Web;
     using Umbraco.Web.Models;
 
-    public class Blog : RenderModel
+    public class BlogViewModel : RenderModel
     {
-        public Blog()
+        public BlogViewModel()
             : base(UmbracoContext.Current.PublishedContentRequest.PublishedContent)
         {
+            this.PageSize = 5;
         }
 
         public int Page { get; set; }
+
+        public int PageSize { get; set; }
 
         public int TotalPages { get; set; }
 

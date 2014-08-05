@@ -213,7 +213,7 @@
     <Compile Include="Controllers\ContactSurfaceController.cs" />
     <Compile Include="Core\EmailDispatcher.cs" />
     <Compile Include="Core\EmailManager.cs" />
-    <Compile Include="Models\Blog.cs" />
+    <Compile Include="ViewModels\BlogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
   </ItemGroup>
@@ -228,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
