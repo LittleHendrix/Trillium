@@ -16,7 +16,7 @@
         </member>
         <member name="M:RazorEngine.Compilation.ICompilerService.BuildTypeName(System.Type)">
             <summary>
-            Builds a type name for the specified template type.
+            Builds a type name for the specified template type and model type.
             </summary>
             <param name="templateType">The template type.</param>
             <returns>The string type name (including namespace).</returns>
@@ -53,7 +53,7 @@
         </member>
         <member name="M:RazorEngine.Compilation.CompilerServiceBase.BuildTypeName(System.Type)">
             <summary>
-            Builds a type name for the specified template type.
+            Builds a type name for the specified template type and model type.
             </summary>
             <param name="templateType">The template type.</param>
             <returns>The string type name (including namespace).</returns>
@@ -202,13 +202,6 @@
             </summary>
             <param name="type">The target type.</param>
             <returns>An enumerable of constructors.</returns>
-        </member>
-        <member name="M:RazorEngine.Compilation.CompilerServicesUtility.GetFirstGenericInterface(System.Type)">
-            <summary>
-            Gets the first generic interface of the specified type if one exists.
-            </summary>
-            <param name="type">The target type.</param>
-            <returns>The first generic interface if one exists, otherwise the first interface or the target type itself if there are no interfaces.</returns>
         </member>
         <member name="M:RazorEngine.Compilation.CompilerServicesUtility.GetLoadedAssemblies">
             <summary>
@@ -427,11 +420,6 @@
         <member name="P:RazorEngine.Compilation.RazorEngineHost.DefaultBaseTemplateType">
             <summary>
             Gets or sets the default template type.
-            </summary>
-        </member>
-        <member name="P:RazorEngine.Compilation.RazorEngineHost.DefaultModelType">
-            <summary>
-            Gets or sets the default model type.
             </summary>
         </member>
         <member name="T:RazorEngine.Compilation.TypeContext">
@@ -736,27 +724,6 @@
             <typeparam name="TEncodedStringFactory">The encoded string factory type.</typeparam>
             <returns>The current configuration builder.</returns>
         </member>
-        <member name="M:RazorEngine.Configuration.IConfigurationBuilder.ResolveUsing``1">
-            <summary>
-            Sets the resolve used to locate unknown templates.
-            </summary>
-            <typeparam name="TResolver">The resolve type.</typeparam>
-            <returns>The current configuration builder.</returns>
-        </member>
-        <member name="M:RazorEngine.Configuration.IConfigurationBuilder.ResolveUsing(RazorEngine.Templating.ITemplateResolver)">
-            <summary>
-            Sets the resolver used to locate unknown templates.
-            </summary>
-            <param name="resolver">The resolver instance to use.</param>
-            <returns>The current configuration builder.</returns>
-        </member>
-        <member name="M:RazorEngine.Configuration.IConfigurationBuilder.ResolveUsing(System.Func{System.String,System.String})">
-            <summary>
-            Sets the resolver delegate used to locate unknown templates.
-            </summary>
-            <param name="resolver">The resolver delegate to use.</param>
-            <returns>The current configuration builder.</returns>
-        </member>
         <member name="M:RazorEngine.Configuration.IConfigurationBuilder.IncludeNamespaces(System.String[])">
             <summary>
             Includes the specified namespaces
@@ -781,13 +748,6 @@
             Sets the default encoded string factory.
             </summary>
             <returns>The current configuration builder.</returns>
-        </member>
-        <member name="M:RazorEngine.Configuration.IConfigurationBuilder.WithBaseTemplateType(System.Type)">
-            <summary>
-            Sets the base template type.
-            </summary>
-            <param name="baseTemplateType">The base template type.</param>
-            <returns>The current configuration builder/.</returns>
         </member>
         <member name="M:RazorEngine.Configuration.IConfigurationBuilder.WithCodeLanguage(RazorEngine.Language)">
             <summary>
@@ -1718,16 +1678,7 @@
             Gets the template type.
             </summary>
         </member>
-        <member name="T:RazorEngine.Templating.HtmlTemplateBase`1">
-            <summary>
-            Provides a base implementation of an html template with a model.
-            </summary>
-            <remarks>
-            This type does not currently serve a purpose, and the WriteAttribute* API has been migrated to the TemplateBase type. This type is not deprecated, as it
-            may form the basis for a future template that supports MVC like @Html syntax.
-            </remarks>
-            <typeparam name="T">The model type.</typeparam>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:RazorEngine.Templating.HtmlTemplateBase`1" -->
         <member name="T:RazorEngine.Templating.TemplateBase`1">
             <summary>
             Provides a base implementation of a template with a model.
@@ -1898,13 +1849,6 @@
             </summary>
             <param name="writer">The writer.</param>
             <param name="helper">The template writer helper.</param>
-        </member>
-        <member name="M:RazorEngine.Templating.TemplateBase.ResolveUrl(System.String)">
-            <summary>
-            Resolves the specified path
-            </summary>
-            <param name="path">The path.</param>
-            <returns>The resolved path.</returns>
         </member>
         <member name="P:RazorEngine.Templating.TemplateBase.Layout">
             <summary>
@@ -2087,12 +2031,6 @@
             <summary>
             Defines a dynamic view bag.
             </summary>
-        </member>
-        <member name="M:RazorEngine.Templating.DynamicViewBag.#ctor(RazorEngine.Templating.DynamicViewBag)">
-            <summary>
-            Initialises a new instance of <see cref="T:RazorEngine.Templating.DynamicViewBag"/>
-            </summary>
-            <param name="viewbag">The parent view bag.</param>
         </member>
         <member name="M:RazorEngine.Templating.DynamicViewBag.GetDynamicMemberNames">
             <summary>
