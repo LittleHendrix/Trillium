@@ -29,7 +29,7 @@
 
         private static IEnumerable<IPublishedContent> GetPagedBlogPost(BlogViewModel model)
         {
-            var pageSise = model.Content.HasValue("postsPerPage") ? Convert.ToInt32(model.Content.GetPropertyValue("postsPerPage")) : model.PageSize;
+            var pageSise = model.Content.HasValue("itemsPerPage") ? Convert.ToInt32(model.Content.GetPropertyValue("itemsPerPage")) : model.PageSize;
             var skipItems = (pageSise * model.Page) - pageSise;
 
             var posts = model.Content.Children.Where(x => x.IsVisible()).OrderByDescending(x => x.HasValue("publishDate") ? x.GetPropertyValue<DateTime>("publishDate") : x.CreateDate).ToList();
