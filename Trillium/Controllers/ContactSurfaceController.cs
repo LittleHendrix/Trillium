@@ -31,9 +31,23 @@
                 return this.CurrentUmbracoPage();
             }
 
-            EmailDispatcher.SendContactUsEmail(model);
+            EmailDispatcher.SendContactEmail(model);
 
-            this.TempData.Add("FormCompeted", "true");
+            try
+            {
+                if ((this.TempData.ContainsValue("true") == false)
+                    || (this.TempData.ContainsKey("FormCompleted") == false))
+                {
+                    this.TempData.Add("FormCompleted", "true");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(
+                    ex.Message + " containsValue=" + this.TempData.ContainsValue("true") + " containsKey="
+                    + this.TempData.ContainsKey("FormCompleted"));
+            }
+
             return this.RedirectToCurrentUmbracoPage();
         }
     }

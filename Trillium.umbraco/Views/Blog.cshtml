@@ -1,0 +1,48 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Trillium.ViewModels.BlogViewModel>
+@{
+    Layout = "Base.cshtml";
+}
+
+@foreach (var post in Model.BlogPost)
+{
+    var postTitle = post.HasValue("pageHeading")
+                                ? post.GetPropertyValue("pageHeading")
+                                : post.Name;
+    
+    var postDate = post.GetPropertyValue<DateTime>("publishDate") == default(DateTime)
+                                ? post.CreateDate
+                                : post.GetPropertyValue<DateTime>("PublishDate");
+    <h2>@postTitle</h2>
+    <p>Published on: @postDate.ToString("f")</p>
+}
+
+
+<nav class="pagination">
+    @if (Model.IsFirstPage == false)
+    {
+        <a class="newr-posts" href="@(Model.Content.Url)@(Model.PreviousPage)/">&larr; Newer Posts</a>
+    }
+    
+    @if (Model.TotalPages > 1)
+    {
+        for (var i = 1; i <= Model.TotalPages; i++)
+        {
+            if (i == Model.Page)
+            {
+                <span class="curPage">@i</span>
+            }
+            else
+            {
+                <a href="@(Model.Content.Url)@(i)/" class="page-no">@(i)</a>
+            }
+        }
+    }
+
+    @*<span class="page-number">Page <span class="number">@Model.Page</span> of <span class="number">@Model.TotalPages</span></span>*@
+
+    @if (Model.IsLastPage == false)
+    {
+        <a class="older-posts" href="@(Model.Content.Url)@(Model.NextPage)/">Older Posts &rarr;</a>
+    }
+
+</nav>

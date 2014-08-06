@@ -5,18 +5,18 @@
 
     public class EmailDispatcher
     {
-        public static void SendContactUsEmail(ContactViewModel model)
+        public static void SendContactEmail(ContactViewModel model)
         {
+            var to = ConfigurationManager.AppSettings["ContactEmailAddress"] ?? "luchen_sv@msn.com";
             var em = new EmailManager();
-            string toEmailAddress = ConfigurationManager.AppSettings["ContactUsEmailAddress"] ?? "luchen_sv@msn.com";
-            em.SendMail(toEmailAddress, "Website contact us", "EmailContactUs", model);
+            em.SendMail(to, "Trillium Fitness website contact", "EmailContact", model);
         }
 
         public static void SendSystemAlert(string warning)
         {
+            var to = ConfigurationManager.AppSettings["SystemAlertEmailAddress"] ?? "luchen_sv@msn.com";
             var em = new EmailManager();
-            string toEmailAddress = ConfigurationManager.AppSettings["SystemAlertEmailAddress"] ?? "luchen_sv@msn.com";
-            em.SendMail(toEmailAddress, "System Alert", "EmailSimple", new { Text = warning });
+            em.SendMail(to, "System Alert", "EmailSimple", new { Text = warning });
         }
     }
 }

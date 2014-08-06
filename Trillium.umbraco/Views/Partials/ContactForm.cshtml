@@ -1,0 +1,56 @@
+@using Trillium.ViewModels
+@using Trillium.Controllers
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContactViewModel>
+@{
+    Layout = "";
+
+    Model.SubmitDate = DateTime.UtcNow;
+    var formCompleted = TempData["FormCompleted"] != null;
+}
+
+@if (!formCompleted)
+{
+    { Html.RenderPartial("ScriptsValidation"); }
+
+    using (Html.BeginUmbracoForm<ContactSurfaceController>("ContactUs", null, new { @class = "myForm" }, FormMethod.Post))
+    {
+        <div class="form-row">
+            @Html.LabelFor(m => m.Name, "Name", new { @name = "nameLbl", @class = "frmLabel" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "frmTxtbox", placeholder = "Enter your name" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+
+        <div class="form-row">
+            @Html.LabelFor(m => m.EmailAddress, "Email", new { @name = "emailLbl", @class = "frmLabel" })
+            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "frmTxtbox", placeholder = "Enter your email" })
+            @Html.ValidationMessageFor(m => m.EmailAddress)
+        </div>
+
+        <div class="form-row">
+            @Html.LabelFor(m => m.Subject, "Subject", new { @name = "subjLbl", @class = "frmLabel" })
+            @Html.TextBoxFor(m => m.Subject, new { @class = "frmTxtbox", placeholder = "Choose a subject" })
+            @Html.ValidationMessageFor(m => m.Subject)
+        </div>
+
+        <div class="form-row">
+            @Html.LabelFor(m => m.Message, "Message", new { @name = "msgLbl", @class = "frmLabel" })
+            @Html.TextAreaFor(m => m.Message, new { @class = "frmTxtbox", placeholder = "Leave your message" })
+            @Html.ValidationMessageFor(m => m.Message)
+        </div>
+
+        <div class="form-row">
+            @Html.HiddenFor(m => m.Captcha)
+            @Html.HiddenFor(m => m.SubmitDate)
+        </div>
+
+        <div class="form-row submit-row">
+            <input type="submit" class="btn submit-btn" value="Submit" />
+        </div>
+
+    }
+}
+else
+{
+    <p>@TempData["FormCompleted"]</p>
+    <p>Form has been submitted successfully!</p>
+}
