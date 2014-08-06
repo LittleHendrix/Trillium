@@ -7,25 +7,28 @@
     using Trillium.ViewModels;
     using Umbraco.Core.Models;
     using Umbraco.Web;
+    using Umbraco.Web.Models;
     using Umbraco.Web.Mvc;
 
     public class BlogController : RenderMvcController
     {
         [OutputCache(Duration = 60, VaryByParam = "*")]
-        public ActionResult Blog(BlogViewModel model)
+        public ActionResult Blog(RenderModel umbModel)
         {
-            model.BlogPost = GetPagedBlogPost(model);
-            
-            return this.CurrentTemplate(model);
+            var page = this.HttpContext.Request.QueryString["Page"] ?? "1";
+            var pageInt = Convert.ToInt32(page);
+            var vm = new BlogViewModel
+            {
+                Page = pageInt
+            };
+
+            vm.BlogPost = GetPagedBlogPost(vm);
+
+            return this.CurrentTemplate(vm);
         }
 
         private static IEnumerable<IPublishedContent> GetPagedBlogPost(BlogViewModel model)
         {
-            if (model.Page == default(int))
-            {
-                model.Page = 1;
-            }
-
             var pageSise = model.Content.HasValue("postsPerPage") ? Convert.ToInt32(model.Content.GetPropertyValue("postsPerPage")) : model.PageSize;
             var skipItems = (pageSise * model.Page) - pageSise;
 
