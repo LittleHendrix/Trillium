@@ -1,0 +1,14 @@
+@using Umbraco.Web
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<IPublishedContent>
+@{
+    var homenode = Model.AncestorOrSelf(1);
+    var ids = homenode.GetPropertyValue<string>("rssStartNode").Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries);
+    var umbracoHelper = new Umbraco.Web.UmbracoHelper(UmbracoContext.Current);
+    foreach (var id in ids)
+    {
+        var node = umbracoHelper.TypedContent(id);
+        var feedTitle = node.HasValue("blogTitle") ? node.GetPropertyValue("blogTitle") : (node.HasValue("metaTitle") ? node.GetPropertyValue("metaTitle") : node.Name);
+        <link rel="alternate" type="application/rss+xml" title="@feedTitle" href="@(node.Url)rss"/>
+    
+    }
+}

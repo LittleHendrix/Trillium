@@ -1,0 +1,19 @@
+﻿@using System.ServiceModel.Syndication
+@using System.Xml
+@using Trillium.Core;
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+    
+    var feed = RssSyndicator.GetFeed(Model);
+
+    var feedWriter = XmlWriter.Create(Response.OutputStream);
+    
+    var rssFormatter = new Rss20FeedFormatter(feed);
+    
+    rssFormatter.WriteTo(feedWriter);
+
+    Response.ContentType = "application/rss+xml";
+    
+    feedWriter.Close();
+}
