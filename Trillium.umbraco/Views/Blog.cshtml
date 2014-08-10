@@ -1,4 +1,5 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Trillium.ViewModels.BlogViewModel>
+﻿@using Trillium.Extensions;
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<Trillium.ViewModels.BlogViewModel>
 @{
     Layout = "Base.cshtml";
 }
@@ -14,6 +15,7 @@
                                 : post.GetPropertyValue<DateTime>("PublishDate");
     <h2>@postTitle</h2>
     <p>Published on: @postDate.ToString("f")</p>
+    <p>@Html.Truncate(post.GetPropertyValue<string>("bodyText"), 250, "...")</p>
     <p><a href="@post.Url">Read more</a></p>
 }
 

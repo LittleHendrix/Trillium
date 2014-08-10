@@ -55,17 +55,18 @@
         private static IEnumerable<SyndicationItem> GetFeedItems(string pbaseUrl, IRenderModel model)
         {
             var items = new List<SyndicationItem>();
+            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
             foreach (var item in model.Content.Children(x => x.IsVisible()).OrderByDescending(x => x.UpdateDate))
             {
                 var title = item.HasValue("pageHeading") ? item.GetPropertyValue<string>("pageHeading") : item.Name;
                 var pubDate = item.HasValue("publishDate") ? item.GetPropertyValue<DateTime>("publishDate") : item.CreateDate;
                 //var summary = item.GetPropertyValue<string>("metaDescription");
-                var content = item.HasValue("bodyText") ? library.TruncateString(item.GetPropertyValue<string>("bodyText"), 250, "...") : string.Empty;
-
+                var content = item.HasValue("bodyText") ? library.TruncateString(item.GetPropertyValue<string>("bodyText"), 250, "...").ToString() : string.Empty;
+               
+                
                 if (item.HasValue("pageMedia"))
                 {
-                    var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
                     var img = umbracoHelper.TypedMedia(item.GetPropertyValue<int>("pageMedia"));
                     content += "<p><img src=\"" + img.Url + "\" alt=\"" + img.Name + "\" /></p>";
                 }
