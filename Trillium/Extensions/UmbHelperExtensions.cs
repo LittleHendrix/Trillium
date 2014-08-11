@@ -14,6 +14,7 @@ namespace Trillium.Extensions
     using System.Linq;
     using System.Web.Mvc;
 
+    using umbraco;
     using Umbraco.Core.Models;
     using Umbraco.Web;
 

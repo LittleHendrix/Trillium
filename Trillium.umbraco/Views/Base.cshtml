@@ -1,6 +1,6 @@
 ﻿@using ClientDependency.Core.Mvc
 @using Trillium.Extensions
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
 @{
 	Layout = null;
 }
@@ -17,6 +17,7 @@
 		<meta name="keywords" content="@Umbraco.Field("metaKeywords")">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
         @Html.CanonicalUrl()
+        @{Html.RenderPartial("RssLink", Umbraco.AssignedContentItem);}
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	    <link rel="stylesheet" href="/Css/app.css">
 	    <script src="/bower_components/modernizr/modernizr.min.js"></script>
