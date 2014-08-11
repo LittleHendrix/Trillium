@@ -248,7 +248,7 @@
     <Compile Include="Core\EmailManager.cs" />
     <Compile Include="Core\RssSyndicator.cs" />
     <Compile Include="Extensions\CanonicalUrlExtensions.cs" />
-    <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\UmbHelperExtensions.cs" />
     <Compile Include="ViewModels\BlogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

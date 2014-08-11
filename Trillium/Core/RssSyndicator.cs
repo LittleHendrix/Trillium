@@ -5,21 +5,34 @@
     using System.Linq;
     using System.ServiceModel.Syndication;
     using System.Web;
+    using System.Web.Caching;
     using umbraco;
+    using Umbraco.Core.Models;
     using Umbraco.Web;
     using Umbraco.Web.Models;
 
     public class RssSyndicator
     {
-
         public static SyndicationFeed GetFeed(RenderModel model)
         {
-            var rssFeed = new SyndicationFeed();
-            var rawUrl = HttpContext.Current.Request.Url;
-            var pbaseUrl = string.Format("{0}://{1}", rawUrl.Scheme, rawUrl.Host);
+            var cachedFeed = HttpContext.Current.Cache["cachedFeed"] as SyndicationFeed;
+            var cachedRequest = HttpContext.Current.Cache["cachedRequest"] as Uri;
+            //// return cachedFeed if not expired and incoming request is from the same url
+            if (cachedFeed != null && cachedRequest == HttpContext.Current.Request.Url)
+            {
+                return cachedFeed;
+            }
 
-            var feedTitle = model.Content.HasValue("blogTitle") ? model.Content.GetPropertyValue<string>("blogTitle") : model.Content.Name;
-            var feedDescri = model.Content.HasValue("blogDescription") ? model.Content.GetPropertyValue<string>("blogDescription") : HttpContext.Current.Request.Url.Host;
+            var rssFeed = new SyndicationFeed();
+            Uri rawUrl = HttpContext.Current.Request.Url;
+            string pbaseUrl = string.Format("{0}://{1}", rawUrl.Scheme, rawUrl.Host);
+
+            string feedTitle = model.Content.HasValue("rssTitle")
+                ? model.Content.GetPropertyValue<string>("rssTitle")
+                : model.Content.Name;
+            string feedDescri = model.Content.HasValue("rssDescription")
+                ? model.Content.GetPropertyValue<string>("rssgDescription")
+                : HttpContext.Current.Request.Url.Host;
 
             rssFeed.Id = pbaseUrl;
             rssFeed.Title = new TextSyndicationContent(feedTitle);
@@ -49,6 +62,11 @@
 
             rssFeed.Items = GetFeedItems(pbaseUrl, model);
 
+            HttpContext.Current.Cache.Insert("cachedFeed", rssFeed, null, DateTime.UtcNow.AddMinutes(1),
+                Cache.NoSlidingExpiration);
+            HttpContext.Current.Cache.Insert("cachedRequest", rawUrl, null, Cache.NoAbsoluteExpiration,
+                TimeSpan.FromMinutes(1));
+
             return rssFeed;
         }
 
@@ -57,21 +75,27 @@
             var items = new List<SyndicationItem>();
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
-            foreach (var item in model.Content.Children(x => x.IsVisible()).OrderByDescending(x => x.UpdateDate))
+            foreach (
+                IPublishedContent item in
+                    model.Content.Children(x => x.IsVisible()).OrderByDescending(x => x.UpdateDate))
             {
-                var title = item.HasValue("pageHeading") ? item.GetPropertyValue<string>("pageHeading") : item.Name;
-                var pubDate = item.HasValue("publishDate") ? item.GetPropertyValue<DateTime>("publishDate") : item.CreateDate;
+                string title = item.HasValue("pageHeading") ? item.GetPropertyValue<string>("pageHeading") : item.Name;
+                DateTime pubDate = item.HasValue("publishDate")
+                    ? item.GetPropertyValue<DateTime>("publishDate")
+                    : item.CreateDate;
                 //var summary = item.GetPropertyValue<string>("metaDescription");
-                var content = item.HasValue("bodyText") ? library.TruncateString(item.GetPropertyValue<string>("bodyText"), 250, "...").ToString() : string.Empty;
-               
-                
+                string content = item.HasValue("bodyText")
+                    ? library.TruncateString(item.GetPropertyValue<string>("bodyText"), 250, "...")
+                    : string.Empty;
+
+
                 if (item.HasValue("pageMedia"))
                 {
-                    var img = umbracoHelper.TypedMedia(item.GetPropertyValue<int>("pageMedia"));
+                    IPublishedContent img = umbracoHelper.TypedMedia(item.GetPropertyValue<int>("pageMedia"));
                     content += "<p><img src=\"" + img.Url + "\" alt=\"" + img.Name + "\" /></p>";
                 }
 
-                var id = item.UrlName + "-" + item.Id + "-" + item.CreateDate.ToString("u");
+                string id = item.UrlName + "-" + item.Id + "-" + item.CreateDate.ToString("u");
                 var url = new Uri(item.UrlWithDomain());
 
                 var feedItem = new SyndicationItem
@@ -91,6 +115,6 @@
             }
 
             return items;
-        } 
+        }
     }
 }

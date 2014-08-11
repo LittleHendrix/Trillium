@@ -1,3 +1,4 @@
+@using Trillium.Extensions
 @using Trillium.ViewModels
 @using Trillium.Controllers
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<ContactViewModel>
@@ -16,25 +17,25 @@
     {
         <div class="form-row">
             @Html.LabelFor(m => m.Name, "Name", new { @name = "nameLbl", @class = "frmLabel" })
-            @Html.TextBoxFor(m => m.Name, new { @class = "frmTxtbox", placeholder = "Enter your name" })
+            @Html.CustomTextBoxFor(m => m.Name, new { @class = "frmTxtbox", placeholder = "Enter your name" })
             @Html.ValidationMessageFor(m => m.Name)
         </div>
 
         <div class="form-row">
             @Html.LabelFor(m => m.EmailAddress, "Email", new { @name = "emailLbl", @class = "frmLabel" })
-            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "frmTxtbox", placeholder = "Enter your email" })
+            @Html.CustomTextBoxFor(m => m.EmailAddress, new { @class = "frmTxtbox", placeholder = "Enter your email" })
             @Html.ValidationMessageFor(m => m.EmailAddress)
         </div>
 
         <div class="form-row">
             @Html.LabelFor(m => m.Subject, "Subject", new { @name = "subjLbl", @class = "frmLabel" })
-            @Html.TextBoxFor(m => m.Subject, new { @class = "frmTxtbox", placeholder = "Choose a subject" })
+            @Html.CustomTextBoxFor(m => m.Subject, new { @class = "frmTxtbox", placeholder = "Choose a subject" })
             @Html.ValidationMessageFor(m => m.Subject)
         </div>
 
         <div class="form-row">
             @Html.LabelFor(m => m.Message, "Message", new { @name = "msgLbl", @class = "frmLabel" })
-            @Html.TextAreaFor(m => m.Message, new { @class = "frmTxtbox", placeholder = "Leave your message" })
+            @Html.CustomTextAreaFor(m => m.Message, new { @class = "frmTxtbox", placeholder = "Leave your message" })
             @Html.ValidationMessageFor(m => m.Message)
         </div>
 

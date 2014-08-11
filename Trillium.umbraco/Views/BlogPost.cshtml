@@ -1,4 +1,29 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using Trillium.Extensions
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
 @{
     Layout = "Base.cshtml";
+
+    var pageTitle = Model.HasValue("pageHeading") ? Model.GetPropertyValue("pageHeading") : Model.Name;
+    var postDate = Model.GetPropertyValue<DateTime>("publishDate") == default(DateTime)
+                                                    ? Model.CreateDate
+                                                    : Model.GetPropertyValue<DateTime>("PublishDate");
 }
+
+<article>
+    <header>
+        <h1>@pageTitle</h1>
+    </header>
+    <section class="meta">
+        <p>Published on: @postDate.ToString("f")</p>
+    </section>
+    <section class="page-media">
+        @if (Model.HasValue("pageMedia"))
+        {
+            if (Umbraco.UmbImagesCount(Model, "pageMedia") == 1)
+            {
+                @Umbraco.UmbImagesFor(Model, "pageMedia", 1)
+            }
+        }
+    </section>
+    @Umbraco.Field("bodyText")
+</article>
