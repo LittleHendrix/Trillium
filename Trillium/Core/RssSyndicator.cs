@@ -1,4 +1,13 @@
-﻿namespace Trillium.Core
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RssSyndicator.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The rss syndicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Trillium.Core
 {
     using System;
     using System.Collections.Generic;
@@ -6,13 +15,28 @@
     using System.ServiceModel.Syndication;
     using System.Web;
     using System.Web.Caching;
+    using Trillium.Extensions;
     using umbraco;
     using Umbraco.Core.Models;
     using Umbraco.Web;
     using Umbraco.Web.Models;
 
+    /// <summary>
+    ///     The rss syndicator.
+    /// </summary>
     public class RssSyndicator
     {
+        #region Public Methods and Operators
+
+        /// <summary>
+        ///     The get feed.
+        /// </summary>
+        /// <param name="model">
+        ///     The model.
+        /// </param>
+        /// <returns>
+        ///     The <see cref="SyndicationFeed" />.
+        /// </returns>
         public static SyndicationFeed GetFeed(RenderModel model)
         {
             var cachedFeed = HttpContext.Current.Cache["cachedFeed"] as SyndicationFeed;
@@ -27,11 +51,11 @@
             Uri rawUrl = HttpContext.Current.Request.Url;
             string pbaseUrl = string.Format("{0}://{1}", rawUrl.Scheme, rawUrl.Host);
 
-            string feedTitle = model.Content.HasValue("rssTitle")
-                ? model.Content.GetPropertyValue<string>("rssTitle")
+            string feedTitle = model.Content.HasValue("feedTitle")
+                ? model.Content.GetPropertyValue<string>("feedTitle")
                 : model.Content.Name;
-            string feedDescri = model.Content.HasValue("rssDescription")
-                ? model.Content.GetPropertyValue<string>("rssgDescription")
+            string feedDescri = model.Content.HasValue("feedDescription")
+                ? model.Content.GetPropertyValue<string>("feedDescription")
                 : HttpContext.Current.Request.Url.Host;
 
             rssFeed.Id = pbaseUrl;
@@ -45,9 +69,15 @@
 
             var link = new SyndicationLink(new Uri(pbaseUrl + rawUrl.AbsolutePath + "/rss.xml"))
             {
-                RelationshipType = "self",
-                MediaType = "text/html",
-                Title = "Trillium Fitness - " + model.Content.Name + " Feed"
+                RelationshipType =
+                    "self",
+                MediaType =
+                    "text/html",
+                Title =
+                    "Trillium Fitness - "
+                    + model.Content
+                        .Name
+                    + " Feed"
             };
 
             rssFeed.Links.Add(link);
@@ -55,7 +85,9 @@
             link = new SyndicationLink(new Uri(pbaseUrl + rawUrl.AbsolutePath))
             {
                 MediaType = "text/html",
-                Title = "Trillium Fitness - " + model.Content.Name + " Feed"
+                Title =
+                    "Trillium Fitness - "
+                    + model.Content.Name + " Feed"
             };
 
             rssFeed.Links.Add(link);
@@ -70,29 +102,43 @@
             return rssFeed;
         }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        ///     The get feed items.
+        /// </summary>
+        /// <param name="pbaseUrl">
+        ///     The pbase url.
+        /// </param>
+        /// <param name="model">
+        ///     The model.
+        /// </param>
+        /// <returns>
+        ///     The <see cref="IEnumerable" />.
+        /// </returns>
         private static IEnumerable<SyndicationItem> GetFeedItems(string pbaseUrl, IRenderModel model)
         {
             var items = new List<SyndicationItem>();
-            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
-            foreach (
-                IPublishedContent item in
-                    model.Content.Children(x => x.IsVisible()).OrderByDescending(x => x.UpdateDate))
+            foreach (IPublishedContent item in
+                model.Content.Children(x => x.IsVisible()).OrderByDescending(x => x.UpdateDate))
             {
                 string title = item.HasValue("pageHeading") ? item.GetPropertyValue<string>("pageHeading") : item.Name;
                 DateTime pubDate = item.HasValue("publishDate")
                     ? item.GetPropertyValue<DateTime>("publishDate")
                     : item.CreateDate;
-                //var summary = item.GetPropertyValue<string>("metaDescription");
+
+                // var summary = item.GetPropertyValue<string>("metaDescription");
                 string content = item.HasValue("bodyText")
                     ? library.TruncateString(item.GetPropertyValue<string>("bodyText"), 250, "...")
                     : string.Empty;
 
-
                 if (item.HasValue("pageMedia"))
                 {
-                    IPublishedContent img = umbracoHelper.TypedMedia(item.GetPropertyValue<int>("pageMedia"));
-                    content += "<p><img src=\"" + img.Url + "\" alt=\"" + img.Name + "\" /></p>";
+                    IPublishedContent img = item.ImagesNodesFor("pageMedia", 1).FirstOrDefault();
+                    if (img != null) content += "<p><img src=\"" + img.Url + "\" alt=\"" + img.Name + "\" /></p>";
                 }
 
                 string id = item.UrlName + "-" + item.Id + "-" + item.CreateDate.ToString("u");
@@ -101,7 +147,8 @@
                 var feedItem = new SyndicationItem
                 {
                     Title = new TextSyndicationContent(title),
-                    //Summary = (!string.IsNullOrEmpty(summary) ? new TextSyndicationContent(summary) : null),
+
+                    // Summary = (!string.IsNullOrEmpty(summary) ? new TextSyndicationContent(summary) : null),
                     Content = new TextSyndicationContent(content),
                     BaseUri = url,
                     PublishDate = pubDate,
@@ -116,5 +163,7 @@
 
             return items;
         }
+
+        #endregion
     }
 }

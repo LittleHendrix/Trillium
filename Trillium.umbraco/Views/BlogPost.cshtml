@@ -1,12 +1,12 @@
 ﻿@using Trillium.Extensions
-@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = "Base.cshtml";
 
-    var pageTitle = Model.HasValue("pageHeading") ? Model.GetPropertyValue("pageHeading") : Model.Name;
-    var postDate = Model.GetPropertyValue<DateTime>("publishDate") == default(DateTime)
-                                                    ? Model.CreateDate
-                                                    : Model.GetPropertyValue<DateTime>("PublishDate");
+    var pageTitle = Model.Content.HasValue("pageHeading") ? Model.Content.GetPropertyValue("pageHeading") : Model.Content.Name;
+    var postDate = Model.Content.GetPropertyValue<DateTime>("publishDate") == default(DateTime)
+                                                    ? Model.Content.CreateDate
+                                                    : Model.Content.GetPropertyValue<DateTime>("PublishDate");
 }
 
 <article>
@@ -17,11 +17,11 @@
         <p>Published on: @postDate.ToString("f")</p>
     </section>
     <section class="page-media">
-        @if (Model.HasValue("pageMedia"))
+        @if (Model.Content.HasValue("pageMedia"))
         {
-            if (Umbraco.UmbImagesCount(Model, "pageMedia") == 1)
+            if (Model.Content.MntpCount("pageMedia") == 1)
             {
-                @Umbraco.UmbImagesFor(Model, "pageMedia", 1)
+                @Model.Content.ImagesFor("pageMedia", 1)
             }
         }
     </section>

@@ -146,6 +146,9 @@
     <Reference Include="RazorEngine">
       <HintPath>..\packages\RazorEngine.3.2.0\lib\net40\RazorEngine.dll</HintPath>
     </Reference>
+    <Reference Include="RJP.MultiUrlPicker">
+      <HintPath>..\packages\RJP.UmbracoMultiUrlPicker.1.2.0\lib\net45\RJP.MultiUrlPicker.dll</HintPath>
+    </Reference>
     <Reference Include="SQLCE4Umbraco">
       <HintPath>..\packages\UmbracoCms.Core.7.1.4\lib\SQLCE4Umbraco.dll</HintPath>
     </Reference>
@@ -155,9 +158,11 @@
     <Reference Include="System.Data.SqlServerCe.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -239,16 +244,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.html" />
+    <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactSurfaceController.cs" />
+    <Compile Include="Controllers\XmlSitemapSurfaceController.cs" />
     <Compile Include="Core\EmailDispatcher.cs" />
     <Compile Include="Core\EmailManager.cs" />
     <Compile Include="Core\RssSyndicator.cs" />
     <Compile Include="Extensions\CanonicalUrlExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\PublishedContentExtensions.cs" />
+    <Compile Include="Extensions\TagBuilderExtensions.cs" />
     <Compile Include="Extensions\UmbHelperExtensions.cs" />
     <Compile Include="ViewModels\BlogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -256,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="App_Plugins\RJP.MultiUrlPicker\package.manifest" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

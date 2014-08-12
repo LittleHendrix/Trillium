@@ -1,6 +1,6 @@
 ﻿@using ClientDependency.Core.Mvc
 @using Trillium.Extensions
-@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
 	Layout = null;
 }
@@ -28,6 +28,14 @@
 		@RenderBody()
 		
         @Html.RenderJsHere()
-	    @Html.Raw(@Umbraco.Field("googleAnalytics", recursive: true))
+
+        @Html.Raw(Umbraco.Field("pageTracking"))
+        @{
+            var settings = Umbraco.GetTypedNodeByAlias("AdminSettings");
+            if (settings != null)
+            {
+                @Html.Raw(settings.GetPropertyValue("googleAnalytics"))
+            }
+        }
 	</body>
 </html>

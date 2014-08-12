@@ -1,0 +1,73 @@
+﻿@using Trillium.Extensions
+@inherits UmbracoViewPage<IPublishedContent>
+<?xml version="1.0" encoding="UTF-8" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    
+    @{
+        IPublishedContent root = Model.AncestorOrSelf(1);
+        IPublishedContent settings = Umbraco.GetTypedNodeByAlias("AdminSettings");
+        int maxLevelForSitemap = 5;
+
+        if (settings != null)
+        {
+            maxLevelForSitemap = settings.HasValue("xmlSitemapMaxLevel") ? settings.GetPropertyValue<int>("xmlSitemapMaxLevel") : 5;
+        }
+
+        if (root != null && root.Children.Any())
+        {
+            <url>
+                <loc>@root.UrlWithDomain()</loc>
+                <lastmod>@root.UpdateDate.ToString("s")+00:00</lastmod>
+                @if (!string.IsNullOrEmpty(root.GetPropertyValue<string>("searchEngineSitemapChangeFreq")))
+                {
+                    <changefreq>@root.GetPropertyValue("searchEngineSitemapChangeFreq")</changefreq>
+                }
+            </url>
+            @Traverse(root, maxLevelForSitemap)
+        }
+    }
+</urlset>
+
+@helper Traverse(IPublishedContent parent, int maxLevelForSitemap)
+{
+    foreach (IPublishedContent page in parent.Children.Where(x =>
+        x.IsVisible() &&
+        !x.HasProperty(DataNodePropertyAlias) &&
+        x.TemplateId > 0 &&
+        (!x.HasProperty("searchEngineSitemapHide") || !x.GetPropertyValue<bool>("searchEngineSitemapHide")) &&
+        !Umbraco.IsProtected(x.Id, x.Path)).OrderBy(x => x.SortOrder))
+    {
+        <url>
+            <loc>@page.UrlWithDomain()</loc>
+            @if (page.HasValue("pageMedia"))
+            {
+                IPublishedContent imgNode = page.ImagesNodesFor("pageMedia", 1).FirstOrDefault();
+                Uri rawUrl = HttpContext.Current.Request.Url;
+                var baseUrl = string.Format("{0}://{1}", rawUrl.Scheme, rawUrl.Host);
+                if (imgNode != null)
+                {
+                    <image:image>
+                        <image:loc>@baseUrl@imgNode.Url</image:loc>
+                    </image:image>
+                }
+            }
+            <lastmod>@page.UpdateDate.ToString("s")+00:00</lastmod>
+            @if (!string.IsNullOrEmpty(page.GetPropertyValue<string>("searchEngineSitemapChangeFreq")))
+            {
+                <changefreq>@page.GetPropertyValue("searchEngineSitemapChangeFreq")</changefreq>
+            }
+        </url>
+        if (page.Level <= maxLevelForSitemap)
+        {
+            @Traverse(page, maxLevelForSitemap)
+        }
+    }
+}
+
+@functions
+{
+
+        private const string DataNodePropertyAlias = "isDataNode";
+}
