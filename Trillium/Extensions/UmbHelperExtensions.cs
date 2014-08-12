@@ -33,7 +33,7 @@ namespace Trillium.Extensions
         /// <returns>
         ///     The <see cref="IPublishedContent" />. Please check for null ref before calling GetProperty()
         /// </returns>
-        public static IPublishedContent UmbGetTypedNodeByAlias(this UmbracoHelper umbracoHelper, string docTypeAlias)
+        public static IPublishedContent GetTypedNodeByAlias(this UmbracoHelper umbracoHelper, string docTypeAlias)
         {
             IEnumerable<IPublishedContent> root = umbracoHelper.TypedContentAtRoot();
 
