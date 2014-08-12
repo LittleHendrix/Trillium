@@ -28,8 +28,10 @@
 		@RenderBody()
 		
         @Html.RenderJsHere()
+
+        @Html.Raw(Umbraco.Field("pageTracking"))
         @{
-            var settings = Umbraco.UmbGetTypedNodeByAlias("AdminSettings");
+            var settings = Umbraco.GetTypedNodeByAlias("AdminSettings");
             if (settings != null)
             {
                 @Html.Raw(settings.GetPropertyValue("googleAnalytics"))
