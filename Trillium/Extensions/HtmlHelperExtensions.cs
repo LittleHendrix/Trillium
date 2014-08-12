@@ -1,4 +1,13 @@
-﻿namespace Trillium.Extensions
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HtmlHelperExtensions.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The html helper extensions.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Trillium.Extensions
 {
     using System;
     using System.Collections.Generic;
@@ -10,22 +19,72 @@
     using System.Web.Routing;
     using umbraco;
 
+    /// <summary>
+    ///     The html helper extensions.
+    /// </summary>
     public static class HtmlHelperExtensions
     {
-        public static MvcHtmlString Truncate(this HtmlHelper html, string value, int count, string elipses)
+        #region Public Methods and Operators
+
+        /// <summary>
+        ///     The custom text area for.
+        /// </summary>
+        /// <param name="htmlHelper">
+        ///     The html helper.
+        /// </param>
+        /// <param name="expression">
+        ///     The expression.
+        /// </param>
+        /// <param name="htmlAttributes">
+        ///     The html attributes.
+        /// </param>
+        /// <typeparam name="TModel">
+        /// </typeparam>
+        /// <typeparam name="TProperty">
+        /// </typeparam>
+        /// <returns>
+        ///     The <see cref="MvcHtmlString" />.
+        /// </returns>
+        public static MvcHtmlString CustomTextAreaFor<TModel, TProperty>(
+            this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression,
+            object htmlAttributes)
         {
-            if (string.IsNullOrEmpty(value))
+            var member = expression.Body as MemberExpression;
+
+            var stringLength =
+                member.Member.GetCustomAttributes(typeof (StringLengthAttribute), false).FirstOrDefault() as
+                    StringLengthAttribute;
+
+            var attributes = (IDictionary<string, object>) new RouteValueDictionary(htmlAttributes);
+
+            if (stringLength != null)
             {
-                return MvcHtmlString.Empty;
+                attributes.Add("maxlength", stringLength.MaximumLength);
             }
 
-            string cleanHtml = library.StripHtml(value);
-
-            return cleanHtml.Length <= count
-                ? MvcHtmlString.Create(cleanHtml)
-                : MvcHtmlString.Create(cleanHtml.Substring(0, count - 1) + elipses);
+            return htmlHelper.TextAreaFor(expression, attributes);
         }
 
+        /// <summary>
+        ///     The custom text box for.
+        /// </summary>
+        /// <param name="htmlHelper">
+        ///     The html helper.
+        /// </param>
+        /// <param name="expression">
+        ///     The expression.
+        /// </param>
+        /// <param name="htmlAttributes">
+        ///     The html attributes.
+        /// </param>
+        /// <typeparam name="TModel">
+        /// </typeparam>
+        /// <typeparam name="TProperty">
+        /// </typeparam>
+        /// <returns>
+        ///     The <see cref="MvcHtmlString" />.
+        /// </returns>
         public static MvcHtmlString CustomTextBoxFor<TModel, TProperty>(
             this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TProperty>> expression,
@@ -47,25 +106,38 @@
             return htmlHelper.TextBoxFor(expression, attributes);
         }
 
-        public static MvcHtmlString CustomTextAreaFor<TModel, TProperty>(
-            this HtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TProperty>> expression,
-            object htmlAttributes)
+        /// <summary>
+        ///     The truncate.
+        /// </summary>
+        /// <param name="html">
+        ///     The html.
+        /// </param>
+        /// <param name="value">
+        ///     The value.
+        /// </param>
+        /// <param name="count">
+        ///     The count.
+        /// </param>
+        /// <param name="elipses">
+        ///     The elipses.
+        /// </param>
+        /// <returns>
+        ///     The <see cref="MvcHtmlString" />.
+        /// </returns>
+        public static MvcHtmlString Truncate(this HtmlHelper html, string value, int count, string elipses)
         {
-            var member = expression.Body as MemberExpression;
-
-            var stringLength =
-                member.Member.GetCustomAttributes(typeof(StringLengthAttribute), false).FirstOrDefault() as
-                    StringLengthAttribute;
-
-            var attributes = (IDictionary<string, object>)new RouteValueDictionary(htmlAttributes);
-
-            if (stringLength != null)
+            if (string.IsNullOrEmpty(value))
             {
-                attributes.Add("maxlength", stringLength.MaximumLength);
+                return MvcHtmlString.Empty;
             }
 
-            return htmlHelper.TextAreaFor(expression, attributes);
+            string cleanHtml = library.StripHtml(value);
+
+            return cleanHtml.Length <= count
+                ? MvcHtmlString.Create(cleanHtml)
+                : MvcHtmlString.Create(cleanHtml.Substring(0, count - 1) + elipses);
         }
+
+        #endregion
     }
 }

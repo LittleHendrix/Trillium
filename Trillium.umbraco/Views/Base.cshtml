@@ -28,6 +28,12 @@
 		@RenderBody()
 		
         @Html.RenderJsHere()
-	    @Html.Raw(@Umbraco.Field("googleAnalytics", recursive: true))
+        @{
+            var settings = Umbraco.UmbGetTypedNodeByAlias("AdminSettings");
+            if (settings != null)
+            {
+                @Html.Raw(settings.GetPropertyValue("googleAnalytics"))
+            }
+        }
 	</body>
 </html>
