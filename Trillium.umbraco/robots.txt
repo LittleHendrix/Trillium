@@ -13,4 +13,4 @@ Disallow: /umbraco/
 Disallow: /umbraco_client/
 Disallow: /usercontrols/
 Disallow: /xslt/
-Sitemap: http://www.trilliumfitness.co.uk/xmlsitemap.xml
+Sitemap: http://www.trilliumfitness.co.uk/sitemap.xml
