@@ -1,0 +1,58 @@
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<Trillium.ViewModels.SearchResultsViewModel>
+@{
+    var searchTerm = Request.QueryString["searchTerms"];
+}
+@if (String.IsNullOrEmpty(Model.SearchTerms))
+{
+    <p>Please enter a search term.</p>
+    <form action="/search" method="get" class="search-box">
+        <input type="text" name="searchTerms" placeholder="Search" class="search-field typeahead" value="@searchTerm" autocomplete="off" data-provide="typeahead" />
+        <input type="submit" class="search-btn" value="search" />
+    </form>
+}
+else if (Model.ResultCount == 0)
+{
+    <p>0 results were found for search term &quot;@Model.SearchTerms&quot;</p>
+
+
+    <form action="/search" method="get" class="search-box">
+        <input type="text" name="searchTerms" placeholder="Search" class="search-field typeahead" value="@searchTerm" autocomplete="off" data-provide="typeahead" />
+        <input type="submit" class="search-btn" value="search" />
+    </form>
+}
+else
+{
+    <p>@Model.ResultCount results found for search term <strong>&quot;@Model.SearchTerms&quot;</strong></p>
+
+
+    <ul class="search-results">
+        @foreach (var item in Model.Results)
+        {
+            <li>
+                <a href="@Umbraco.NiceUrl(Convert.ToInt32(@item.Id))">
+                    @Html.Raw(item.Fields["searchTitle"])
+                </a>
+                @if (item.Fields.ContainsKey("searchHighlight"))
+                {
+                    <p>@Html.Raw(item.Fields["searchHighlight"])</p>
+                }
+            </li>
+        }
+    </ul>
+    <form action="/search" method="get" class="search-box">
+        <input type="text" name="searchTerms" placeholder="Search" class="search-field typeahead" value="@searchTerm" autocomplete="off" data-provide="typeahead" />
+        <input type="submit" class="search-btn" value="search" />
+    </form>
+}
+
+@if (Model.TotalPages > 1)
+{
+    <ul class="pager">
+        <li>Go to page: </li>
+        @for (int p = 1; p < Model.TotalPages + 1; p++)
+        {
+            string selected = (p == Model.Page) ? "selected" : String.Empty;
+            <li class="@selected"><a href="?searchTerms=@Model.SearchTerms&amp;page=@p">@p</a></li>
+        }
+    </ul>
+}
