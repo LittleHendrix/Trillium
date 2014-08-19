@@ -1,6 +1,6 @@
 ﻿@using ClientDependency.Core.Mvc
 @using Trillium.Extensions
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<object>
 @{
 	Layout = null;
 }
@@ -19,13 +19,16 @@
         @Html.CanonicalUrl()
         @{Html.RenderPartial("RssLink", Umbraco.AssignedContentItem);}
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	    <link rel="stylesheet" href="/Css/app.css">
+	    @{Html.RenderPartial("StylesMain");}
+        @Html.RenderCssHere()
 	    <script src="/bower_components/modernizr/modernizr.min.js"></script>
         @{Html.RenderPartial("ScriptsMain");}
 	</head>
 	<body id="@Umbraco.Field("nodeTypeAlias")">
 		
-		@RenderBody()
+        @Html.Partial("SearchBoxJson")
+
+	    @RenderBody()
 		
         @Html.RenderJsHere()
 

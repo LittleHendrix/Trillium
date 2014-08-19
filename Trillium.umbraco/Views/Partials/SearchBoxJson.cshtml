@@ -1,0 +1,9 @@
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<Trillium.ViewModels.SearchResultsViewModel>
+@{
+    var searchTerm = Request.QueryString["searchTerms"];                  
+}
+<form action="/search" method="get" class="search-box">
+    <span class="search-legend">All you need to know about Lucene Search</span>
+    <input type="text" name="searchTerms" placeholder="Search Trillium Fitness" class="search-field typeahead" value="" autocomplete="off" data-provide="typeahead" />
+    <input type="submit" class="search-btn" value="search" />
+</form>
