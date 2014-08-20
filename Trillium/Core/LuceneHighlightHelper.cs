@@ -28,7 +28,7 @@ namespace Trillium.Core
         /// <summary>
         ///     The lucene instance.
         /// </summary>
-        private static readonly LuceneHighlightHelper LuceneInstance = new LuceneHighlightHelper();
+        // private static readonly LuceneHighlightHelper LuceneInstance = new LuceneHighlightHelper();
 
         #endregion
 
@@ -65,7 +65,16 @@ namespace Trillium.Core
 
         public static LuceneHighlightHelper Instance
         {
-            get { return LuceneInstance; }
+            get { return Nested.LuceneInstance; }
+        }
+
+        private class Nested
+        {
+            static Nested()
+            {
+            }
+
+            internal static readonly LuceneHighlightHelper LuceneInstance = new LuceneHighlightHelper();
         }
 
         /// <summary>
