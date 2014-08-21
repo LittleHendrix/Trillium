@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Trillium.Core
+namespace Trillium.Extensions
 {
     using System.Collections.Generic;
     using System.IO;

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Trillium.Controllers
+namespace Trillium.Controllers.CustomControllers
 {
     using System;
     using System.Linq;
@@ -18,7 +18,7 @@ namespace Trillium.Controllers
     using Examine.Providers;
     using Examine.SearchCriteria;
     using Lucene.Net.Search;
-    using Trillium.Core;
+    using Trillium.Extensions;
     using Trillium.ViewModels;
     using Umbraco.Web.Models;
     using Umbraco.Web.Mvc;
