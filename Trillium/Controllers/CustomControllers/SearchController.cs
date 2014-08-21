@@ -18,7 +18,7 @@ namespace Trillium.Controllers.CustomControllers
     using Examine.Providers;
     using Examine.SearchCriteria;
     using Lucene.Net.Search;
-    using Trillium.Extensions;
+    using Trillium.Core;
     using Trillium.ViewModels;
     using Umbraco.Web.Models;
     using Umbraco.Web.Mvc;

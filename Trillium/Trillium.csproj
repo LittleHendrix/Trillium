@@ -255,7 +255,8 @@
     <Compile Include="Controllers\SurfaceControllers\XmlSitemapSurfaceController.cs" />
     <Compile Include="Core\EmailDispatcher.cs" />
     <Compile Include="Core\EmailManager.cs" />
-    <Compile Include="Extensions\LuceneHighlightHelper.cs" />
+    <Compile Include="Core\Interfaces\IRepository.cs" />
+    <Compile Include="Core\LuceneHighlightHelper.cs" />
     <Compile Include="Core\RssSyndicator.cs" />
     <Compile Include="Extensions\CanonicalUrlExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
