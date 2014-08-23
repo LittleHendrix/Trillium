@@ -1,5 +1,6 @@
 ﻿@using ClientDependency.Core.Mvc
 @using Trillium.Extensions
+@using Trillium.ViewModels
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<object>
 @{
 	Layout = null;
@@ -26,7 +27,7 @@
 	</head>
 	<body id="@Umbraco.Field("nodeTypeAlias")">
 		
-        @Html.Partial("SearchBoxJson")
+        @Html.Partial("SearchBoxJson", new SearchResultsViewModel())
 
 	    @RenderBody()
 		

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Trillium.Controllers
+namespace Trillium.Controllers.CustomControllers
 {
     using System;
     using System.Linq;

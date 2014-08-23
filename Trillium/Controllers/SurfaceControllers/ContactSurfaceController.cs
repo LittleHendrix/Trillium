@@ -1,4 +1,4 @@
-﻿namespace Trillium.Controllers
+﻿namespace Trillium.Controllers.SurfaceControllers
 {
     using System;
     using System.Web.Mvc;
