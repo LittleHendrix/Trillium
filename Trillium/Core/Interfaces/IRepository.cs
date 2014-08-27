@@ -1,13 +1,17 @@
 ﻿namespace Trillium.Core.Interfaces
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
 
     interface IRepository<T> where T : class
     {
-        IQueryable<T> SearchFor(Expression<Func<T, bool>> predicate);
-        IQueryable<T> GetAll();
+        IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> GetAll();
+        T Single(Expression<Func<T, bool>> predicate);
+        T SingleOrDefault(Expression<Func<T, bool>> predicate);
+        T First(Expression<Func<T, bool>> predicate);
         T GetById(int id);
     }
 
