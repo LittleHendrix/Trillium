@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
@@ -284,6 +290,7 @@
     <Compile Include="Core\LuceneHighlightHelper.cs" />
     <Compile Include="Core\RssSyndicator.cs" />
     <Compile Include="Extensions\CanonicalUrlExtensions.cs" />
+    <Compile Include="Extensions\EventHandlers\TrilliumApplication.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\PublishedContentExtensions.cs" />
     <Compile Include="Extensions\TagBuilderExtensions.cs" />
@@ -304,6 +311,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Extensions\Utilities\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
