@@ -1,16 +1,15 @@
 ﻿namespace Trillium.Core.Interfaces
 {
     using System;
+    using Trillium.Models;
 
-    interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         // list all repositories
         // e.g. 
-        // IEditableRepository<BlogComments> BlogCommentsRepository { get; }
         // IRepository<ReadonlyClass> ReadonlyRepository { get; }
+        IRepository<BlogComment> BlogCommentsRepository { get; } 
 
         void Commit();
-        void Rollback();
-        
     }
 }

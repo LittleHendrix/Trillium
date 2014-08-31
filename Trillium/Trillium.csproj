@@ -290,15 +290,19 @@
     <Compile Include="Core\LuceneHighlightHelper.cs" />
     <Compile Include="Core\RssSyndicator.cs" />
     <Compile Include="Extensions\CanonicalUrlExtensions.cs" />
-    <Compile Include="Extensions\EventHandlers\TrilliumApplication.cs" />
+    <Compile Include="Extensions\EventHandlers\RegisterEvents.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\PublishedContentExtensions.cs" />
     <Compile Include="Extensions\TagBuilderExtensions.cs" />
     <Compile Include="Extensions\UmbHelperExtensions.cs" />
+    <Compile Include="Infrastructure\Repositories\PpGenericRepository.cs" />
+    <Compile Include="Infrastructure\Uow\PpUnitOfWork.cs" />
+    <Compile Include="Models\BlogComment.cs" />
     <Compile Include="ViewModels\BlogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\SearchResultsViewModel.cs" />
+    <Compile Include="Web\TrilliumApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -312,7 +316,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\Utilities\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
