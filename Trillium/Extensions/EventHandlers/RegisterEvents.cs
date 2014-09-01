@@ -1,13 +1,12 @@
-﻿namespace Trillium.Extensions.EventHandlers
-{
-    using Umbraco.Core;
+﻿//namespace Trillium.Extensions.EventHandlers
+//{
+//    using Umbraco.Core;
 
-    public class RegisterEvents : ApplicationEventHandler
-    {
-        protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication,
-            ApplicationContext applicationContext)
-        {
-            // attach custom methods to applicationStarted event
-        }
-    }
-}
+//    public class RegisterEvents : ApplicationEventHandler
+//    {
+//        protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication,
+//            ApplicationContext applicationContext)
+//        {
+//        }
+//    }
+//}

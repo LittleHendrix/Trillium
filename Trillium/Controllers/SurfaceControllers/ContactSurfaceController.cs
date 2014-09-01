@@ -9,6 +9,13 @@
 
     public class ContactSurfaceController : SurfaceController
     {
+        private readonly ContactViewModel contactViewModel;
+
+        public ContactSurfaceController(ContactViewModel contactViewModel)
+        {
+            this.contactViewModel = contactViewModel;
+        }
+
         [OutputCache(Duration = 0, VaryByParam = "none", Location = OutputCacheLocation.Any, NoStore = true)]
         [HttpPost]
         [ActionName("ContactUs")]
@@ -49,6 +56,12 @@
             }
 
             return this.RedirectToCurrentUmbracoPage();
+        }
+
+        [ChildActionOnly]
+        public ActionResult RenderContactForm()
+        {
+            return this.PartialView("ContactForm", this.contactViewModel);
         }
     }
 }

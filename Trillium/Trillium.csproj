@@ -44,6 +44,9 @@
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac.Integration.WebApi">
+      <HintPath>..\packages\Autofac.WebApi.3.1.0\lib\net40\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
