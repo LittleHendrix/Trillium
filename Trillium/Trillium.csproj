@@ -293,6 +293,8 @@
     <Compile Include="Core\LuceneHighlightHelper.cs" />
     <Compile Include="Core\RssSyndicator.cs" />
     <Compile Include="Extensions\CanonicalUrlExtensions.cs" />
+    <Compile Include="Extensions\DataAnnotations\SpamPotAttribute.cs" />
+    <Compile Include="Extensions\DataAnnotations\SpamTimerAttribute.cs" />
     <Compile Include="Extensions\EventHandlers\RegisterEvents.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\PublishedContentExtensions.cs" />

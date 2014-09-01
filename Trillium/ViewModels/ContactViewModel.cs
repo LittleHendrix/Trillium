@@ -2,13 +2,15 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Trillium.Extensions.DataAnnotations;
 
     public class ContactViewModel
     {
-        public string Captcha { get; set; }
+        [SpamPot(ErrorMessage = "Honeypot must be left empty")]
+        public string Honeypot { get; set; }
 
-        [Required]
-        public DateTime SubmitDate { get; set; }
+        [SpamTimer(12)]
+        public long Timestamp { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         [StringLength(20, ErrorMessage = "Name cannot exceed 20 characters")]

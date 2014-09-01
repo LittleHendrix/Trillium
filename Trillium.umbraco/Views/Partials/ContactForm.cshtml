@@ -4,8 +4,6 @@
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<ContactViewModel>
 @{
     Layout = "";
-
-    Model.SubmitDate = DateTime.UtcNow;
     var formCompleted = TempData["FormCompleted"] != null;
 }
 
@@ -15,6 +13,9 @@
 
     using (Html.BeginUmbracoForm<ContactSurfaceController>("ContactUs", null, new { @class = "myForm" }, FormMethod.Post))
     {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+    
         <div class="form-row">
             @Html.LabelFor(m => m.Name, "Name", new { @name = "nameLbl", @class = "frmLabel" })
             @Html.CustomTextBoxFor(m => m.Name, new { @class = "frmTxtbox", placeholder = "Enter your name" })
@@ -40,8 +41,9 @@
         </div>
 
         <div class="form-row">
-            @Html.HiddenFor(m => m.Captcha)
-            @Html.HiddenFor(m => m.SubmitDate)
+            @Html.TextBoxFor(m => m.Honeypot, new { @style = "" })
+            @Html.ValidationMessageFor(m => m.Honeypot)
+            @Html.SpamProtectionTimeStampFor(m => m.Timestamp)
         </div>
 
         <div class="form-row submit-row">
