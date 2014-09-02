@@ -1,9 +1,11 @@
+@using System
 @using Trillium.Controllers.SurfaceControllers
 @using Trillium.Extensions
 @using Trillium.ViewModels
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<ContactViewModel>
 @{
     Layout = "";
+    Model.SubmitDate = DateTime.Now;
     var formCompleted = TempData["FormCompleted"] != null;
 }
 
@@ -41,9 +43,10 @@
         </div>
 
         <div class="form-row">
-            @Html.TextBoxFor(m => m.Honeypot, new { @style = "" })
+            @Html.TextBoxFor(m => m.Honeypot, new { @style = "position:absolute;left:-99999px;width:1px;height:1px;" })
             @Html.ValidationMessageFor(m => m.Honeypot)
             @Html.SpamProtectionTimeStampFor(m => m.Timestamp)
+            @Html.HiddenFor(m => m.SubmitDate)
         </div>
 
         <div class="form-row submit-row">

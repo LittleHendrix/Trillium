@@ -58,7 +58,7 @@
             }
             if (content.HasProperty("submittedOn"))
             {
-                content.SetValue(datetimePropperty, model.Timestamp.ToString("f"));
+                content.SetValue(datetimePropperty, model.SubmitDate.ToString("f"));
             }
 
             cs.Save(content);

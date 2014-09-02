@@ -11,7 +11,7 @@
             ModelMetadata metadata,
             ControllerContext context)
         {
-            yield return new ModelClientValidationRule {ErrorMessage = ErrorMessage, ValidationType = "spampot"};
+            yield return new ModelClientValidationRule {ErrorMessage = this.ErrorMessage, ValidationType = "spampot"};
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)

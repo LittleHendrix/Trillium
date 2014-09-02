@@ -36,4 +36,14 @@
         });
     }
 
+    // custom attr client validation
+    $.validator.addMethod('checkPot', function (value, element) {
+        return this.optional(element) || !value;
+    }, '');
+
+    $.validator.unobtrusive.adapters.add('honeypot', {}, function (options) {
+        options.rules['checkPot'] = true;
+        options.messages['checkPot'] = options.message;
+    });
+
 })(jQuery);

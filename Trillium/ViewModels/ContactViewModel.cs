@@ -1,6 +1,7 @@
 ﻿namespace Trillium.ViewModels
 {
     using System;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using Trillium.Extensions.DataAnnotations;
 
@@ -11,6 +12,9 @@
 
         [SpamTimer(12)]
         public long Timestamp { get; set; }
+
+        [Required]
+        public DateTime SubmitDate { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         [StringLength(20, ErrorMessage = "Name cannot exceed 20 characters")]

@@ -20,14 +20,14 @@
             {
                 var currentTime = (long) (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
 
-                if (currentTime <= timestamp - Timespan)
+                if (currentTime <= timestamp + Timespan)
                 {
                     return
                         new ValidationResult(
                             string.Format(
-                                "Invalid form submission. At least {0} seconds have to pass before form submission ({1})",
-                                Timespan,
-                                value));
+                                "Your previous submission ({0}) is being processed. Please wait for {1} seconds before submitting the form again.",
+                                value,
+                                Timespan));
                 }
             }
 
