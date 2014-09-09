@@ -1,4 +1,4 @@
-﻿namespace Trillium.Models
+﻿namespace Trillium.DAL.EntityModels
 {
     using Umbraco.Core.Persistence;
     using Umbraco.Core.Persistence.DatabaseAnnotations;

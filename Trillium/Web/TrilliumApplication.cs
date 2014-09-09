@@ -5,7 +5,7 @@
     using Autofac;
     using Autofac.Integration.Mvc;
     using Autofac.Integration.WebApi;
-    using Trillium.Models;
+    using Trillium.DAL.EntityModels;
     using Trillium.ViewModels;
     using Umbraco.Core;
     using Umbraco.Core.Persistence;
@@ -26,7 +26,7 @@
                 db.CreateTable<BlogComment>(false);
             }
 
-            SetUpDependencyInjection();
+            // SetUpDependencyInjection();
         }
 
 
