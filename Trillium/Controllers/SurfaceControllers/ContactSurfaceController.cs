@@ -9,22 +9,24 @@
 
     public class ContactSurfaceController : SurfaceController
     {
+        private readonly ContactViewModel contactViewModel;
+
+        public ContactSurfaceController(ContactViewModel contactViewModel)
+        {
+            this.contactViewModel = contactViewModel;
+        }
+
         [OutputCache(Duration = 0, VaryByParam = "none", Location = OutputCacheLocation.Any, NoStore = true)]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         [ActionName("ContactUs")]
         public ActionResult ContactUsPost(ContactViewModel model)
         {
-            if (model.Captcha != null)
-            {
-                // Captcha is set as a hidden field to trap bots
-                this.ModelState.AddModelError("Captcha", "Captcha must be left empty");
-            }
-
-            TimeSpan diff = DateTime.UtcNow - model.SubmitDate;
-            if (diff.TotalSeconds < 12)
-            {
-                this.ModelState.AddModelError("SubmitDate", "Your last submission is still being processed");
-            }
+            //TimeSpan diff = DateTime.UtcNow - model.Timestamp;
+            //if (diff.TotalSeconds < 12)
+            //{
+            //    this.ModelState.AddModelError("Timestamp", string.Format("Your last submission ({0}) is still being processed", model.Timestamp));
+            //}
 
             if (!this.ModelState.IsValid)
             {
@@ -49,6 +51,12 @@
             }
 
             return this.RedirectToCurrentUmbracoPage();
+        }
+
+        
+        public ActionResult RenderContactForm()
+        {
+            return this.PartialView("ContactForm", this.contactViewModel);
         }
     }
 }

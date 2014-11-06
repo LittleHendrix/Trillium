@@ -1,11 +1,17 @@
 ﻿namespace Trillium.ViewModels
 {
     using System;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using Trillium.Extensions.DataAnnotations;
 
     public class ContactViewModel
     {
-        public string Captcha { get; set; }
+        [SpamPot(ErrorMessage = "Honeypot must be left empty")]
+        public string Honeypot { get; set; }
+
+        [SpamTimer(12)]
+        public long Timestamp { get; set; }
 
         [Required]
         public DateTime SubmitDate { get; set; }
