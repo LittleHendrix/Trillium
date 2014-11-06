@@ -11,9 +11,9 @@
     {
         private readonly ContactViewModel contactViewModel;
 
-        public ContactSurfaceController(ContactViewModel contactViewModel)
+        public ContactSurfaceController()
         {
-            this.contactViewModel = contactViewModel;
+            this.contactViewModel = new ContactViewModel();
         }
 
         [OutputCache(Duration = 0, VaryByParam = "none", Location = OutputCacheLocation.Any, NoStore = true)]
@@ -22,11 +22,11 @@
         [ActionName("ContactUs")]
         public ActionResult ContactUsPost(ContactViewModel model)
         {
-            //TimeSpan diff = DateTime.UtcNow - model.Timestamp;
-            //if (diff.TotalSeconds < 12)
-            //{
-            //    this.ModelState.AddModelError("Timestamp", string.Format("Your last submission ({0}) is still being processed", model.Timestamp));
-            //}
+            TimeSpan diff = DateTime.UtcNow - model.SubmitDate;
+            if (diff.TotalSeconds < 12)
+            {
+                this.ModelState.AddModelError("Timestamp", string.Format("Your last submission ({0}) is still being processed", model.SubmitDate));
+            }
 
             if (!this.ModelState.IsValid)
             {
@@ -35,25 +35,27 @@
 
             EmailDispatcher.SendContactEmail(model);
 
-            try
-            {
-                if ((this.TempData.ContainsValue("true") == false)
-                    || (this.TempData.ContainsKey("FormCompleted") == false))
-                {
-                    this.TempData.Add("FormCompleted", "true");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(
-                    ex.Message + " containsValue=" + this.TempData.ContainsValue("true") + " containsKey="
-                    + this.TempData.ContainsKey("FormCompleted"));
-            }
+            this.TempData["FormCompleted"] = "true";
+
+            //try
+            //{
+            //    if ((this.TempData.ContainsValue("true") == false)
+            //        || (this.TempData.ContainsKey("FormCompleted") == false))
+            //    {
+            //        this.TempData.Add("FormCompleted", "true");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(
+            //        ex.Message + " containsValue=" + this.TempData.ContainsValue("true") + " containsKey="
+            //        + this.TempData.ContainsKey("FormCompleted"));
+            //}
 
             return this.RedirectToCurrentUmbracoPage();
         }
 
-        
+        [ChildActionOnly]
         public ActionResult RenderContactForm()
         {
             return this.PartialView("ContactForm", this.contactViewModel);

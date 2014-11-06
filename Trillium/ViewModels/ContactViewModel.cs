@@ -1,7 +1,6 @@
 ﻿namespace Trillium.ViewModels
 {
     using System;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using Trillium.Extensions.DataAnnotations;
 
@@ -9,9 +8,6 @@
     {
         [SpamPot(ErrorMessage = "Honeypot must be left empty")]
         public string Honeypot { get; set; }
-
-        [SpamTimer(12)]
-        public long Timestamp { get; set; }
 
         [Required]
         public DateTime SubmitDate { get; set; }

@@ -45,7 +45,6 @@
         <div class="form-row">
             @Html.TextBoxFor(m => m.Honeypot, new { @style = "position:absolute;left:-99999px;width:1px;height:1px;" })
             @Html.ValidationMessageFor(m => m.Honeypot)
-            @Html.SpamProtectionTimeStampFor(m => m.Timestamp)
             @Html.HiddenFor(m => m.SubmitDate)
         </div>
 
@@ -57,6 +56,5 @@
 }
 else
 {
-    <p>@TempData["FormCompleted"]</p>
-    <p>Form has been submitted successfully!</p>
+    <p>Thank you for contacting us! A member of the Trillium team will be in touch soon.</p>
 }
