@@ -4,4 +4,8 @@
     Layout = "Base.cshtml";
 }
 
-@Html.Partial("ContactForm", new ContactViewModel())
+@{
+    
+    Html.RenderAction("RenderContactForm", "ContactSurface");
+    
+}

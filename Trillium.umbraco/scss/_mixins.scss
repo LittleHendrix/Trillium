@@ -1,0 +1,124 @@
+﻿@mixin hide-text {
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+    overflow: hidden;
+    // IE 6/7 fallback
+    *text-indent: -9999px;
+}
+
+@mixin my-clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
+// Specify hi-res background for retina displays
+@mixin retina-image($image, $width, $height) {
+  @media (min--moz-device-pixel-ratio: 1.3),
+         (-o-min-device-pixel-ratio: 2.6/2),
+         (-webkit-min-device-pixel-ratio: 1.3),
+         (min-device-pixel-ratio: 1.3),
+         (min-resolution: 1.3dppx) {
+    // on retina, use image that's scaled by 2
+    background-image: url($image);
+    background-size: $width $height;
+  }
+}
+
+// Calculate fluid ratio based on two dimensions (width/height)
+@mixin fluid-ratio($large-size, $small-size) {
+  $width-large: nth($large-size, 1);
+  $width-small: nth($small-size, 1);
+  $height-large: nth($large-size, 2);
+  $height-small: nth($small-size, 2);
+  $slope: ($height-large - $height-small) / ($width-large - $width-small);
+  $height: $height-small - $width-small * $slope;
+
+  padding-top: $slope * 100%;
+  height: $height;
+  background-size: cover; // -webkit-, -moz-, -o-
+  background-position: center;  // Internet Explorer 7/8
+}
+
+@mixin image-replace($w, $h, $src, $x: 0, $y: 0) {
+    display: block;
+    position: relative;
+    @if $w == "" { width: auto; } @else { width: $w+px; }
+    @if $h == "" { height: auto; } @else { height: $h+px; }
+    background: url($src) no-repeat $x $y transparent;
+    background-size: auto;
+    border: 0;
+    text-shadow: none;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+// Remove this mixin if using with Compass imports
+@mixin experimental($property, $value, $moz: false, $webkit: false, $o: false, $ms: false, $khtml: false, $official: true) {
+    
+    @if $moz {
+        -moz-#{$property}: $value;
+    }
+    
+    @if $webkit {
+        -webkit-#{$property}: $value;
+    }
+
+    @if $o {
+        -o-#{$property}: $value;
+    }
+
+    @if $ms {
+        -ms-#{$property}: $value;
+    }
+
+    @if $khtml {
+        -khtml-#{$property}: $value;
+    }
+
+    @if $official {
+        #{$property}: $value;
+    }
+}
+
+@mixin animation (
+	$animation-name: none, // keyframename|none
+	$animation-duration: 0s, // time(default=0) 
+	$animation-timing-function: ease, // linear|ease(default)|ease-in|ease-out|ease-in-out|cubic-bezier(n,n,n,n)default
+	$animation-delay: 0s, // time(default=0)
+	$animation-iteration-count: 1, // n|infinite 
+	$animation-direction: normal, // normal|alternate
+	$animation-fill-mode: none // none(default)|forwards|backwards|both
+) {
+    @if $animation-name == none {
+        @include experimental(animation, none, -moz, -webkit, -o, not -ms, not -khtml, official);
+    }
+    @else {
+        $full: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction $animation-fill-mode; 
+        @include experimental(animation, $full, -moz, -webkit, -o, not -ms, not -khtml, official);
+    }
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-o-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}

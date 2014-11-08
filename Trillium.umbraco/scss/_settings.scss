@@ -1,3 +1,14 @@
+// Trillium settings
+// Colour swatches
+$trigreen: #6ac983;
+$trilime: #97ffad;
+$tridark: #26282c;
+$trigrey: #313236;
+$tritan: #f2f1ed;
+$tritan-lite: #f7f5f5;
+$trimono: #ececec; 
+
+
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
@@ -44,7 +55,7 @@ $include-html-global-classes: $include-html-classes;
 
 // We use these to control various global styles
 // $body-bg: #fff;
-// $body-font-color: #222;
+$body-font-color: $trigrey;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $font-weight-normal:normal;
 $body-font-weight: $font-weight-normal;
@@ -59,7 +70,7 @@ $body-font-weight: $font-weight-normal;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #008CBA;
+$primary-color: $trigreen;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
@@ -126,17 +137,17 @@ $primary-color: #008CBA;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: #222;
+$header-font-color: $trigrey;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
 // $header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-// $h1-font-size: rem-calc(44);
-// $h2-font-size: rem-calc(37);
-// $h3-font-size: rem-calc(27);
-// $h4-font-size: rem-calc(23);
+$h1-font-size: rem-calc(26);
+$h2-font-size: rem-calc(22);
+$h3-font-size: rem-calc(18);
+$h4-font-size: rem-calc(16);
 // $h5-font-size: rem-calc(18);
 // $h6-font-size: 1rem;
 

@@ -4,4 +4,6 @@
     Layout = "Base.cshtml";
 }
 
-@Html.Action("RenderContactForm", "ContactSurface")
+@{
+    Html.RenderAction("RenderContactForm", "ContactSurface");
+}

@@ -23,7 +23,6 @@
 	    @{Html.RenderPartial("StylesMain");}
         @Html.RenderCssHere()
 	    <script src="/bower_components/modernizr/modernizr.min.js"></script>
-        @{Html.RenderPartial("ScriptsMain");}
 	</head>
 	<body id="@Umbraco.Field("nodeTypeAlias")">
 		
@@ -31,7 +30,9 @@
 
 	    @RenderBody()
 		
-        @Html.RenderJsHere()
+	    @{Html.RenderPartial("ScriptsMain");}
+
+	    @Html.RenderJsHere()
 
         @Html.Raw(Umbraco.Field("pageTracking"))
         @{
