@@ -1,7 +1,7 @@
 ﻿@using ClientDependency.Core.Mvc
 @using Trillium.Extensions
 @using Trillium.ViewModels
-@inherits Umbraco.Web.Mvc.UmbracoViewPage<object>
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
 	Layout = null;
 }
@@ -26,15 +26,45 @@
 	</head>
 	<body id="@Umbraco.Field("nodeTypeAlias")">
 		
-        @Html.Partial("SearchBoxJson", new SearchResultsViewModel())
+	    @*@Html.Partial("SearchBoxJson", new SearchResultsViewModel())*@
+        
+	    <header>
+            <div class="tf-row">
+                @{
+                    Html.RenderPartial("Navigation", Umbraco.AssignedContentItem);
+                }
 
-	    @RenderBody()
+                @Model.Content.ImagesFor("pageMedia", 1, true)
+            </div>
+	    </header>
+        <div class="tf-row">
+            @RenderBody()
+        </div>
+	    <footer>
+	        <div class="tf-row">
+	            <div id="form-col">
+	                <h1>Contact us</h1>
+                    <h2 class="subhead">Get in touch</h2>
+	                @{
+	                    Html.RenderAction("RenderContactForm", "ContactSurface");
+	                }
+	            </div>
+	            <div id="info-col">
+	                <h2 class="subhead">Contact details</h2>
+	                <a href="mailto:info@trilliumfitness.co.uk">info@trilliumfitness.co.uk</a>
+	                <p>(0131) 51 340 284</p>
+	                <address>
+	                    Registered address
+	                </address>
+	            </div>
+	        </div>
+	    </footer>
 		
 	    @{Html.RenderPartial("ScriptsMain");}
+        
+        @Html.RenderJsHere()
 
-	    @Html.RenderJsHere()
-
-        @Html.Raw(Umbraco.Field("pageTracking"))
+	    @Html.Raw(Umbraco.Field("pageTracking"))
         @{
             var settings = Umbraco.GetTypedNodeByAlias("AdminSettings");
             if (settings != null)

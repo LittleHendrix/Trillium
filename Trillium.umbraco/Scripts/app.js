@@ -36,6 +36,7 @@
         });
     }
 
+
     // custom attr client validation
     $.validator.addMethod('checkPot', function (value, element) {
         return this.optional(element) || !value;

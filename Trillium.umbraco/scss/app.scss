@@ -9,7 +9,7 @@
 //   "foundation/components/block-grid",
 //   "foundation/components/breadcrumbs",
 //   "foundation/components/button-groups",
-//   "foundation/components/buttons",
+"foundation/components/buttons",
 //   "foundation/components/clearing",
 //   "foundation/components/dropdown",
 //   "foundation/components/dropdown-buttons",
@@ -36,9 +36,9 @@
 //   "foundation/components/thumbs",
 //   "foundation/components/tooltips",
 "foundation/components/top-bar",
-"foundation/components/type";
+"foundation/components/type",
 //   "foundation/components/offcanvas",
-//   "foundation/components/visibility";
+"foundation/components/visibility";
 
 /*	UTILITY & OVERWRITES
 ----------------------------------------------- */
@@ -51,4 +51,120 @@
     background: $trigreen;
     color: #fff;
     text-shadow: none;
+}
+
+/*	TYPOGRAPHY
+----------------------------------------------- */
+.subhead {
+    &:before, &:after {
+        content: "";
+        display: inline-block;
+        background: url(images/quotes-sml.png) no-repeat 0 0;
+        width: 10px;
+        height: 20px;
+        vertical-align: text-top;
+    }
+    &:after {
+        background-position: -10px 0;
+    }
+}
+h1, h2, h3, h4 {
+    text-transform: capitalize;
+}
+.top-bar-section {
+    ul li > a {
+        letter-spacing: 1.5px;
+    }
+}
+
+/*	FORM
+----------------------------------------------- */
+
+.form-row {
+    padding-bottom: 10px;
+}
+.tf-form {
+    input[type=text], input[type=email], input[type=password], textarea {
+        font-family: $body-font-family;
+        font-size: 1em;
+        padding: 8px;
+        width: 100%;
+        border: none;
+        background: $tritan;
+        &:focus {
+            background: $tritan-lite;
+        }
+    }
+    label {
+        visibility: hidden;
+        position: absolute;
+    }
+    input.input-validation-error {
+    }
+    .field-validation-error {
+        display: block;
+        padding: 4px 8px;
+        font-size: 0.85em;
+        font-style: italic;
+        color: #fff;
+        background: $alert-color;
+    }
+    textarea {
+        resize: vertical;
+        height: 125px;
+    }
+}
+#contactForm {
+    input.btn {
+        padding: 4px 6px;
+    }
+}
+input.btn {
+    @include button($is-input: true);
+}
+
+/*	LAYOUT
+----------------------------------------------- */
+.tf-row {
+    @include grid-row();
+    > div {
+        @include grid-column(12);
+    }
+}
+
+@media #{$medium-up} {
+    .top-bar-section {
+        ul {
+            background: transparent;
+            li {
+                a {
+                    background: transparent;
+                }
+                &.active {
+                    &:not(.has-form) a {
+                        &:not(.button), &:not(.button):hover {
+                            background: transparent;
+                            color: $trigreen;
+                            border: 1px solid $trigreen;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #form-col {
+        @include grid-column(6, $offset: 1);
+    }
+    #info-col {
+        @include grid-column(4);
+    }
+}
+
+@media #{$large-up} {
+    #form-col {
+        @include grid-column(5, $offset: 2);
+    }
+    #info-col {
+        @include grid-column(3);
+    }
 }
