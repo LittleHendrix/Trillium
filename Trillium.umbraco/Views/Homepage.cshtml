@@ -4,3 +4,77 @@
 @{
     Layout = "Base.cshtml";
 }
+@{
+    var displayNodes = Model.Content.MntpNodesFor("displayBlocks", 4);
+
+    foreach (var page in displayNodes.Where(p => p.IsVisible()))
+    {
+        var title = page.HasValue("pageHeading") ? page.GetPropertyValue("pageHeading") : page.Name;
+        <div class="block">
+            <h1>@title</h1>
+            @if (page.HasValue("subheading"))
+            {
+                <h2 class="subhead">@page.GetPropertyValue("subheading")</h2>
+            }
+            @if (page.HasValue("bodyText"))
+            {
+                <div class="body">@page.GetPropertyValue("bodyText")</div>
+            }
+
+            @if (page.Children.Any(x => x.DocumentTypeAlias == "TeamMember"))
+            {
+                <section class="multi-col">
+                    <h2 class="subhead">Meet the team</h2>
+                    <div class="tf-row">
+                        @foreach (var member in page.Children.Where(x => x.DocumentTypeAlias == "TeamMember"))
+                        {
+                            <div class="staff">
+                                @member.ImagesFor("memberPicture", 1)
+                                <h3>@member.Name</h3>
+                                <p class="title">@member.GetPropertyValue("memberTitle")</p>
+                                @if (member.HasValue("memberQualifications"))
+                                {
+                                    <p class="qualification">@Html.Raw(library.ReplaceLineBreaks(member.GetPropertyValue<string>("memberQualifications")))</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                </section>
+            }
+            @if (page.Children.Any(x => x.DocumentTypeAlias == "Service"))
+            {
+                <section>
+                    @foreach (var service in page.Children.Where(x => x.DocumentTypeAlias == "Service"))
+                    {
+                        var serviceTitle = service.HasValue("pageHeading") ? service.GetPropertyValue("pageHeading") : service.Name;
+                        <div class="service">
+                            <h3 class="ser-@(service.Index() + 1)">@serviceTitle</h3>
+                            <p class="synopsis">@Html.Raw(library.ReplaceLineBreaks(service.GetPropertyValue<string>("synopsis")))</p>
+                            <a href="@service.Url" class="btn" title="read more on @serviceTitle">Ready more</a>
+                        </div>
+                    }
+                </section>
+            }
+            @if (page.Children.Any(x => x.DocumentTypeAlias == "Testimonial"))
+            {
+                <section class="multi-col">
+                    <div class="tf-row">
+                        @foreach (var t in page.Children.Where(x => x.DocumentTypeAlias == "Testimonial"))
+                        {
+                            var clientTitle = t.HasValue("pageHeading") ? t.GetPropertyValue("pageHeading") : t.Name;
+                            <div class="testimonial">
+                                <div class="compare-img">
+                                    @t.ImagesFor("beforeImage", 1, htmlClassName: "before")
+                                    @t.ImagesFor("afterImage", 1, htmlClassName: "after")
+                            </div>
+                            <h3>@clientTitle</h3>
+                            <p>@Html.Truncate(t.GetPropertyValue<string>("bodyText"), 75)</p>
+                            <a href="@t.Url" class="btn" title="read more on @clientTitle's story">Read more</a>
+                        </div>
+                        }
+                    </div>
+                </section>
+            }
+        </div>
+    }
+}

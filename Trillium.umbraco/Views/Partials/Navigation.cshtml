@@ -13,7 +13,7 @@
             <li class="@(Model.Id == root.Id ? "active" : "")"><a href="/">Home</a></li>
             @foreach (IPublishedContent page in root.Children.Where(x => x.IsVisible()))
             {
-                var active = Model.Id == page.Id ? "active" : "";
+                var active = page.Id == Model.AncestorOrSelf(2).Id ? "active" : "";
                 var hasChildren = page.Children.Any(p => p.IsVisible() && p.DocumentTypeAlias != "BlogPost" && p.DocumentTypeAlias != "Testimonial" && p.DocumentTypeAlias != "Message") ? "has-dropdown" : "";
                 <li class="@active @hasChildren">
                     <a href="@page.Url">@page.Name</a>
@@ -22,7 +22,7 @@
                         <ul class="dropdown">
                             @foreach (var a in page.Children.Where(p => p.IsVisible()))
                             {
-                                var selected = Model.Id == page.Id ? "active" : "";
+                                var selected = Model.Id == a.Id ? "active" : "";
                                 <li class="@selected">
                                     <a href="@a.Url">@a.Name</a>
                                 </li>
@@ -31,6 +31,7 @@
                     }
                 </li>
             }
+            <li><a href="#contact">Contact us</a></li>
         </ul>
     </section>
 </nav>

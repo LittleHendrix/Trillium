@@ -182,7 +182,8 @@ namespace Trillium.Extensions
             string propertyAlias, 
             int maxItems = 1000, 
             bool isResponsive = false, 
-            bool enableLink = false)
+            bool enableLink = false,
+            string htmlClassName = "")
         {
             if (!publishedContent.HasValue(propertyAlias))
             {
@@ -210,6 +211,7 @@ namespace Trillium.Extensions
                 string imgStr = string.Empty;
 
                 imgTag.MergeAttribute("alt", item.Name + "-" + item.Id, false);
+                imgTag.MergeAttribute("class", htmlClassName);
 
                 if (isResponsive && item.HasValue("mobileImage"))
                 {

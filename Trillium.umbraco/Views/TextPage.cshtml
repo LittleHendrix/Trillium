@@ -2,3 +2,9 @@
 @{
     Layout = "Base.cshtml";
 }
+
+<div class="block">
+    <h1>@Umbraco.Field("pageHeading", altFieldAlias: "pageName")</h1>
+    @Umbraco.Field("subheading", insertBefore: "&lt;h2 class=&quot;subhead&quot;&gt;", insertAfter: "&lt;/h2&gt;")
+    @Umbraco.Field("bodyText")
+</div>
