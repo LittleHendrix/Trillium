@@ -1,4 +1,23 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using Trillium.Extensions
+@using umbraco.cms.presentation.create.controls
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = "Base.cshtml";
 }
+<div class="tf-row">
+    <div class="block">
+        <article>
+            <h1>@Umbraco.Field("pageHeading", altFieldAlias: "pageName")</h1>
+            @Umbraco.Field("memberTitle", insertBefore: "&lt;h2 class=&quot;subhead&quot;&gt;", insertAfter: "&lt;/h2&gt;")
+            <div class="page-media">
+                @Model.Content.ImagesFor("memberPicture", 1)
+            </div>
+            <div class="page-meta">
+                <p>@Html.Raw(library.ReplaceLineBreaks(Model.Content.GetPropertyValue<string>("memberQualifications")))</p>
+            </div>
+            <div class="body">
+                @Umbraco.Field("bodyText")
+            </div>
+        </article>
+    </div>
+</div>

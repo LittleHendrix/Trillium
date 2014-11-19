@@ -3258,7 +3258,7 @@ h1, h2, h3, h4 {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\0000397}}
-.alt-heading, .service h3, .staff h3, .testimonial h3 {
+.alt-heading, .service h3, .staff h3, .testimonial h3, .post h3 {
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
@@ -3304,7 +3304,33 @@ h1, h2, h3, h4 {
   background-image: url(images/service-04.png);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003138}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003140}}
+.post h3 a {
+  color: #26282c;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003143}}
+.post h3 .meta {
+  display: block;
+  font-weight: normal;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003149}}
+.post-meta .meta {
+  font-weight: bold;
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003152}}
+.post-meta .meta a {
+  color: #26282c;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003156}}
+.meta {
+  font-size: smaller;
+  color: #313236;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003160}}
 .btn {
   border-style: solid;
   border-width: 0px;
@@ -3341,9 +3367,14 @@ h1, h2, h3, h4 {
   color: white;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003166}}
+footer .meta {
+  color: #6e7079;
+}
+
 /*	FORM
 ----------------------------------------------- */
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003148}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003173}}
 .form-row {
   padding-bottom: 10px;
   *zoom: 1;
@@ -3361,7 +3392,7 @@ h1, h2, h3, h4 {
   visibility: hidden;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003153}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003178}}
 .tf-form input[type=text], .tf-form input[type=email], .tf-form input[type=password], .tf-form textarea {
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-size: 1em;
@@ -3370,16 +3401,16 @@ h1, h2, h3, h4 {
   border: none;
   background: #f2f1ed;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003160}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003185}}
 .tf-form input[type=text]:focus, .tf-form input[type=email]:focus, .tf-form input[type=password]:focus, .tf-form textarea:focus {
   background: #f7f5f5;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003164}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003189}}
 .tf-form label {
   visibility: hidden;
   position: absolute;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003170}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003195}}
 .tf-form .field-validation-error {
   display: block;
   padding: 4px 8px;
@@ -3388,19 +3419,19 @@ h1, h2, h3, h4 {
   color: #fff;
   background: #f04124;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003178}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003203}}
 .tf-form textarea {
   resize: vertical;
   height: 125px;
   float: left;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003185}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003210}}
 #contactForm input.btn {
   padding: 4px 6px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003189}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003214}}
 input.btn {
   border-style: solid;
   border-width: 0px;
@@ -3436,7 +3467,7 @@ input.btn:hover, input.btn:focus {
 
 /*	LAYOUT
 ----------------------------------------------- */
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003195}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003220}}
 .tf-row {
   width: 100%;
   margin-left: auto;
@@ -3454,7 +3485,7 @@ input.btn:hover, input.btn:focus {
 .tf-row:after {
   clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003197}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003222}}
 .tf-row .block {
   padding-left: 0.9375rem;
   padding-right: 0.9375rem;
@@ -3463,79 +3494,145 @@ input.btn:hover, input.btn:focus {
   padding-top: 0.9375em;
   padding-bottom: 0.9375em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003202}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003227}}
 .tf-row .staff {
   text-align: center;
   padding-top: 0.9375em;
   padding-bottom: 0.9375em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003206}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003231}}
 .tf-row .staff h3, .tf-row .staff p {
   text-align: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003210}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003235}}
 .tf-row .service {
   padding: 0.9375em 0;
   border-bottom: 1px solid #cacbcf;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003214}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003239}}
 .tf-row .testimonial {
   padding: 0.9375em 0;
   border-bottom: 1px solid #cacbcf;
   margin-bottom: 0.9375em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003219}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003244}}
 .tf-row .compare-img {
   padding: 0.9375em 0;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003222}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003247}}
 .tf-row .compare-img img {
   position: relative;
   border-radius: 50%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003225}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003250}}
 .tf-row .compare-img img.before {
   margin: 0 0.9375em 0.9375em 0;
   border: 4px solid #ececec;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003229}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003254}}
 .tf-row .compare-img img.after {
   border: 6px solid #6ac983;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003235}}
-#contact {
-  padding-left: 0.9375rem;
-  padding-right: 0.9375rem;
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003260}}
+#latestPosts, #contact, #infoCol {
+  padding-left: 0;
+  padding-right: 0;
   width: 100%;
   float: left;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003238}}
-#info-col {
-  padding-left: 0.9375rem;
-  padding-right: 0.9375rem;
-  width: 100%;
-  float: left;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003241}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003263}}
 #carousel {
   padding-left: 0;
   padding-right: 0;
   z-index: -1;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003246}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003268}}
 .body {
   padding: 0.9375em 0;
   border-bottom: 1px solid #cacbcf;
   margin-bottom: 1.9375em;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003273}}
+.post {
+  padding: 0.9375em 0;
+  border-bottom: 1px dashed #cacbcf;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003277}}
+.post-img {
+  margin-bottom: 0.9375em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003280}}
+.post-meta {
+  padding: 0.9375em 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003283}}
+footer {
+  background: #26282c;
+  color: #fff;
+  text-align: center;
+  padding: 1.9375em 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003289}}
+.block {
+  z-index: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003292}}
+.bg-row {
+  background: #fff;
+  overflow: hidden;
+  /*&:before {
+      content: "";
+      position: absolute;
+      top: 0; 
+      left: 0;
+      background:inherit;
+      padding-bottom:41%; 
+      width:54.6%;
+      z-index:0;
+      -webkit-transform-origin:0 0;
+      -ms-transform-origin:0 0;
+      transform-origin:0 0;
+      -webkit-transform: rotate(-24.2deg) skewX(42deg);
+      -ms-transform: rotate(-24.2deg) skewX(42deg);
+      transform: rotate(-24.2deg) skewX(42deg);
+  }*/
+  /*&:after {
+      content: "";
+      position: absolute;
+      top: 100%; 
+      left: 0;
+      background:inherit;
+      padding-bottom:50%; width:57.7%;
+      z-index:-1;
+      -webkit-transform-origin:0 0;
+      -ms-transform-origin:0 0;
+      transform-origin:0 0;
+      -webkit-transform: rotate(-30deg) skewX(30deg);
+      -ms-transform: rotate(-30deg) skewX(30deg);
+      transform: rotate(-30deg) skewX(30deg);
+  }*/
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003295}}
+.bg-row.rw-1 {
+  background: #f9f8f8;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003298}}
+.bg-row.rw-3 {
+  background: #f7f5f5;
+}
+
 @media only screen and (min-width: 40.063em) {
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003254}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003335}}
   .tf-row .block {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -3545,171 +3642,238 @@ input.btn:hover, input.btn:focus {
     margin-right: auto;
     float: none;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003256}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003337}}
   .tf-row .block:first-child {
     padding-top: 1.9375em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003259}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003340}}
   .tf-row .block:last-child {
     padding-bottom: 1.9375em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003263}}
-  .tf-row .staff {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003344}}
+  .tf-row .staff, .tf-row .testimonial {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
     width: 50%;
     float: left;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003265}}
-  .tf-row .staff:nth-child(odd) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003346}}
+  .tf-row .staff:nth-child(odd), .tf-row .testimonial:nth-child(odd) {
     clear: left;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003269}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003350}}
   .tf-row .testimonial {
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
-    width: 50%;
-    float: left;
     border-bottom: none;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003272}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003352}}
   .tf-row .testimonial:nth-child(odd) {
-    clear: left;
     border-right: 1px solid #cacbcf;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003277}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003356}}
   .tf-row .compare-img {
     height: 0;
     padding: 0 0 75%;
     margin-bottom: 0.9375em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003282}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003361}}
   .tf-row .compare-img img.before {
     margin: 0;
     position: absolute;
     left: 0;
     bottom: 0;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003367}}
   .tf-row .compare-img img.after {
     left: 45px;
     top: -0.9375em;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003295}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003374}}
+  #latestPosts, #contact, #infoCol {
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 100%;
+    float: left;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003377}}
   .multi-col {
     margin-left: -0.9375em;
     margin-right: -0.9375em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003298}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003380}}
   .multi-col h1, .multi-col h2, .multi-col .body {
     padding-left: 0.9375em;
-    padding-right: 0.9375em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003384}}
+  .multi-col #contact h1, .multi-col #contact h2, .multi-col #contact .body, .multi-col #infoCol h1, .multi-col #infoCol h2, .multi-col #infoCol .body {
+    padding-left: 0;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003303}}
-  #contact {
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003389}}
+  .post h3 .meta {
+    display: inline;
+    padding-left: 0.9375em;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003395}}
+  .bg-row.rw-1:before, .bg-row.rw-1:after {
+    background: #fff !important;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003400}}
+  .bg-row.rw-2:before, .bg-row.rw-2:after {
+    background: #f9f8f8 !important;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003405}}
+  .bg-row.rw-3:before, .bg-row.rw-3:after {
+    background: #fff !important;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003409}}
+  .bg-row:before, .bg-row:after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: 0;
+    height: 100px;
+    width: 50.1%;
+    -webkit-transform: skew(0deg, 8deg);
+    -moz-transform: skew(0deg, 8deg);
+    -ms-transform: skew(0deg, 8deg);
+    -o-transform: skew(0deg, 8deg);
+    transform: skew(0deg, 8deg);
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003423}}
+  .bg-row:after {
+    left: initial;
+    right: 0;
     width: 50%;
-    float: left;
-    margin-left: 8.33333% !important;
+    -webkit-transform: skew(0deg, -8deg);
+    -moz-transform: skew(0deg, -8deg);
+    -ms-transform: skew(0deg, -8deg);
+    -o-transform: skew(0deg, -8deg);
+    transform: skew(0deg, -8deg);
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003306}}
-  #info-col {
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
-    width: 33.33333%;
-    float: left;
-    padding-top: 50.4px;
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003436}}
+  #Homepage .rw-end:before, #Homepage .rw-end:after {
+    background: #f7f5f5 !important;
   }
 }
 @media only screen and (min-width: 48.063em) {
   /*	TOPBAR
   ----------------------------------------------- */
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003315}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003448}}
   .top-bar {
     background: transparent;
     position: absolute;
     width: 100%;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003320}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003453}}
   .top-bar-section {
     top: 30px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003322}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003455}}
   .top-bar-section ul {
     background: transparent;
     width: 100%;
     text-align: center;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003459}}
   .top-bar-section ul li {
     float: none;
     background: transparent;
     display: inline-block;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003330}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003463}}
   .top-bar-section ul li a {
     background: transparent;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003335}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003468}}
   .top-bar-section ul li.active:not(.has-form) a:not(.button), .top-bar-section ul li.active:not(.has-form) a:not(.button):hover {
     background: transparent;
     color: #6ac983;
     border-color: #6ac983;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003342}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003475}}
   .top-bar-section ul li:not(.has-form) a:not(.button) {
     background: transparent;
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003347}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003480}}
   .top-bar-section ul li:not(.has-form) a:not(.button):hover {
     background: transparent;
     color: #6ac983;
     border-color: #6ac983;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003354}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003487}}
   .top-bar-section ul.dropdown {
     text-align: left;
     display: none !important;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003360}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003493}}
   .top-bar-section .has-dropdown > a {
     padding-right: 13.33333px !important;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003362}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003495}}
   .top-bar-section .has-dropdown > a:after {
     display: none;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003369}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003502}}
   .tf-row .staff, .tf-row .testimonial {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
     width: 33.33333%;
     float: left;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003371}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003504}}
   .tf-row .staff:nth-child(odd), .tf-row .testimonial:nth-child(odd) {
     clear: none;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003374}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003507}}
   .tf-row .staff:nth-child(3n + 3), .tf-row .testimonial:nth-child(3n + 3) {
     border-right: none;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003378}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003510}}
+  .tf-row .staff:nth-child(3n + 4), .tf-row .testimonial:nth-child(3n + 4) {
+    clear: left;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003514}}
   .tf-row .testimonial:nth-child(even) {
     border-right: 1px solid #cacbcf;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003518}}
+  #contact {
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 75%;
+    float: left;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003521}}
+  #infoCol {
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 25%;
+    float: left;
+    padding-top: 50.4px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003525}}
+  #latestPosts {
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 75%;
+    float: left;
+  }
 }
 @media only screen and (min-width: 64.063em) {
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003386}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003532}}
   .tf-row .block {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -3720,17 +3884,16 @@ input.btn:hover, input.btn:focus {
     float: none;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003390}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003536}}
   #contact {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
-    width: 41.66667%;
+    width: 75%;
     float: left;
-    margin-left: 16.66667% !important;
   }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003393}}
-  #info-col {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003539}}
+  #infoCol {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
     width: 25%;
@@ -3738,11 +3901,11 @@ input.btn:hover, input.btn:focus {
   }
 }
 @media only screen and (min-width: 90.063em) {
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003402}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003548}}
   .tf-row .compare-img img.before {
     left: 0.9375em;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003405}}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/Users\/Chen\/GitRepo\/Trillium\/Trillium\.umbraco\/scss\/app\.scss}line{font-family:\00003551}}
   .tf-row .compare-img img.after {
     left: 1.9375em;
     top: 0;

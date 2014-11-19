@@ -29,41 +29,52 @@
 	    @*@Html.Partial("SearchBoxJson", new SearchResultsViewModel())*@
         
 	    <header>
-            <div class="tf-row">
-                @{
-                    Html.RenderPartial("Navigation", Umbraco.AssignedContentItem);
-                }
-
-                @*@Model.Content.ImagesFor("pageMedia", 1, true)*@
-                <div id="carousel">
-                    <img alt="trillium_banner.jpg-1112" data-interchange="[/media/1015/trillium_banner_mob.jpg, (default)], [/media/1012/trillium_banner.jpg, (medium)]" />
-                </div>
-            </div>
-	    </header>
-	    <div class="tf-row">
-            @RenderBody()
-        </div>
-	    <footer>
 	        <div class="tf-row">
-	            <div id="contact">
-	                <h1>Contact us</h1>
-	                <h2 class="subhead">Get in touch</h2>
-	                <p>Thank you kindly for visiting. Here you may leave any enquiry, ask us any question, or simply leave a comment.</p>
-                    <p>For partnership enquiries, please indicate the company and primary contact name.</p>
-	                @{
-	                    Html.RenderAction("RenderContactForm", "ContactSurface");
-	                }
-	            </div>
-	            <div id="info-col">
-	                <h2 class="subhead">Contact details</h2>
-                    @Umbraco.Field("contactDetails", recursive:true, convertLineBreaks:true)
+	            @{
+	                Html.RenderPartial("Navigation", Umbraco.AssignedContentItem);
+	            }
+
+	            @*@Model.Content.ImagesFor("pageMedia", 1, true)*@
+	            <div id="carousel">
+	                <img alt="trillium_banner.jpg-1112" data-interchange="[/media/1015/trillium_banner_mob.jpg, (default)], [/media/1012/trillium_banner.jpg, (medium)]" />
 	            </div>
 	        </div>
+	    </header>
+
+        @RenderBody()
+
+        <div class="tf-row bg-row rw-end">
+            <div class="block">
+                <section class="multi-col">
+                    <div class="tf-row">
+                        <div id="contact">
+                            <h1>Contact us</h1>
+                            <h2 class="subhead">Get in touch</h2>
+                            <p>Thank you kindly for visiting. Here you may leave any enquiry, ask us any question, or simply leave a comment.</p>
+                            <p>For partnership enquiries, please indicate the company and primary contact name.</p>
+                            @{
+                                Html.RenderAction("RenderContactForm", "ContactSurface");
+                            }
+                        </div>
+                        <div id="infoCol">
+                            <h2 class="subhead">Contact details</h2>
+                            @Umbraco.Field("contactDetails", recursive: true, convertLineBreaks: true)
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+	    <footer>
+	        <p class="meta copyright">&copy;Trillium Fitness @DateTime.Now.Year</p>
 	    </footer>
-		
+        <!--[if lt IE 9]>
+        <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
+        <![endif]-->
 	    @{Html.RenderPartial("ScriptsMain");}
         
         @Html.RenderJsHere()
+        
+        @RenderSection("customScript", false)
 
 	    @Html.Raw(Umbraco.Field("pageTracking"))
         @{
