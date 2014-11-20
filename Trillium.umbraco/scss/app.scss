@@ -294,9 +294,11 @@ input.btn {
             &.before {
                 margin: 0 0.9375em 0.9375em 0;
                 border: 4px solid $trimono;
+                max-width: 128px;
             }
             &.after {
                 border: 6px solid $trigreen;
+                max-width: 160px;
             }
         }
     }

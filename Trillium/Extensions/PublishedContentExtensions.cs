@@ -183,6 +183,9 @@ namespace Trillium.Extensions
             int maxItems = 1000, 
             bool isResponsive = false, 
             bool enableLink = false,
+            bool enableCrop = false,
+            string cropPropAlias = "imageCrop",
+            string cropName = "thumb",
             string htmlClassName = "")
         {
             if (!publishedContent.HasValue(propertyAlias))
@@ -210,6 +213,8 @@ namespace Trillium.Extensions
                 var imgTag = new TagBuilder("img");
                 string imgStr = string.Empty;
 
+                var src = enableCrop ? item.GetCropUrl(cropPropAlias, cropName) : item.GetPropertyValue<string>("umbracoFile");
+
                 imgTag.MergeAttribute("alt", item.Name + "-" + item.Id, false);
                 imgTag.MergeAttribute("class", htmlClassName);
 
@@ -218,15 +223,15 @@ namespace Trillium.Extensions
                     imgTag.MergeAttribute(
                         "data-interchange", 
                         "[" + item.GetPropertyValue<string>("mobileImage") + ", (default)], ["
-                        + item.GetPropertyValue<string>("umbracoFile") + ", (medium)]", 
+                        + src + ", (medium)]", 
                         false);
 
-                    imgStr = imgTag + "<noscript><img src=\"" + item.GetPropertyValue<string>("umbracoFile")
+                    imgStr = imgTag + "<noscript><img src=\"" + src
                              + "\" alt=\"" + item.Name + "\" /></noscript>";
                 }
                 else
                 {
-                    imgTag.MergeAttribute("src", item.GetPropertyValue<string>("umbracoFile"), false);
+                    imgTag.MergeAttribute("src", src, false);
                     imgStr = imgTag.ToString();
                 }
 

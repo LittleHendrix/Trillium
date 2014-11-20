@@ -51,8 +51,8 @@
                     var clientTitle = t.HasValue("pageHeading") ? t.GetPropertyValue("pageHeading") : t.Name;
                     <div class="testimonial">
                         <div class="compare-img">
-                            @t.ImagesFor("beforeImage", 1, htmlClassName: "before")
-                            @t.ImagesFor("afterImage", 1, htmlClassName: "after")
+                            @t.ImagesFor("beforeImage", 1, enableCrop: true, htmlClassName: "before")
+                            @t.ImagesFor("afterImage", 1, enableCrop: true, htmlClassName: "after")
                         </div>
                         <h3>@clientTitle</h3>
                         <p>@Html.Truncate(t.GetPropertyValue<string>("bodyText"), 75)</p>
