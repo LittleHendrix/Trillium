@@ -1,9 +1,9 @@
-﻿@using Trillium.Core
-@using Trillium.Extensions
+﻿@using Trillium.Extensions
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = "Base.cshtml";
 }
+
 @{
     var displayNodes = Model.Content.MntpNodesFor("displayBlocks", 4);
 
@@ -21,94 +21,9 @@
                 {
                     <div class="body">@page.GetPropertyValue("bodyText")</div>
                 }
+                
+                @{ Html.RenderPartial("ListSubPages", page, new ViewDataDictionary {{"maxItem", 3}}); }
 
-                @if (page.Children.Any(x => x.DocumentTypeAlias == "TeamMember"))
-                {
-                    <section class="multi-col">
-                        <h2 class="subhead">Meet the team</h2>
-                        <div class="tf-row">
-                            @foreach (var member in page.Children.Where(x => x.DocumentTypeAlias == "TeamMember").Take(3))
-                            {
-                                <div class="staff">
-                                    @member.ImagesFor("memberPicture", 1)
-                                    <h3>@member.Name</h3>
-                                    <p class="title">@member.GetPropertyValue("memberTitle")</p>
-                                    @if (member.HasValue("memberQualifications"))
-                                    {
-                                        <p class="qualification">@Html.Raw(library.ReplaceLineBreaks(member.GetPropertyValue<string>("memberQualifications")))</p>
-                                    }
-                                </div>
-                            }
-                        </div>
-                    </section>
-                }
-                @if (page.Children.Any(x => x.DocumentTypeAlias == "Service"))
-                {
-                    <section>
-                        @foreach (var service in page.Children.Where(x => x.DocumentTypeAlias == "Service"))
-                        {
-                            var serviceTitle = service.HasValue("pageHeading") ? service.GetPropertyValue("pageHeading") : service.Name;
-                            <div class="service">
-                                <h3 class="ser-@(service.Index() + 1)">@serviceTitle</h3>
-                                <p class="synopsis">@Html.Raw(library.ReplaceLineBreaks(service.GetPropertyValue<string>("synopsis")))</p>
-                                <a href="@service.Url" class="btn" title="read more on @serviceTitle">Ready more</a>
-                            </div>
-                        }
-                    </section>
-                }
-                @if (page.Children.Any(x => x.DocumentTypeAlias == "Testimonial"))
-                {
-                    <section class="multi-col">
-                        <div class="tf-row">
-                            @foreach (var t in page.Children.Where(x => x.DocumentTypeAlias == "Testimonial").Take(3))
-                            {
-                                var clientTitle = t.HasValue("pageHeading") ? t.GetPropertyValue("pageHeading") : t.Name;
-                                <div class="testimonial">
-                                    <div class="compare-img">
-                                        @t.ImagesFor("beforeImage", 1, htmlClassName: "before")
-                                        @t.ImagesFor("afterImage", 1, htmlClassName: "after")
-                                    </div>
-                                    <h3>@clientTitle</h3>
-                                    <p>@Html.Truncate(t.GetPropertyValue<string>("bodyText"), 75)</p>
-                                    <a href="@t.Url" class="btn" title="read more on @clientTitle's story">Read more</a>
-                                </div>
-                            }
-                        </div>
-                    </section>
-                }
-                @if (page.Children.Any(x => x.DocumentTypeAlias == "BlogPost"))
-                {
-                    <section class="multi-col">
-                        <div class="tf-row">
-                            <div id="latestPosts">
-                                @foreach (var post in page.Children.Where(x => x.DocumentTypeAlias == "BlogPost").OrderByDescending(x => x.GetPropertyValue("publishDate")).ThenByDescending(x => x.CreateDate).Take(4))
-                                {
-                                    var postTitle = post.HasValue("pageHeading") ? post.GetPropertyValue("pageHeading") : post.Name;
-                                    DateTime publishDate = post.HasValue("publishDate") ? post.GetPropertyValue<DateTime>("publishDate") : post.CreateDate;
-                                    var month = publishDate.ToString("MMMM");
-                                    var year = publishDate.ToString("yyyy");
-                                    int day = publishDate.Day;
-                                    var suffix = DateSuffixer.GetDayOfMonthSuffix(day);
-
-                                    <article class="post">
-                                        <h3><a href="@post.Url" title="@postTitle">@postTitle</a> <span class="meta">@month @day@suffix, @year</span></h3>
-                                        <div class="post-img">
-                                            @post.ImagesFor("pageMedia", 1)
-                                        </div>
-                                        <div class="post-body">
-                                            <p class="synopsis">@Html.Truncate(post.GetPropertyValue<string>("bodyText"), 150)</p>
-                                            <a href="@post.Url" class="btn" title="read more on @postTitle">Read more</a>
-                                        </div>
-                                        <div class="post-meta">
-                                            <div class="comment-count"><p class="meta"><a href="@post.Url" data-disqus-identifier="@post.Url">0 Comments</a></p></div>
-                                            <div class="tags"></div>
-                                        </div>
-                                    </article>
-                                }
-                            </div>
-                        </div>
-                    </section>
-                }
             </div>
         </div>
     }
@@ -117,15 +32,15 @@
 @section customScript
 {
     <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'trilliumfitnessuk'; // required: replace example with your forum shortname
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'trilliumfitnessuk'; // required: replace example with your forum shortname
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
     </script>
 }

@@ -2,85 +2,86 @@
 @using Trillium.Extensions;
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<Trillium.ViewModels.BlogViewModel>
 @{
-    Layout = "Base.cshtml";
+    Layout = "Submaster.cshtml";
 }
-<div class="block">
-
-    @foreach (var post in Model.BlogPost)
-    {
-        var postTitle = post.HasValue("pageHeading")
-            ? post.GetPropertyValue("pageHeading")
-            : post.Name;
-
-        var postDate = post.GetPropertyValue<DateTime>("publishDate") == default(DateTime)
-            ? post.CreateDate
-            : post.GetPropertyValue<DateTime>("PublishDate");
-        var month = postDate.ToString("MMMM");
-        var year = postDate.ToString("yyyy");
-        int day = postDate.Day;
-        var suffix = DateSuffixer.GetDayOfMonthSuffix(day);
-
-        <article class="post">
-            <h2>@postTitle</h2>
-            <p class="meta">Published on: @month @day@suffix, @year</p>
-            <div class="post-img">
-                @post.ImagesFor("pageMedia", 1)
-            </div>
-            <div class="post-body">
-                <p>@Html.Truncate(post.GetPropertyValue<string>("bodyText"), 250, "...")</p>
-                <p><a href="@post.Url" class="btn" title="read more on @postTitle">Read more</a></p>
-            </div>
-            <div class="post-meta">
-                <div class="comment-count"><p class="meta"><a href="@post.Url" data-disqus-identifier="@post.Url">0 Comments</a></p></div>
-                <div class="tags"></div>
-            </div>
-        </article>
-    }
-
-
-    <nav class="pagination">
-        @if (Model.IsFirstPage == false)
+<div class="tf-row bg-row">
+    <div class="block">
+        @foreach (var post in Model.BlogPost)
         {
-            <a class="newr-posts" href="@(Model.Content.Url)@(Model.PreviousPage)/">&larr; Newer Posts</a>
+            var postTitle = post.HasValue("pageHeading")
+                ? post.GetPropertyValue("pageHeading")
+                : post.Name;
+
+            var postDate = post.GetPropertyValue<DateTime>("publishDate") == default(DateTime)
+                ? post.CreateDate
+                : post.GetPropertyValue<DateTime>("PublishDate");
+            var month = postDate.ToString("MMMM");
+            var year = postDate.ToString("yyyy");
+            int day = postDate.Day;
+            var suffix = DateSuffixer.GetDayOfMonthSuffix(day);
+
+            <article class="post">
+                <h2>@postTitle</h2>
+                <p class="meta">Published on: @month @day@suffix, @year</p>
+                <div class="post-img">
+                    @post.ImagesFor("pageMedia", 1)
+                </div>
+                <div class="post-body">
+                    <p>@Html.Truncate(post.GetPropertyValue<string>("bodyText"), 250, "...")</p>
+                    <p><a href="@post.Url" class="btn" title="read more on @postTitle">Read more</a></p>
+                </div>
+                <div class="post-meta">
+                    <div class="comment-count"><p class="meta"><a href="@post.Url" data-disqus-identifier="@post.Url">0 Comments</a></p></div>
+                    <div class="tags"></div>
+                </div>
+            </article>
         }
 
-        @if (Model.TotalPages > 1)
-        {
-            for (var i = 1; i <= Model.TotalPages; i++)
+
+        <nav class="pagination">
+            @if (Model.IsFirstPage == false)
             {
-                if (i == Model.Page)
+                <a class="newr-posts" href="@(Model.Content.Url)@(Model.PreviousPage)/">&larr; Newer Posts</a>
+            }
+
+            @if (Model.TotalPages > 1)
+            {
+                for (var i = 1; i <= Model.TotalPages; i++)
                 {
-                    <span class="curPage">@i</span>
-                }
-                else
-                {
-                    <a href="@(Model.Content.Url)@(i)/" class="page-no">@(i)</a>
+                    if (i == Model.Page)
+                    {
+                        <span class="curPage">@i</span>
+                    }
+                    else
+                    {
+                        <a href="@(Model.Content.Url)@(i)/" class="page-no">@(i)</a>
+                    }
                 }
             }
-        }
 
-        @*<span class="page-number">Page <span class="number">@Model.Page</span> of <span class="number">@Model.TotalPages</span></span>*@
+            @*<span class="page-number">Page <span class="number">@Model.Page</span> of <span class="number">@Model.TotalPages</span></span>*@
 
-    @if (Model.IsLastPage == false)
-    {
-        <a class="older-posts" href="@(Model.Content.Url)@(Model.NextPage)/">Older Posts &rarr;</a>
-    }
+            @if (Model.IsLastPage == false)
+            {
+                <a class="older-posts" href="@(Model.Content.Url)@(Model.NextPage)/">Older Posts &rarr;</a>
+            }
 
-    </nav>
+        </nav>
+    </div>
 </div>
 
 @section customScript
 {
     <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'trilliumfitnessuk'; // required: replace example with your forum shortname
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'trilliumfitnessuk'; // required: replace example with your forum shortname
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
     </script>
 }
