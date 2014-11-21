@@ -30,7 +30,6 @@
             const string msgDocTypeAlias = "Message";
             const string namePropperty = "fromName";
             const string emailPropperty = "fromEmailAddress";
-            const string subjectPropperty = "subject";
             const string messagePropperty = "messageBody";
             const string datetimePropperty = "submittedOn";
 
@@ -47,10 +46,6 @@
             if (content.HasProperty("fromEmailAddress"))
             {
                 content.SetValue(emailPropperty, model.EmailAddress);
-            }
-            if (content.HasProperty("subject"))
-            {
-                content.SetValue(subjectPropperty, model.Subject);
             }
             if (content.HasProperty("messageBody"))
             {

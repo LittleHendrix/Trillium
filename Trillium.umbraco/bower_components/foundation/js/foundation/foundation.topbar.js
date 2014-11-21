@@ -360,7 +360,7 @@
           
           // Copy link to subnav
           if (settings.custom_back_text == true) {
-            $('h5>a', $titleLi).html(settings.back_text);
+              $('h5>a', $titleLi).html('&laquo; ' + settings.back_text);
           } else {
             $('h5>a', $titleLi).html('&laquo; ' + $link.html());
           }

@@ -1,7 +1,9 @@
 ﻿@using Trillium.ViewModels
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<object>
 @{
-    Layout = "Base.cshtml";
+    Layout = "Submaster.cshtml";
 }
 
-@Html.Action("RenderContactForm", "ContactSurface")
+@{
+    Html.RenderAction("RenderContactForm", "ContactSurface");
+}

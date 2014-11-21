@@ -12,11 +12,11 @@
 
     public class BlogController : RenderMvcController
     {
-        private readonly BlogViewModel _blogViewModel;
+        private readonly BlogViewModel blogViewModel;
 
-        public BlogController(BlogViewModel blogViewModel)
+        public BlogController()
         {
-            _blogViewModel = blogViewModel;
+            blogViewModel = new BlogViewModel();
         }
 
         [OutputCache(Duration = 60, VaryByParam = "*")]
@@ -24,10 +24,10 @@
         {
             string page = HttpContext.Request.QueryString["Page"] ?? "1";
             int pageInt = Convert.ToInt32(page);
-            _blogViewModel.Page = pageInt;
-            _blogViewModel.BlogPost = GetPagedBlogPost(_blogViewModel);
+            blogViewModel.Page = pageInt;
+            blogViewModel.BlogPost = GetPagedBlogPost(blogViewModel);
 
-            return CurrentTemplate(_blogViewModel);
+            return CurrentTemplate(blogViewModel);
         }
 
         private static IEnumerable<IPublishedContent> GetPagedBlogPost(BlogViewModel model)

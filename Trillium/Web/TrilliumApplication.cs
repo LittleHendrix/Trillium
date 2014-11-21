@@ -44,8 +44,7 @@
             builder.RegisterApiControllers(typeof (UmbracoApplication).Assembly);
 
             // add custom class to the container as Transient instance
-            builder.RegisterType<BlogViewModel>();
-            builder.RegisterType<ContactViewModel>();
+            //builder.RegisterType<BlogViewModel>();
 
             // bind abstract IUnitOfWork with specific provider (petapoco, EF, ...)
             // builder.RegisterType<ppUnitOfWOrk>().As<IUnitOfWork>().InstancePerRequest();

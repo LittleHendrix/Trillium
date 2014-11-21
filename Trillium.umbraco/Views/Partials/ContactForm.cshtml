@@ -1,4 +1,5 @@
 @using System
+@using ClientDependency.Core.Mvc
 @using Trillium.Controllers.SurfaceControllers
 @using Trillium.Extensions
 @using Trillium.ViewModels
@@ -11,52 +12,44 @@
 
 @if (!formCompleted)
 {
-    { Html.RenderPartial("ScriptsValidation"); }
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
 
-    using (Html.BeginUmbracoForm<ContactSurfaceController>("ContactUs", null, new { @class = "myForm" }, FormMethod.Post))
+    using (Html.BeginUmbracoForm<ContactSurfaceController>("ContactUs", null, new { @class = "tf-form", @id = "contactForm" }, FormMethod.Post))
     {
-        @Html.ValidationSummary()
         @Html.AntiForgeryToken()
     
         <div class="form-row">
-            @Html.LabelFor(m => m.Name, "Name", new { @name = "nameLbl", @class = "frmLabel" })
-            @Html.CustomTextBoxFor(m => m.Name, new { @class = "frmTxtbox", placeholder = "Enter your name" })
+            @Html.LabelFor(m => m.Name, "Name", new { @name = "nameLbl", @class = "form-lbl" })
+            @Html.CustomTextBoxFor(m => m.Name, new { @class = "form-txt", placeholder = "Name" })
             @Html.ValidationMessageFor(m => m.Name)
         </div>
 
         <div class="form-row">
-            @Html.LabelFor(m => m.EmailAddress, "Email", new { @name = "emailLbl", @class = "frmLabel" })
-            @Html.CustomTextBoxFor(m => m.EmailAddress, new { @class = "frmTxtbox", placeholder = "Enter your email" })
+            @Html.LabelFor(m => m.EmailAddress, "Email", new { @name = "emailLbl", @class = "form-lbl" })
+            @Html.CustomTextBoxFor(m => m.EmailAddress, new { @class = "form-txt", placeholder = "Email address" })
             @Html.ValidationMessageFor(m => m.EmailAddress)
         </div>
 
         <div class="form-row">
-            @Html.LabelFor(m => m.Subject, "Subject", new { @name = "subjLbl", @class = "frmLabel" })
-            @Html.CustomTextBoxFor(m => m.Subject, new { @class = "frmTxtbox", placeholder = "Choose a subject" })
-            @Html.ValidationMessageFor(m => m.Subject)
-        </div>
-
-        <div class="form-row">
-            @Html.LabelFor(m => m.Message, "Message", new { @name = "msgLbl", @class = "frmLabel" })
-            @Html.CustomTextAreaFor(m => m.Message, new { @class = "frmTxtbox", placeholder = "Leave your message" })
+            @Html.LabelFor(m => m.Message, "Message", new { @name = "msgLbl", @class = "form-lbl" })
+            @Html.CustomTextAreaFor(m => m.Message, new { @class = "form-txt", placeholder = "Message" })
             @Html.ValidationMessageFor(m => m.Message)
         </div>
 
-        <div class="form-row">
+        <div>
             @Html.TextBoxFor(m => m.Honeypot, new { @style = "position:absolute;left:-99999px;width:1px;height:1px;" })
             @Html.ValidationMessageFor(m => m.Honeypot)
-            @Html.SpamProtectionTimeStampFor(m => m.Timestamp)
             @Html.HiddenFor(m => m.SubmitDate)
         </div>
 
         <div class="form-row submit-row">
-            <input type="submit" class="btn submit-btn" value="Submit" />
+            <input type="submit" class="btn submit-btn" value="Send" />
         </div>
 
     }
 }
 else
 {
-    <p>@TempData["FormCompleted"]</p>
-    <p>Form has been submitted successfully!</p>
+    <p class="success">Thank you kindly for your message.  Our aim is to respond to your message as soon as possible.  We look forward to being in touch.</p>
 }

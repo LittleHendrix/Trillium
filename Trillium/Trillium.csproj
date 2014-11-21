@@ -396,6 +396,7 @@
     <Compile Include="Controllers\SurfaceControllers\ContactSurfaceController.cs" />
     <Compile Include="Controllers\CustomControllers\SearchController.cs" />
     <Compile Include="Controllers\SurfaceControllers\XmlSitemapSurfaceController.cs" />
+    <Compile Include="Core\DateSuffixer.cs" />
     <Compile Include="Core\EmailDispatcher.cs" />
     <Compile Include="Core\EmailManager.cs" />
     <Compile Include="DAL\Infrastructure\PetaPocoUnitOfWorkProvider.cs" />

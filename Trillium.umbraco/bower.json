@@ -4,5 +4,8 @@
   "private": "true",
   "dependencies": {
     "foundation": "zurb/bower-foundation"
+  },
+  "devDependencies": {
+    "html5shiv": "~3.7.2"
   }
 }

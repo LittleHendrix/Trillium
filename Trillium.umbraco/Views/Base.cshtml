@@ -1,7 +1,7 @@
 ﻿@using ClientDependency.Core.Mvc
 @using Trillium.Extensions
 @using Trillium.ViewModels
-@inherits Umbraco.Web.Mvc.UmbracoViewPage<object>
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
 	Layout = null;
 }
@@ -23,17 +23,60 @@
 	    @{Html.RenderPartial("StylesMain");}
         @Html.RenderCssHere()
 	    <script src="/bower_components/modernizr/modernizr.min.js"></script>
-        @{Html.RenderPartial("ScriptsMain");}
 	</head>
 	<body id="@Umbraco.Field("nodeTypeAlias")">
 		
-        @Html.Partial("SearchBoxJson", new SearchResultsViewModel())
+	    @*@Html.Partial("SearchBoxJson", new SearchResultsViewModel())*@
+        
+	    <header>
+	        <div class="tf-row">
+	            @{
+	                Html.RenderPartial("Navigation", Umbraco.AssignedContentItem);
+	            }
 
-	    @RenderBody()
-		
+	            @*@Model.Content.ImagesFor("pageMedia", 1, true)*@
+	            <div id="carousel">
+                    <img alt="trillium_banner.jpg-1112" data-interchange="[/media/1024/trillium_banner_mob_wlogo.jpg, (default)], [/media/1023/trillium_banner_wlogo.jpg, (medium)]" />
+	            </div>
+	        </div>
+	    </header>
+
+        @RenderBody()
+
+        <div class="tf-row bg-row rw-end">
+            <div class="block">
+                <section class="multi-col">
+                    <div class="tf-row">
+                        <div id="contact">
+                            <h1>Contact us</h1>
+                            <h2 class="subhead">Get in touch</h2>
+                            <p>Thank you kindly for visiting. Here you may leave any enquiry, ask us any question, or simply leave a comment.</p>
+                            <p>For partnership enquiries, please indicate the company and primary contact name.</p>
+                            @{
+                                Html.RenderAction("RenderContactForm", "ContactSurface");
+                            }
+                        </div>
+                        <div id="infoCol">
+                            <h2 class="subhead">Contact details</h2>
+                            @Umbraco.Field("contactDetails", recursive: true, convertLineBreaks: true)
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+	    <footer>
+	        <p class="meta copyright">&copy;Trillium Fitness @DateTime.Now.Year</p>
+	    </footer>
+        <!--[if lt IE 9]>
+        <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
+        <![endif]-->
+	    @{Html.RenderPartial("ScriptsMain");}
+        
         @Html.RenderJsHere()
+        
+        @RenderSection("customScript", false)
 
-        @Html.Raw(Umbraco.Field("pageTracking"))
+	    @Html.Raw(Umbraco.Field("pageTracking"))
         @{
             var settings = Umbraco.GetTypedNodeByAlias("AdminSettings");
             if (settings != null)

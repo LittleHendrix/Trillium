@@ -1,0 +1,37 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<IPublishedContent>
+@{
+    var root = Model.AncestorOrSelf("Homepage");
+}
+
+<nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+        <li class="name"><a href="/" id="logo">Trillium Fitness</a></li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+        <ul class="left">
+            <li class="@(Model.Id == root.Id ? "active" : "")"><a href="/">Home</a></li>
+            @foreach (IPublishedContent page in root.Children.Where(x => x.IsVisible()))
+            {
+                var active = page.Id == Model.AncestorOrSelf(2).Id ? "active" : "";
+                var hasChildren = page.Children.Any(p => p.IsVisible() && p.DocumentTypeAlias != "BlogPost" && p.DocumentTypeAlias != "Message") ? "has-dropdown" : "";
+                <li class="@active @hasChildren">
+                    <a href="@page.Url">@page.Name</a>
+                    @if (!string.IsNullOrEmpty(hasChildren))
+                    {
+                        <ul class="dropdown">
+                            @foreach (var a in page.Children.Where(p => p.IsVisible()))
+                            {
+                                var selected = Model.Id == a.Id ? "active" : "";
+                                <li class="@selected">
+                                    <a href="@a.Url">@a.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+            <li><a href="#contact">Contact us</a></li>
+        </ul>
+    </section>
+</nav>

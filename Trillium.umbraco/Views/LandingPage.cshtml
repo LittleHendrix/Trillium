@@ -1,0 +1,15 @@
+﻿@using Trillium.Extensions
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Submaster.cshtml";
+}
+@{
+    if (Model.Content.Children.Any())
+    {
+        <div class="tf-row bg-row">
+            <div class="block">
+                @{ Html.RenderPartial("ListSubPages", Umbraco.AssignedContentItem); }
+            </div>
+        </div>
+    }
+}

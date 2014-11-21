@@ -229,7 +229,7 @@ namespace Trillium.Extensions
         /// <returns>
         ///     The <see cref="MvcHtmlString" />.
         /// </returns>
-        public static MvcHtmlString Truncate(this HtmlHelper html, string value, int count, string elipses)
+        public static MvcHtmlString Truncate(this HtmlHelper html, string value, int count = 500, string elipses = "...")
         {
             if (string.IsNullOrEmpty(value))
             {

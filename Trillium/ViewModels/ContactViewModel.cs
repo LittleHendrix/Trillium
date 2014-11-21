@@ -1,7 +1,6 @@
 ﻿namespace Trillium.ViewModels
 {
     using System;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using Trillium.Extensions.DataAnnotations;
 
@@ -9,9 +8,6 @@
     {
         [SpamPot(ErrorMessage = "Honeypot must be left empty")]
         public string Honeypot { get; set; }
-
-        [SpamTimer(12)]
-        public long Timestamp { get; set; }
 
         [Required]
         public DateTime SubmitDate { get; set; }
@@ -25,9 +21,6 @@
         [EmailAddress]
         [StringLength(50, ErrorMessage = "Email address cannot exceed 50 characters")]
         public string EmailAddress { get; set; }
-
-        [StringLength(50, ErrorMessage = "Subject cannot exceed 50 characters")]
-        public string Subject { get; set; }
 
         [Required(ErrorMessage = "Message is required")]
         [StringLength(1024, ErrorMessage = "Message cannot exceed 1024 characters")]
