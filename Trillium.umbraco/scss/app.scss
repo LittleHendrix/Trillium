@@ -179,6 +179,54 @@ h1, h2, h3, h4 {
 .staff h3, .testimonial h3, .post h3 {
     @extend .alt-heading;
 }
+.testimo-qna {
+    padding: 0.93745em 0;
+    border-bottom: 1px solid $border-color;
+    h3 {
+        @extend .alt-heading;
+        line-height: 34px;
+        &:before {
+            content: "";
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-color: $tridark;
+            background-image: url(images/ico-doc.png);
+            vertical-align: bottom;
+        }
+    }
+    &.achievement {
+        h3:before {
+            background-image: url(images/ico-medal.png);
+        }
+    }
+    &.praise {
+        h3:before {
+            background-image: url(images/ico-like.png);
+        }
+    }
+}
+#testimoNav {
+    height: 75px;
+    z-index: 10;
+    .nav {
+        @include image-replace(55, 55, "images/arrow-sprite.png");
+        position: absolute;
+        bottom: 10px;
+        cursor: pointer;
+        &.prev {
+            left: 10px;
+        }
+        &.next {
+            right: 10px;
+            background-position: 0 -55px;
+        }
+    }
+}
 .post {
     h3 {
         a {
@@ -278,40 +326,95 @@ input.btn {
     }
     .service {
         padding: 0.9375em 0;
-        border-bottom: 1px solid lighten($trigrey, 60%);
+        border-bottom: 1px solid $border-color;
     }
     .testimonial {
         padding: 0.9375em 0;
-        border-bottom: 1px solid lighten($trigrey, 60%);
+        border-bottom: 1px solid $border-color;
         margin-bottom: 0.9375em;
-    }
-    .compare-img {
-        padding: 0.9375em 0;
-        text-align: center;
-        img {
-            position: relative;
-            border-radius: 50%;
-            &.before {
-                margin: 0 0.9375em 0.9375em 0;
-                border: 4px solid $trimono;
-                max-width: 128px;
-            }
-            &.after {
-                border: 6px solid $trigreen;
-                max-width: 160px;
-            }
-        }
-    }
-    .staff-img {
-        padding: 0.9375em 0;
-        img {
-            border: 4px solid $trigreen;
-            border-radius: 50%;
-        }
     }
 }
 #latestPosts, #contact, #infoCol {
     @include grid-column(12, $collapse: true);
+}
+#testimoMedia {
+    margin-bottom: 0.9375em;
+    background: $tritan-lite;
+}
+.client-img {
+    text-align: center;
+}
+.compare-img {
+    padding: 0.9375em 0;
+    text-align: center;
+    img {
+        position: relative;
+        border-radius: 50%;
+        &.before {
+            margin-bottom: 0.9375em;
+            border: 4px solid $trimono;
+            max-width: 128px;
+        }
+        &.after {
+            border: 6px solid $trigreen;
+            max-width: 160px;
+        }
+    }
+}
+.staff-img {
+    padding: 0.9375em 0;
+    img {
+        border: 4px solid $trigreen;
+        border-radius: 50%;
+    }
+}
+.cards {
+    -webkit-perspective: 1000;
+    -ms-perspective: 1000;
+    -moz-perspective: 1000;
+    perspective: 1000;
+    width: 160px;
+    height: 160px;
+    margin: auto;
+    &:hover, &:focus {
+        .card {
+            -webkit-transform: rotateY(360deg);
+            -ms-transform: rotateY(360deg);
+            -moz-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+        }
+    }
+}
+.card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    &.front {
+    }
+    &.back {
+        text-align: center;
+        line-height: 160px;
+        -ms-transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+}
+.plus {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url(images/ico-plus.png) no-repeat 50% 50% $trigreen;
+    border-radius: 50%;
 }
 #carousel {
     padding-left: 0;
@@ -320,16 +423,16 @@ input.btn {
 }
 .body {
     padding: 0.9375em 0;
-    border-bottom: 1px solid lighten($trigrey, 60%);
+    border-bottom: 1px solid $border-color;
     margin-bottom: 1.9375em;
 }
 .post {
     padding: 0.9375em 0;
-    border-bottom: 1px dashed lighten($trigrey, 60%);
+    border-bottom: 1px dashed $border-color;
 }
 .post-img {
     margin-bottom: 0.9375em;
-}
+}l
 .post-meta {
     padding: 0.9375em 0;
 }
@@ -360,6 +463,13 @@ footer {
         }
     }
 }
+#Testimonial {
+    .bg-row.rw-end {
+        &:before, &:after {
+            display: none;
+        }
+    }
+}
 @media #{$medium-up} {
     .tf-row {
         .block {
@@ -380,26 +490,27 @@ footer {
         .testimonial {
             border-bottom: none;
             &:nth-child(odd) {
-                border-right: 1px solid lighten($trigrey, 60%);
+                border-right: 1px solid $border-color;
             }
         }
-        .compare-img {
-            height: 0;
-            padding: 0 0 75%;
-            margin-bottom: 0.9375em;
-            img {
-                &.before {
-                    margin: 0;
-                    position: absolute;
-                    left: 0;
-                    bottom: 0;
-                }
-                &.after {
-                    left: 45px;
-                    top: -0.9375em;
-                }
+    }
+    .compare-img {
+        height: 0;
+        padding: 0 0 75%;
+        margin-bottom: 0.9375em;
+        img {
+            &.before {
+                margin: 0;
+                position: absolute;
+                left: 0;
+                bottom: 0;
             }
         }
+    }
+    .cards {
+        margin: inherit;
+        left: 80px;
+        top: -0.9375em;
     }
     #latestPosts, #contact, #infoCol {
         @include grid-column(12, $collapse: false);
@@ -446,7 +557,7 @@ footer {
             top: -50px;
             left: 0;
             height: 100px;
-            width: 50.1%;
+            width: 50%;
             -webkit-transform: skew(0deg, 8deg);
             -moz-transform: skew(0deg, 8deg);
             -ms-transform: skew(0deg, 8deg);
@@ -456,7 +567,7 @@ footer {
         &:after {
             left: inherit;
             right: 0;
-            width: 50%;
+            width: 50.1%;
             -webkit-transform: skew(0deg, -8deg);
             -moz-transform: skew(0deg, -8deg);
             -ms-transform: skew(0deg, -8deg);
@@ -536,7 +647,7 @@ footer {
             }
         }
         .testimonial:nth-child(even) {
-            border-right: 1px solid lighten($trigrey, 60%);
+            border-right: 1px solid $border-color;
         }
     }
     #contact {
@@ -548,6 +659,80 @@ footer {
     }
     #latestPosts {
         @include grid-column(9);
+    }
+    .client-img {
+        @include grid-column(6, $collapse: true);
+        &:after {                
+            background: darken($trimono, 10%);
+            display: block;
+            content: "";
+            position: absolute;
+            bottom: 42px;
+            left: 0;
+            height: 10px;
+            width: 100%;
+            -webkit-transform: skew(0deg, 10deg);
+            -moz-transform: skew(0deg, 10deg);
+            -ms-transform: skew(0deg, 10deg);
+            -o-transform: skew(0deg, 10deg);
+            transform: skew(0deg, 10deg);
+        }
+        &.before {
+            text-align: right;
+        }
+        &.after {
+            text-align: left;
+            &:after {
+                left: inherit;
+                right: 0;
+                -webkit-transform: skew(0deg, -10deg);
+                -moz-transform: skew(0deg, -10deg);
+                -ms-transform: skew(0deg, -10deg);
+                -o-transform: skew(0deg, -10deg);
+                transform: skew(0deg, -10deg);
+            }
+        }
+    }
+    #testimoMedia {
+        overflow: hidden;
+        &:before, &:after {
+            background: darken($trimono, 1%);
+            display: block;
+            content: "";
+            position: absolute;
+            bottom: -47px;
+            left: 0;
+            height: 90px;
+            width: 50%;
+            -webkit-transform: skew(0deg, 10deg);
+            -moz-transform: skew(0deg, 10deg);
+            -ms-transform: skew(0deg, 10deg);
+            -o-transform: skew(0deg, 10deg);
+            transform: skew(0deg, 10deg);
+            z-index: 1;
+        }
+        &:after {
+            left: inherit;
+            right: 0;
+            width: 50.1%;
+            -webkit-transform: skew(0deg, -10deg);
+            -moz-transform: skew(0deg, -10deg);
+            -ms-transform: skew(0deg, -10deg);
+            -o-transform: skew(0deg, -10deg);
+            transform: skew(0deg, -10deg);
+        }
+    }
+    #testimoNav {
+        height: auto;
+        &.no-img {
+            height: 75px;
+        }
+        .nav {
+            bottom: 5px;
+        }
+    }
+    .compare-img {
+        padding-bottom: 90%;
     }
 }
 
@@ -563,21 +748,26 @@ footer {
     #infoCol {
         @include grid-column(3);
     }
+    
+    #testimoNav .nav {
+        bottom: 10px;
+    }
+    .compare-img {
+        padding-bottom: 75%;
+    }
 }
 
 @media #{$xlarge-up} {
-    .tf-row {
-        .compare-img {
-            img {
-                &.before {
-                    left: 0.9375em;
-                }
-                &.after {
-                    left: 1.9375em;
-                    top: 0;
-                }
+    .compare-img {
+        img {
+            &.before {
+                left: 0.9375em;
             }
         }
+    }
+    .cards {
+        left: 100px;
+        top: 0;
     }
 }
 

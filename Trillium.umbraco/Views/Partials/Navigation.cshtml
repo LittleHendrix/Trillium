@@ -14,7 +14,7 @@
             @foreach (IPublishedContent page in root.Children.Where(x => x.IsVisible()))
             {
                 var active = page.Id == Model.AncestorOrSelf(2).Id ? "active" : "";
-                var hasChildren = page.Children.Any(p => p.IsVisible() && p.DocumentTypeAlias != "BlogPost" && p.DocumentTypeAlias != "Testimonial" && p.DocumentTypeAlias != "Message") ? "has-dropdown" : "";
+                var hasChildren = page.Children.Any(p => p.IsVisible() && p.DocumentTypeAlias != "BlogPost" && p.DocumentTypeAlias != "Message") ? "has-dropdown" : "";
                 <li class="@active @hasChildren">
                     <a href="@page.Url">@page.Name</a>
                     @if (!string.IsNullOrEmpty(hasChildren))

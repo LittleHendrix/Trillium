@@ -1,5 +1,59 @@
 ﻿@using Trillium.Extensions
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-    Layout = "Submaster.cshtml";
+    Layout = "Base.cshtml";
 }
+<div class="tf-row">
+    <div class="block">
+        <article>
+            <h1>@Umbraco.Field("pageHeading", altFieldAlias: "pageName")</h1>
+            @Umbraco.Field("subheading", insertBefore: "&lt;h2 class=&quot;subhead&quot;&gt;", insertAfter: "&lt;/h2&gt;")
+            <div id="testimoMedia">
+                <div class="tf-row">
+                    <div class="client-img before">
+                        @Model.Content.ImagesFor("beforeImage", 1)
+                    </div>
+                    <div class="client-img after">
+                        @Model.Content.ImagesFor("afterImage", 1)
+                    </div>
+                </div>
+                <div id="testimoNav" @((Model.Content.HasValue("beforeImage") || Model.Content.HasValue("afterImage")) ? "" : "class=no-img")>
+                    @{
+                        var nodeCount = Model.Content.Parent.Children(x => x.DocumentTypeAlias == "Testimonial").Count();
+                        var prevLink = Model.Content.IsFirst() ? Model.Content.Parent.Children(x => x.DocumentTypeAlias == "Testimonial").Last().Url : Model.Content.PrecedingSibling().Url;
+                        var nextLink = Model.Content.IsLast() ? Model.Content.Parent.Children(x => x.DocumentTypeAlias == "Testimonial").First().Url : Model.Content.FollowingSibling().Url;
+                    }
+                    <a href="@prevLink" class="nav prev">Prev</a>
+                    <a href="@nextLink" class="nav next">Next</a>
+                </div>
+            </div>
+            <section>
+                <div class="testimo-qna info">
+                    <h3>@Umbraco.Field("pageHeading", altFieldAlias: "pageName") - Personal information</h3>
+                    @Umbraco.Field("bodyText")
+                </div>
+                @if (Model.Content.HasValue("achievementHeading") || Model.Content.HasValue("achievementText"))
+                {
+                    <div class="testimo-qna achievement">
+                        @Umbraco.Field("achievementHeading", insertBefore: "&lt;h3&gt;", insertAfter: "&lt;/h3&gt;")
+                        @if (Model.Content.HasValue("achievementText"))
+                        {
+                            <p>@Html.Raw(library.ReplaceLineBreaks(Model.Content.GetPropertyValue<string>("achievementText")))</p>
+                        }
+                    </div>
+                }
+                @if (Model.Content.HasValue("praiseHeading") || Model.Content.HasValue("praiseText"))
+                {
+                    <div class="testimo-qna praise">
+                        @Umbraco.Field("praiseHeading", insertBefore: "&lt;h3&gt;", insertAfter: "&lt;/h3&gt;")
+                        @if (Model.Content.HasValue("praiseText"))
+                        {
+                            <p>@Html.Raw(library.ReplaceLineBreaks(Model.Content.GetPropertyValue<string>("praiseText")))</p>
+                        }
+                    </div>
+                }
+            </section>
+
+        </article>
+    </div>
+</div>
