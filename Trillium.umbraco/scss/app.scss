@@ -178,6 +178,9 @@ h1, h2, h3, h4 {
 }
 .staff h3, .testimonial h3, .post h3 {
     @extend .alt-heading;
+    a {
+        color: $tridark;
+    }
 }
 .testimo-qna {
     padding: 0.93745em 0;
@@ -210,7 +213,7 @@ h1, h2, h3, h4 {
         }
     }
 }
-#testimoNav {
+.subsection-nav {
     height: 75px;
     z-index: 10;
     .nav {
@@ -227,11 +230,24 @@ h1, h2, h3, h4 {
         }
     }
 }
+#TeamMember {
+    .team-nav-wrap {
+        /*background: darken($trimono, 10%);*/
+        .block {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+    .subsection-nav {
+        height: 100px;
+        z-index: 1;
+        .nav {
+            bottom: 20px;
+        }
+    }
+}
 .post {
     h3 {
-        a {
-            color: $tridark;
-        }
         .meta {
             display: block;
             font-weight: normal;
@@ -361,6 +377,15 @@ input.btn {
         }
     }
 }
+#teamMedia {
+    text-align: center;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    margin-bottom: -12%;
+    img {
+    }
+}
 .staff-img {
     padding: 0.9375em 0;
     img {
@@ -450,6 +475,9 @@ footer {
     overflow: hidden;
     &.rw-end {
         background: #fff;
+    }
+    &.rw-team {
+        overflow: visible;
     }
 }
 #Homepage {
@@ -548,6 +576,12 @@ footer {
         &.rw-end {
             &:before, &:after {
                 background: $tritan-lite !important;
+            }
+        }
+        &.rw-team {
+            padding-top: 30px;
+            &:before, &:after {
+                background: darken($trimono, 10%) !important;
             }
         }
         &:before, &:after {
@@ -722,7 +756,7 @@ footer {
             transform: skew(0deg, -10deg);
         }
     }
-    #testimoNav {
+    .subsection-nav {
         height: auto;
         &.no-img {
             height: 75px;
@@ -749,7 +783,7 @@ footer {
         @include grid-column(3);
     }
     
-    #testimoNav .nav {
+    .subsection-nav .nav {
         bottom: 10px;
     }
     .compare-img {

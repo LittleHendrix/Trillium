@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<IPublishedContent>
+
+
+<div class="subsection-nav @((Model.HasValue("beforeImage") || Model.HasValue("afterImage")) ? "" : " no-img")">
+    @{
+        //var nodeCount = Model.Content.Parent.Children(x => x.DocumentTypeAlias == "Testimonial").Count();
+        var prevLink = Model.IsFirst() ? Model.Parent.Children(x => x.IsVisible()).Last().Url : Model.PrecedingSibling().Url;
+        var nextLink = Model.IsLast() ? Model.Parent.Children(x => x.IsVisible()).First().Url : Model.FollowingSibling().Url;
+    }
+    <a href="@prevLink" class="nav prev">Prev</a>
+    <a href="@nextLink" class="nav next">Next</a>
+</div>

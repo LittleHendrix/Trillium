@@ -4,29 +4,57 @@
 
 @{
 
-    int max = ViewData["maxItem"] != null ? Convert.ToInt32(ViewData["maxItem"]) : 3;
+    int max = ViewData["maxItem"] != null ? Convert.ToInt32(ViewData["maxItem"]) : 0;
 
     if (Model.Children.Any(x => x.DocumentTypeAlias == "TeamMember"))
     {
-        <section class="multi-col">
-            <h2 class="subhead">Meet the team</h2>
-            <div class="tf-row">
-                @foreach (var member in Model.Children.Where(x => x.DocumentTypeAlias == "TeamMember").Take(3))
-                {
-                    <div class="staff">
-                        <div class="staff-img">
-                            @member.ImagesFor("memberPicture", 1)
-                        </div>
-                        <h3>@member.Name</h3>
-                        <p class="title">@member.GetPropertyValue("memberTitle")</p>
-                        @if (member.HasValue("memberQualifications"))
+        <h2 class="subhead">Meet the team</h2>
+            
+            if (max > 0)
+            {
+                <section class="multi-col">
+                    <div class="tf-row">
+                        @foreach (var member in Model.Children.Where(x => x.DocumentTypeAlias == "TeamMember").Take(3))
                         {
-                            <p class="qualification">@Html.Raw(library.ReplaceLineBreaks(member.GetPropertyValue<string>("memberQualifications")))</p>
+                            <div class="staff">
+                                <div class="staff-img">
+                                    <a href="@member.Url">@member.ImagesFor("memberPicture", 1, enableCrop: true)</a>
+                                </div>
+                                <h3><a href="@member.Url">@member.Name</a></h3>
+                                <p class="title">@member.GetPropertyValue("memberTitle")</p>
+                                @if (member.HasValue("memberQualifications"))
+                                {
+                                    <p class="qualification">@Html.Raw(library.ReplaceLineBreaks(member.GetPropertyValue<string>("memberQualifications")))</p>
+                                }
+                            </div>
                         }
                     </div>
+                </section>
+            }
+            else
+            {
+                foreach (var group in Model.Children.Where(x => x.DocumentTypeAlias == "TeamMember").InGroupsOf(3))
+                {
+                    <section class="multi-col">
+                        <div class="tf-row">
+                            @foreach (var member in group)
+                            {
+                                <div class="staff">
+                                    <div class="staff-img">
+                                        <a href="@member.Url">@member.ImagesFor("memberPicture", 1, enableCrop: true)</a>
+                                    </div>
+                                    <h3><a href="@member.Url">@member.Name</a></h3>
+                                    <p class="title">@member.GetPropertyValue("memberTitle")</p>
+                                    @if (member.HasValue("memberQualifications"))
+                                    {
+                                        <p class="qualification">@Html.Raw(library.ReplaceLineBreaks(member.GetPropertyValue<string>("memberQualifications")))</p>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </section>
                 }
-            </div>
-        </section>
+            }
     }
     if (Model.Children.Any(x => x.DocumentTypeAlias == "Service"))
     {
@@ -44,30 +72,63 @@
     }
     if (Model.Children.Any(x => x.DocumentTypeAlias == "Testimonial"))
     {
-        <section class="multi-col">
-            <div class="tf-row">
-                @foreach (var t in Model.Children.Where(x => x.DocumentTypeAlias == "Testimonial").Take(@max))
-                {
-                    var clientTitle = t.HasValue("pageHeading") ? t.GetPropertyValue("pageHeading") : t.Name;
-                    <div class="testimonial">
-                        <div class="compare-img">
-                            @t.ImagesFor("beforeImage", 1, enableCrop: true, htmlClassName: "before")
-                            <div class="cards">
-                                <div class="card front">
-                                    <span class="plus">&nbsp;</span>
-                                </div>
-                                <div class="card back">
-                                    @t.ImagesFor("afterImage", 1, enableCrop: true, htmlClassName: "after")
+        if (max > 0)
+        {
+            <section class="multi-col">
+                <div class="tf-row">
+                    @foreach (var t in Model.Children.Where(x => x.DocumentTypeAlias == "Testimonial").Take(max))
+                    {
+                        var clientTitle = t.HasValue("pageHeading") ? t.GetPropertyValue("pageHeading") : t.Name;
+                        <div class="testimonial">
+                            <div class="compare-img">
+                                @t.ImagesFor("beforeImage", 1, enableCrop: true, htmlClassName: "before")
+                                <div class="cards">
+                                    <div class="card front">
+                                        <span class="plus">&nbsp;</span>
+                                    </div>
+                                    <div class="card back">
+                                        @t.ImagesFor("afterImage", 1, enableCrop: true, htmlClassName: "after")
+                                    </div>
                                 </div>
                             </div>
+                            <h3><a href="@t.Url">@clientTitle</a></h3>
+                            <p>@Html.Truncate(t.GetPropertyValue<string>("bodyText"), 125)</p>
+                            <a href="@t.Url" class="btn" title="read more on @clientTitle's story">Read more</a>
                         </div>
-                        <h3>@clientTitle</h3>
-                        <p>@Html.Truncate(t.GetPropertyValue<string>("bodyText"), 125)</p>
-                        <a href="@t.Url" class="btn" title="read more on @clientTitle's story">Read more</a>
+                    }
+                </div>
+            </section>
+        }
+        else
+        {
+            foreach (var group in Model.Children.Where(x => x.DocumentTypeAlias == "Testimonial").InGroupsOf(3))
+            {
+                <section class="multi-col">
+                    <div class="tf-row">
+                        @foreach (var t in group)
+                        {
+                            var clientTitle = t.HasValue("pageHeading") ? t.GetPropertyValue("pageHeading") : t.Name;
+                            <div class="testimonial">
+                                <div class="compare-img">
+                                    @t.ImagesFor("beforeImage", 1, enableCrop: true, htmlClassName: "before")
+                                    <div class="cards">
+                                        <div class="card front">
+                                            <span class="plus">&nbsp;</span>
+                                        </div>
+                                        <div class="card back">
+                                            @t.ImagesFor("afterImage", 1, enableCrop: true, htmlClassName: "after")
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3><a href="@t.Url">@clientTitle</a></h3>
+                                <p>@Html.Truncate(t.GetPropertyValue<string>("bodyText"), 125)</p>
+                                <a href="@t.Url" class="btn" title="read more on @clientTitle's story">Read more</a>
+                            </div>
+                        }
                     </div>
-                }
-            </div>
-        </section>
+                </section>
+            }
+        }
     }
     if (Model.Children.Any(x => x.DocumentTypeAlias == "BlogPost"))
     {
