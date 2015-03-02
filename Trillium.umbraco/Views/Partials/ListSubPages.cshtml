@@ -62,10 +62,15 @@
             @foreach (var service in Model.Children.Where(x => x.DocumentTypeAlias == "Service"))
             {
                 var serviceTitle = service.HasValue("pageHeading") ? service.GetPropertyValue("pageHeading") : service.Name;
-                <div class="service">
-                    <h3 class="ser-@(service.Index() + 1)">@serviceTitle</h3>
-                    <p class="synopsis">@Html.Raw(library.ReplaceLineBreaks(service.GetPropertyValue<string>("synopsis")))</p>
-                    <a href="@service.Url" class="btn" title="read more on @serviceTitle">Ready more</a>
+                <div class="tf-row service-row">
+                    <div class="service">
+                        <h3 class="ser-@(service.Index() + 1)">@serviceTitle</h3>
+                        <p class="synopsis">@Html.Raw(library.ReplaceLineBreaks(service.GetPropertyValue<string>("synopsis")))</p>
+                        <a href="@service.Url" class="btn" title="read more on @serviceTitle">Ready more</a>
+                    </div><!--
+                    <div class="affiliates">
+                        @service.ImagesFor("affiliates", 10, htmlClassName: "logo")
+                    </div>-->
                 </div>
             }
         </section>

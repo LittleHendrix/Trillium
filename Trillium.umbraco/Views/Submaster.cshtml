@@ -12,7 +12,21 @@
                 @Model.Content.ImagesFor("pageMedia", 1)
             </div>
             <div class="body">
-                @Umbraco.Field("bodyText")
+                @if (Model.Content.DocumentTypeAlias == "Service" && Model.Content.HasValue("affiliates"))
+                {
+                    <div class="tf-row service-row">
+                        <div class="service">
+                            @Umbraco.Field("bodyText")
+                        </div>
+                        <div class="affiliates">
+                            @Model.Content.ImagesFor("affiliates", 10, htmlClassName: "logo")
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @Umbraco.Field("bodyText")
+                }
             </div>
         </article>
     </div>
