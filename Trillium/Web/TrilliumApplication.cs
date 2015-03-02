@@ -17,14 +17,14 @@
             ApplicationContext applicationContext)
         {
             // Get the Umbraco Database context
-            Database db = applicationContext.DatabaseContext.Database;
+            //Database db = applicationContext.DatabaseContext.Database;
 
             //Check if the DB table does NOT exist
-            if (!db.TableExist("BlogComments"))
-            {
-                //Create DB table - and set overwrite to false
-                db.CreateTable<BlogComment>(false);
-            }
+            //if (!db.TableExist("BlogComments"))
+            //{
+            //    //Create DB table - and set overwrite to false
+            //    db.CreateTable<BlogComment>(false);
+            //}
 
             // SetUpDependencyInjection();
         }
