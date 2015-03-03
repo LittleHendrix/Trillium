@@ -6,15 +6,27 @@
 }
 <div class="tf-row">
     <div class="block">
-        <article>
-            <h1>@Umbraco.Field("pageHeading", altFieldAlias: "pageName")</h1>
-            @Umbraco.Field("memberTitle", insertBefore: "&lt;h2 class=&quot;subhead&quot;&gt;", insertAfter: "&lt;/h2&gt;")
-            <div class="page-media">
+        <h1>@Umbraco.Field("pageHeading", altFieldAlias: "pageName")</h1>
+        @Umbraco.Field("memberTitle", insertBefore: "&lt;h2 class=&quot;subhead&quot;&gt;", insertAfter: "&lt;/h2&gt;")
+    </div>
+    <div class="team-nav-wrap bg-row">
+        <div class="block">
+            <div id="teamMedia">
                 @Model.Content.ImagesFor("memberPicture", 1)
             </div>
-            <div class="page-meta">
-                <p>@Html.Raw(library.ReplaceLineBreaks(Model.Content.GetPropertyValue<string>("memberQualifications")))</p>
-            </div>
+        </div>
+        @{ Html.RenderPartial("SubsectionNav", Umbraco.AssignedContentItem); }
+    </div>
+</div>
+<div class="tf-row bg-row rw-team">
+    <div class="block">
+        <article>
+            @if (Model.Content.HasValue("memberQualifications"))
+            {
+                <div class="page-meta">
+                    <p>@Html.Raw(library.ReplaceLineBreaks(Model.Content.GetPropertyValue<string>("memberQualifications")))</p>
+                </div>
+            }
             <div class="body">
                 @Umbraco.Field("bodyText")
             </div>

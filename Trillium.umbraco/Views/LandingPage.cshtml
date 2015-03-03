@@ -1,9 +1,24 @@
 ﻿@using Trillium.Extensions
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-    Layout = "Submaster.cshtml";
+    Layout = "Base.cshtml";
 }
 @{
+    <div class="tf-row">
+        <div class="block">
+            <article>
+                <h1>@Umbraco.Field("pageHeading", altFieldAlias: "pageName")</h1>
+                @Umbraco.Field("subheading", insertBefore: "&lt;h2 class=&quot;subhead&quot;&gt;", insertAfter: "&lt;/h2&gt;")
+                <div class="page-media">
+                    @Model.Content.ImagesFor("pageMedia", 1)
+                </div>
+                <div class="body">
+                    @Umbraco.Field("bodyText")
+                </div>
+            </article>
+        </div>
+    </div>
+
     if (Model.Content.Children.Any())
     {
         <div class="tf-row bg-row">

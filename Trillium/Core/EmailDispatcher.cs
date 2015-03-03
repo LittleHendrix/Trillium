@@ -13,7 +13,8 @@
         {
             string to = ConfigurationManager.AppSettings["ContactEmailAddress"] ?? "luchen_sv@msn.com";
             var em = new EmailManager();
-            em.SendMail(to, "Trillium Fitness website contact", "EmailContact", model);
+            var subject = model.Subject ?? "Trillium Fitness website contact";
+            em.SendMail(to, subject, "EmailContact", model);
 
             SaveContactForm(model);
         }
@@ -30,6 +31,7 @@
             const string msgDocTypeAlias = "Message";
             const string namePropperty = "fromName";
             const string emailPropperty = "fromEmailAddress";
+            const string subjectProperty = "messageSubject";
             const string messagePropperty = "messageBody";
             const string datetimePropperty = "submittedOn";
 
@@ -46,6 +48,10 @@
             if (content.HasProperty("fromEmailAddress"))
             {
                 content.SetValue(emailPropperty, model.EmailAddress);
+            }
+            if (content.HasProperty("messageSubject"))
+            {
+                content.SetValue(subjectProperty, model.Subject);
             }
             if (content.HasProperty("messageBody"))
             {

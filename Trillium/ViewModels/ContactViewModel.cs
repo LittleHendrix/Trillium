@@ -22,6 +22,10 @@
         [StringLength(50, ErrorMessage = "Email address cannot exceed 50 characters")]
         public string EmailAddress { get; set; }
 
+        [Required(ErrorMessage = "Subject is required")]
+        [StringLength(250, ErrorMessage = "Message cannot exceed 250 characters")]
+        public string Subject { get; set; }
+
         [Required(ErrorMessage = "Message is required")]
         [StringLength(1024, ErrorMessage = "Message cannot exceed 1024 characters")]
         public string Message { get; set; }

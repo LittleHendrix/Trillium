@@ -15,6 +15,14 @@
     {
         private readonly string smtpServer;
 
+        private readonly int smtpPort;
+
+        private readonly string smtpUsername;
+
+        private readonly string smtpPassword;
+
+        private readonly bool enableSsl;
+
         private readonly string mailFromAddress;
 
         private readonly string mailFromName;
@@ -29,22 +37,29 @@
 
         private readonly string testSmtpPassword;
 
+        private readonly bool testEnableSsl;
+
         private readonly string testMailFromAddress;
 
         private readonly string testMailToAddress;
 
         public EmailManager()
         {
-            this.smtpServer = ConfigurationManager.AppSettings["SmtpServer"] ?? "127.0.0.1";
-            this.mailFromName = ConfigurationManager.AppSettings["MailFromName"] ?? "Umbraco V7 Demo site";
-            this.mailFromAddress = ConfigurationManager.AppSettings["MailFromAddress"] ?? "noreply@mydomain.com";
-            this.testMode = Convert.ToBoolean(ConfigurationManager.AppSettings["TestMode"] ?? "false");
-            this.testSmtpServer = ConfigurationManager.AppSettings["TestSmtpServer"] ?? "127.0.0.1";
-            this.testSmtpPort = Convert.ToInt32(ConfigurationManager.AppSettings["TestSmtpPort"] ?? "25");
-            this.testSmtpUsername = ConfigurationManager.AppSettings["TestSmtpUsername"] ?? "username";
-            this.testSmtpPassword = ConfigurationManager.AppSettings["TestSmtpPassword"] ?? "password";
+            this.smtpServer          = ConfigurationManager.AppSettings["SmtpServer"] ?? "127.0.0.1";
+            this.smtpPort            = Convert.ToInt32(ConfigurationManager.AppSettings["SmtpPort"] ?? "25");
+            this.smtpUsername        = ConfigurationManager.AppSettings["SmtpUsername"] ?? "username";
+            this.smtpPassword        = ConfigurationManager.AppSettings["SmtpPassword"] ?? "password";
+            this.enableSsl           = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"] ?? "false");
+            this.mailFromName        = ConfigurationManager.AppSettings["MailFromName"] ?? "Umbraco v7";
+            this.mailFromAddress     = ConfigurationManager.AppSettings["MailFromAddress"] ?? "noreply@mydomain.com";
+            this.testMode            = Convert.ToBoolean(ConfigurationManager.AppSettings["TestMode"] ?? "false");
+            this.testSmtpServer      = ConfigurationManager.AppSettings["TestSmtpServer"] ?? "127.0.0.1";
+            this.testSmtpPort        = Convert.ToInt32(ConfigurationManager.AppSettings["TestSmtpPort"] ?? "25");
+            this.testSmtpUsername    = ConfigurationManager.AppSettings["TestSmtpUsername"] ?? "username";
+            this.testSmtpPassword    = ConfigurationManager.AppSettings["TestSmtpPassword"] ?? "password";
+            this.testEnableSsl       = Convert.ToBoolean(ConfigurationManager.AppSettings["TestEnableSsl"] ?? "false");
             this.testMailFromAddress = ConfigurationManager.AppSettings["TestMailFromAddress"] ?? "notreply@mydomain.com";
-            this.testMailToAddress = ConfigurationManager.AppSettings["TestMailToAddress"] ?? "scottd@multiplyuk.com";
+            this.testMailToAddress   = ConfigurationManager.AppSettings["TestMailToAddress"] ?? "luchen_sv@msn.com";
         }
 
         public void SendMail(string to, string subject, string templateName, dynamic emailModelData)
@@ -99,7 +114,7 @@
                     {
                         UseDefaultCredentials = false,
                         Credentials = new NetworkCredential(this.testSmtpUsername, this.testSmtpPassword),
-                        EnableSsl = true
+                        EnableSsl = this.testEnableSsl
                     };
 
                     message.To.Clear();
@@ -113,9 +128,11 @@
                 }
                 else
                 {
-                    smtp = new SmtpClient(this.smtpServer)
+                    smtp = new SmtpClient(this.smtpServer, this.smtpPort)
                     {
-                        Credentials = CredentialCache.DefaultNetworkCredentials
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(this.smtpUsername, this.smtpPassword),
+                        EnableSsl = this.enableSsl
                     };
 
                     message.From = fromAddress;
