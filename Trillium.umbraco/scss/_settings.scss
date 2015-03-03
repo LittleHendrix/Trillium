@@ -1,3 +1,6 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
+
 // Trillium settings
 // Colour swatches
 $trigreen: #6ac983;
@@ -60,7 +63,7 @@ $font-weight-bold: bold !default;
 // We use these to control various global styles
 // $body-bg: #fff;
 $body-font-color: $tridark;
-$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $font-weight-normal:normal;
 $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
@@ -141,7 +144,7 @@ $tablet-up: "#{$screen} and (min-width:#{lower-bound($tablet-range)})";
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-$header-font-family: Georgia, Times, "Times New Roman", serif;
+$header-font-family: 'Roboto Slab', Georgia, Times, "Times New Roman", serif;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
 $header-font-color: $tridark;

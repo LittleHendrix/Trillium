@@ -21,11 +21,13 @@
                                     <a href="@member.Url">@member.ImagesFor("memberPicture", 1, enableCrop: true)</a>
                                 </div>
                                 <h3><a href="@member.Url">@member.Name</a></h3>
-                                <p class="title">@member.GetPropertyValue("memberTitle")</p>
+                                <p class="title meta">@member.GetPropertyValue("memberTitle")
                                 @if (member.HasValue("memberQualifications"))
                                 {
-                                    <p class="qualification">@Html.Raw(library.ReplaceLineBreaks(member.GetPropertyValue<string>("memberQualifications")))</p>
+                                    <br />@Html.Raw(library.ReplaceLineBreaks(member.GetPropertyValue<string>("memberQualifications")))
                                 }
+                                </p>
+                                <a href="@member.Url" class="btn" title="read more about @member.Name">Read more</a>
                             </div>
                         }
                     </div>
@@ -44,11 +46,14 @@
                                         <a href="@member.Url">@member.ImagesFor("memberPicture", 1, enableCrop: true)</a>
                                     </div>
                                     <h3><a href="@member.Url">@member.Name</a></h3>
-                                    <p class="title">@member.GetPropertyValue("memberTitle")</p>
+                                    <p class="title meta">
+                                        @member.GetPropertyValue("memberTitle")
                                     @if (member.HasValue("memberQualifications"))
                                     {
-                                        <p class="qualification">@Html.Raw(library.ReplaceLineBreaks(member.GetPropertyValue<string>("memberQualifications")))</p>
+                                        <br />@Html.Raw(library.ReplaceLineBreaks(member.GetPropertyValue<string>("memberQualifications")))
                                     }
+                                    </p>
+                                    <a href="@member.Url" class="btn" title="read more about @member.Name">Read more</a>
                                 </div>
                             }
                         </div>
