@@ -4,7 +4,9 @@
     using System.Web.Mvc;
     using System.Web.UI;
     using Trillium.Core;
+    using Trillium.Extensions;
     using Trillium.ViewModels;
+    using Umbraco.Web;
     using Umbraco.Web.Mvc;
 
     public class ContactSurfaceController : SurfaceController
@@ -35,7 +37,7 @@
 
             EmailDispatcher.SendContactEmail(model);
 
-            this.TempData["FormCompleted"] = "true";
+            //this.TempData["FormCompleted"] = "true";
 
             //try
             //{
@@ -52,7 +54,12 @@
             //        + this.TempData.ContainsKey("FormCompleted"));
             //}
 
-            return this.RedirectToCurrentUmbracoPage();
+            var settings = Umbraco.GetTypedNodeByAlias("AdminSettings");
+            int pageId = settings != null && settings.HasValue("thankYouPage")
+                ? settings.GetPropertyValue<int>("thankYouPage")
+                : 1093;
+
+            return this.RedirectToUmbracoPage(pageId);
         }
 
         [ChildActionOnly]

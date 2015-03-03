@@ -7,11 +7,8 @@
 @{
     Layout = "";
     Model.SubmitDate = DateTime.Now;
-    var formCompleted = TempData["FormCompleted"] != null;
-}
+    //var formCompleted = TempData["FormCompleted"] != null;
 
-@if (!formCompleted)
-{
     Html.EnableClientValidation();
     Html.EnableUnobtrusiveJavaScript();
 
@@ -54,8 +51,4 @@
         </div>
 
     }
-}
-else
-{
-    <p class="success">Thank you kindly for your message.  Our aim is to respond to your message as soon as possible.  We look forward to being in touch.</p>
 }
