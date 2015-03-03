@@ -45,21 +45,21 @@
 
         public EmailManager()
         {
-            this.smtpServer = ConfigurationManager.AppSettings["SmtpServer"] ?? "127.0.0.1";
-            this.smtpPort = Convert.ToInt32(ConfigurationManager.AppSettings["SmtpPort"] ?? "25");
-            this.smtpUsername = ConfigurationManager.AppSettings["SmtpUsername"] ?? "username";
-            this.smtpPassword = ConfigurationManager.AppSettings["SmtpPassword"] ?? "password";
-            this.enableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"] ?? "false");
-            this.mailFromName = ConfigurationManager.AppSettings["MailFromName"] ?? "Umbraco v7";
-            this.mailFromAddress = ConfigurationManager.AppSettings["MailFromAddress"] ?? "noreply@mydomain.com";
-            this.testMode = Convert.ToBoolean(ConfigurationManager.AppSettings["TestMode"] ?? "false");
-            this.testSmtpServer = ConfigurationManager.AppSettings["TestSmtpServer"] ?? "127.0.0.1";
-            this.testSmtpPort = Convert.ToInt32(ConfigurationManager.AppSettings["TestSmtpPort"] ?? "25");
-            this.testSmtpUsername = ConfigurationManager.AppSettings["TestSmtpUsername"] ?? "username";
-            this.testSmtpPassword = ConfigurationManager.AppSettings["TestSmtpPassword"] ?? "password";
-            this.testEnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["TestEnableSsl"] ?? "false");
+            this.smtpServer          = ConfigurationManager.AppSettings["SmtpServer"] ?? "127.0.0.1";
+            this.smtpPort            = Convert.ToInt32(ConfigurationManager.AppSettings["SmtpPort"] ?? "25");
+            this.smtpUsername        = ConfigurationManager.AppSettings["SmtpUsername"] ?? "username";
+            this.smtpPassword        = ConfigurationManager.AppSettings["SmtpPassword"] ?? "password";
+            this.enableSsl           = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"] ?? "false");
+            this.mailFromName        = ConfigurationManager.AppSettings["MailFromName"] ?? "Umbraco v7";
+            this.mailFromAddress     = ConfigurationManager.AppSettings["MailFromAddress"] ?? "noreply@mydomain.com";
+            this.testMode            = Convert.ToBoolean(ConfigurationManager.AppSettings["TestMode"] ?? "false");
+            this.testSmtpServer      = ConfigurationManager.AppSettings["TestSmtpServer"] ?? "127.0.0.1";
+            this.testSmtpPort        = Convert.ToInt32(ConfigurationManager.AppSettings["TestSmtpPort"] ?? "25");
+            this.testSmtpUsername    = ConfigurationManager.AppSettings["TestSmtpUsername"] ?? "username";
+            this.testSmtpPassword    = ConfigurationManager.AppSettings["TestSmtpPassword"] ?? "password";
+            this.testEnableSsl       = Convert.ToBoolean(ConfigurationManager.AppSettings["TestEnableSsl"] ?? "false");
             this.testMailFromAddress = ConfigurationManager.AppSettings["TestMailFromAddress"] ?? "notreply@mydomain.com";
-            this.testMailToAddress = ConfigurationManager.AppSettings["TestMailToAddress"] ?? "luchen_sv@msn.com";
+            this.testMailToAddress   = ConfigurationManager.AppSettings["TestMailToAddress"] ?? "luchen_sv@msn.com";
         }
 
         public void SendMail(string to, string subject, string templateName, dynamic emailModelData)
