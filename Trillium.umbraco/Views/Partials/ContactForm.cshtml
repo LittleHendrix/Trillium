@@ -32,6 +32,12 @@
         </div>
 
         <div class="form-row">
+            @Html.LabelFor(m => m.Subject, "Subject", new { @name = "subLbl", @class = "form-lbl" })
+            @Html.CustomTextBoxFor(m => m.Subject, new { @class = "form-txt", placeholder = "Subject" })
+            @Html.ValidationMessageFor(m => m.Subject)
+        </div>
+
+        <div class="form-row">
             @Html.LabelFor(m => m.Message, "Message", new { @name = "msgLbl", @class = "form-lbl" })
             @Html.CustomTextAreaFor(m => m.Message, new { @class = "form-txt", placeholder = "Message" })
             @Html.ValidationMessageFor(m => m.Message)
