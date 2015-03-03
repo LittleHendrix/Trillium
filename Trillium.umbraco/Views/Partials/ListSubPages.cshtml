@@ -4,17 +4,21 @@
 
 @{
 
-    int max = ViewData["maxItem"] != null ? Convert.ToInt32(ViewData["maxItem"]) : 0;
+    
+    bool isHome = ViewData["isHomepage"] != null && Convert.ToBoolean(ViewData["isHomepage"]);
+    int max = isHome ? 3 : 0;
 
+    var featuredNodes = Model.HasValue("featuredNodes") ? Model.MntpNodesFor("featuredNodes", max) : Model.Children.Take(max).ToList();
+    
     if (Model.Children.Any(x => x.DocumentTypeAlias == "TeamMember"))
     {
         <h2 class="subhead">Meet the team</h2>
             
-            if (max > 0)
+            if (isHome)
             {
                 <section class="multi-col">
                     <div class="tf-row">
-                        @foreach (var member in Model.Children.Where(x => x.DocumentTypeAlias == "TeamMember").Take(3))
+                        @foreach (var member in featuredNodes)
                         {
                             <div class="staff">
                                 <div class="staff-img">
@@ -64,29 +68,50 @@
     if (Model.Children.Any(x => x.DocumentTypeAlias == "Service"))
     {
         <section>
-            @foreach (var service in Model.Children.Where(x => x.DocumentTypeAlias == "Service"))
+            @if (isHome)
             {
-                var serviceTitle = service.HasValue("pageHeading") ? service.GetPropertyValue("pageHeading") : service.Name;
-                <div class="tf-row service-row">
-                    <div class="service">
-                        <h3 class="ser-@(service.Index() + 1)">@serviceTitle</h3>
-                        <p class="synopsis">@Html.Raw(library.ReplaceLineBreaks(service.GetPropertyValue<string>("synopsis")))</p>
-                        <a href="@service.Url" class="btn" title="read more on @serviceTitle">Read more</a>
-                    </div><!--
-                    <div class="affiliates">
-                        @service.ImagesFor("affiliates", 10, htmlClassName: "logo")
-                    </div>-->
-                </div>
+                foreach (var service in featuredNodes)
+                {
+                    var serviceTitle = service.HasValue("pageHeading") ? service.GetPropertyValue("pageHeading") : service.Name;
+                    <div class="tf-row service-row">
+                        <div class="service">
+                            <h3 class="ser-@(service.Index() + 1)">@serviceTitle</h3>
+                            <p class="synopsis">@Html.Raw(library.ReplaceLineBreaks(service.GetPropertyValue<string>("synopsis")))</p>
+                            <a href="@service.Url" class="btn" title="read more on @serviceTitle">Read more</a>
+                        </div>
+                        @*<div class="affiliates">
+                            @service.ImagesFor("affiliates", 10, htmlClassName: "logo")
+                        </div>*@
+                    </div>
+                }
+            }
+            else
+            {
+                foreach (var service in Model.Children.Where(x => x.DocumentTypeAlias == "Service"))
+                {
+                    var serviceTitle = service.HasValue("pageHeading") ? service.GetPropertyValue("pageHeading") : service.Name;
+                    <div class="tf-row service-row">
+                        <div class="service">
+                            <h3 class="ser-@(service.Index() + 1)">@serviceTitle</h3>
+                            <p class="synopsis">@Html.Raw(library.ReplaceLineBreaks(service.GetPropertyValue<string>("synopsis")))</p>
+                            <a href="@service.Url" class="btn" title="read more on @serviceTitle">Read more</a>
+                        </div>
+                        @*<div class="affiliates">
+                                @service.ImagesFor("affiliates", 10, htmlClassName: "logo")
+                            </div>*@
+                    </div>
+                }
+
             }
         </section>
     }
     if (Model.Children.Any(x => x.DocumentTypeAlias == "Testimonial"))
     {
-        if (max > 0)
+        if (isHome)
         {
             <section class="multi-col">
                 <div class="tf-row">
-                    @foreach (var t in Model.Children.Where(x => x.DocumentTypeAlias == "Testimonial").Take(max))
+                    @foreach (var t in featuredNodes)
                     {
                         var clientTitle = t.HasValue("pageHeading") ? t.GetPropertyValue("pageHeading") : t.Name;
                         <div class="testimonial">
@@ -145,7 +170,7 @@
         <section class="multi-col">
             <div class="tf-row">
                 <div id="latestPosts">
-                    @foreach (var post in Model.Children.Where(x => x.DocumentTypeAlias == "BlogPost").OrderByDescending(x => x.GetPropertyValue("publishDate")).ThenByDescending(x => x.CreateDate).Take(@max))
+                    @foreach (var post in Model.Children.Where(x => x.DocumentTypeAlias == "BlogPost").OrderByDescending(x => x.GetPropertyValue("publishDate")).ThenByDescending(x => x.CreateDate).Take(max))
                     {
                         var postTitle = post.HasValue("pageHeading") ? post.GetPropertyValue("pageHeading") : post.Name;
                         DateTime publishDate = post.HasValue("publishDate") ? post.GetPropertyValue<DateTime>("publishDate") : post.CreateDate;

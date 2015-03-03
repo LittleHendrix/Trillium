@@ -22,7 +22,7 @@
                     <div class="body">@page.GetPropertyValue("bodyText")</div>
                 }
                 
-                @{ Html.RenderPartial("ListSubPages", page, new ViewDataDictionary {{"maxItem", 3}}); }
+                @{ Html.RenderPartial("ListSubPages", page, new ViewDataDictionary {{"isHomepage", true}}); }
 
             </div>
         </div>
