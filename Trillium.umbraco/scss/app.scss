@@ -117,7 +117,15 @@ img {
     }
 }
 #logo {
-    display: none;
+    height: 40px;
+    line-height: 40px;
+    background: url(images/logo.png) no-repeat 10px center;
+    background-size: auto 100%;
+    padding-left: 40px;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: $secondary-color;
+    text-transform: uppercase;
 }
 
 /*	TYPOGRAPHY
@@ -648,6 +656,9 @@ footer {
 @media #{$tablet-up} {
 /*	TOPBAR
 ----------------------------------------------- */
+    #logo {
+        display: none;
+    }
     .top-bar {
         background: transparent;
         position: absolute;
@@ -672,14 +683,15 @@ footer {
                             background: transparent;
                             color: $trigreen;
                             border-color: $trigreen;
+                            font-weight: bold;
                         }
                     }
                 }
                 &:not(.has-form) a:not(.button) {
                     background: transparent;
-                    border-width: 1px;
-                    border-style: solid;
-                    border-color: transparent;
+                    border: 1px solid transparent;
+                    padding: 13px;
+                    line-height: normal;
                     &:hover {
                         background: transparent;
                         color: $trigreen;

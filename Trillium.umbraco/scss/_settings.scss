@@ -10,6 +10,7 @@ $trigrey: #313236;
 $tritan: #f2f1ed;
 $tritan-lite: #f7f5f5;
 $trimono: #ececec; 
+$trired: #f04124;
 
 $border-color: lighten($trigrey, 60%);
 
@@ -78,8 +79,8 @@ $font-smoothing: antialiased;
 
 // We use these as default colors throughout
 $primary-color: $trigreen;
-// $secondary-color: #e7e7e7;
-$alert-color: #f04124;
+$secondary-color: #e7e7e7;
+$alert-color: $trired;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
@@ -144,7 +145,7 @@ $tablet-up: "#{$screen} and (min-width:#{lower-bound($tablet-range)})";
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-$header-font-family: 'Roboto Slab', Georgia, Times, "Times New Roman", serif;
+$header-font-family: 'Roboto Slab', Rockwell, Georgia, Times, "Times New Roman", serif;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
 $header-font-color: $tridark;
@@ -156,7 +157,7 @@ $header-font-color: $tridark;
 // We use these to control header font sizes
 $h1-font-size: rem-calc(26);
 $h2-font-size: rem-calc(20);
-$h3-font-size: rem-calc(16);
+$h3-font-size: rem-calc(18);
 // $h4-font-size: rem-calc(16);
 // $h5-font-size: rem-calc(18);
 // $h6-font-size: 1rem;
@@ -172,7 +173,7 @@ $h3-font-reduction: 0 !default;
 // These control how subheaders are styled.
 // $subheader-line-height: 1.4;
 // $subheader-font-color: scale-color($header-font-color, $lightness: 35%);
-$subheader-font-color: $header-font-color;
+$subheader-font-color: $trigrey;
 // $subheader-font-weight: $font-weight-normal;
 // $subheader-top-margin: .2rem;
 // $subheader-bottom-margin: .5rem;
