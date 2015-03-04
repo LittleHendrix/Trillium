@@ -407,16 +407,21 @@ input.btn {
     padding: 0.9375em 0;
     a {
         display: block;
-
+        max-width: 200px;
+        max-height: 200px;
+        margin: auto;
+        border: 4px solid $trigreen;
+        border-radius: 50%;
+        overflow: hidden;
+        @include defaultTransition(all, 300ms, ease-out);
         &:hover {
+            border-color: scale-color($trigreen, $lightness: -22%);
             img {
-                border-color: scale-color($trigreen, $lightness: -22%);
                 opacity: 0.5;
             }
         }
     }
     img {
-        border: 4px solid $trigreen;
         border-radius: 50%;
         opacity: 1;
         @include defaultTransition(all, 300ms, ease-out);
