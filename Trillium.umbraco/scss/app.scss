@@ -184,7 +184,11 @@ h1, h2, h3, h4 {
         }
     }
 }
+.affiliates {
+    background: #fff;
+}
 .logo {
+    width: 100%;
     max-width: 128px;
     margin: 16px;
 }
@@ -404,8 +408,6 @@ input.btn {
 }
 #teamMedia {
     text-align: center;
-    height: 0;
-    padding-bottom: 56.25%;
     overflow: hidden;
     margin-bottom: -12%;
     img {
@@ -423,7 +425,7 @@ input.btn {
         overflow: hidden;
         @include defaultTransition(all, 300ms, ease-out);
         &:hover {
-            border-color: scale-color($trigreen, $lightness: -22%);
+            border-color: scale-color($trigreen, $lightness: -14%);
             img {
                 opacity: 0.5;
             }
@@ -757,6 +759,7 @@ footer {
     }
     .client-img {
         @include grid-column(6, $collapse: true);
+        padding-bottom: 11px;
         &:after {                
             background: darken($trimono, 10%);
             display: block;
