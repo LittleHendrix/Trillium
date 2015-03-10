@@ -489,6 +489,9 @@ input.btn {
     padding-left: 0;
     padding-right: 0;
     z-index: -1;
+    overflow: hidden;
+    background: url(images/parallax-bg-mob.png) no-repeat center top;
+    background-size: 100%;
 }
 .body {
     padding: 0.9375em 0;
@@ -524,6 +527,14 @@ footer {
         overflow: visible;
     }
 }
+#triLogo {
+    @include image-replace(350,220,"images/trillium-logo.png");
+    background-size: 100%;
+    max-width: 350px;
+    width: 50%;
+    margin: 7% auto 50px;
+    z-index: 2;
+}
 #Homepage {
     .bg-row {
         background: #fff;
@@ -533,6 +544,21 @@ footer {
         &.rw-3 {
             background: $tritan-lite;
         }
+    }
+    #carousel {
+        background: url(images/parallax-bg-mob.png) no-repeat center top;
+        padding-bottom: 75.2%;
+        height: 0;
+    }
+    #athletes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: url(images/banner_athletes_mob.png) no-repeat center bottom;
+        background-size: 100%;
     }
 }
 #Testimonial {
@@ -651,6 +677,21 @@ footer {
             -ms-transform: skew(0deg, -8deg);
             -o-transform: skew(0deg, -8deg);
             transform: skew(0deg, -8deg);
+        }
+    }
+    #carousel {
+        background-image: url(images/parallax-bg.png);
+    }
+    #triLogo {
+        width: 100%;
+    }
+    #Homepage {
+        #carousel {
+            background-image: url(images/parallax-bg.png);
+            padding-bottom: 56.25%;
+        }
+        #athletes {
+            background-image: url(images/banner_athletes.png);
         }
     }
 }
