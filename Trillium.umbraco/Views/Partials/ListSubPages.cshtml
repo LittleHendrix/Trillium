@@ -14,7 +14,7 @@
 
         if (isHome)
         {
-            foreach (var group in featuredNodes.InGroupsOf(3))
+            foreach (var group in featuredNodes.InGroupsOf(4))
             {
                 <section class="multi-col">
                     <div class="tf-row">
@@ -61,7 +61,7 @@
             }
             else
             {
-                foreach (var group in Model.Children.Where(x => x.DocumentTypeAlias == "TeamMember").InGroupsOf(3))
+                foreach (var group in Model.Children.Where(x => x.DocumentTypeAlias == "TeamMember").InGroupsOf(4))
                 {
                     <section class="multi-col">
                         <div class="tf-row">

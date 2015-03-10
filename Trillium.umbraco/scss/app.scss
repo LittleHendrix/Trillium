@@ -716,7 +716,7 @@ footer {
         }
     }
     .tf-row {
-        .staff, .testimonial {
+        .testimonial {
             @include grid-column(4);
             &:nth-child(odd) {
                 clear: none;
@@ -726,6 +726,12 @@ footer {
             }
             &:nth-child(3n + 4) {
                 clear: left;
+            }
+        }
+        .staff {
+            @include grid-column(3);
+            &:nth-child(odd) {
+                clear: none;
             }
         }
         .testimonial:nth-child(even) {
@@ -842,6 +848,11 @@ footer {
                     right: 10px;
                 }
             }
+        }
+    }
+    #Homepage {
+        .tf-row .service {
+            @include grid-column(12);
         }
     }
 }
