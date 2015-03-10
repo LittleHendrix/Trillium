@@ -2,7 +2,9 @@
 
     $(document).foundation();
 
-    skrollr.init();
+    skrollr.init({
+        easing: "quadratic"
+    });
 
     //initTypeAhead();
 
