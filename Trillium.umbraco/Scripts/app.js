@@ -3,6 +3,7 @@
     $(document).foundation();
 
     skrollr.init({
+        forceHeight: false,
         easing: "quadratic"
     });
 

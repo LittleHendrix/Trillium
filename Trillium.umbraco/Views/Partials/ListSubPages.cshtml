@@ -1,3 +1,5 @@
+@using System
+@using System.Linq
 @using Trillium.Core
 @using Trillium.Extensions
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<IPublishedContent>
@@ -6,7 +8,7 @@
     bool isHome = ViewData["isHomepage"] != null && Convert.ToBoolean(ViewData["isHomepage"]);
     int max = isHome ? 6 : 0;
 
-    var featuredNodes = Model.HasValue("featuredNodes") ? Model.MntpNodesFor("featuredNodes", max) : Model.Children.Take(max).ToList();
+    var featuredNodes = Model.HasValue("featuredNodes") ? Model.MntpNodesFor("featuredNodes", max) : Model.Children.Where(x => x.IsVisible()).Take(max).ToList();
     
     if (Model.Children.Any(x => x.DocumentTypeAlias == "TeamMember"))
     {
@@ -61,7 +63,7 @@
             }
             else
             {
-                foreach (var group in Model.Children.Where(x => x.DocumentTypeAlias == "TeamMember").InGroupsOf(4))
+                foreach (var group in Model.Children.Where(x => x.DocumentTypeAlias == "TeamMember" && x.IsVisible()).InGroupsOf(4))
                 {
                     <section class="multi-col">
                         <div class="tf-row">
@@ -109,7 +111,7 @@
             }
             else
             {
-                foreach (var service in Model.Children.Where(x => x.DocumentTypeAlias == "Service"))
+                foreach (var service in Model.Children.Where(x => x.DocumentTypeAlias == "Service" && x.IsVisible()))
                 {
                     var serviceTitle = service.HasValue("pageHeading") ? service.GetPropertyValue("pageHeading") : service.Name;
                     <div class="tf-row service-row">
@@ -186,7 +188,7 @@
         }
         else
         {
-            foreach (var group in Model.Children.Where(x => x.DocumentTypeAlias == "Testimonial").InGroupsOf(3))
+            foreach (var group in Model.Children.Where(x => x.DocumentTypeAlias == "Testimonial" && x.IsVisible()).InGroupsOf(3))
             {
                 <section class="multi-col">
                     <div class="tf-row">
@@ -220,7 +222,7 @@
         <section class="multi-col">
             <div class="tf-row">
                 <div id="latestPosts">
-                    @foreach (var post in Model.Children.Where(x => x.DocumentTypeAlias == "BlogPost").OrderByDescending(x => x.GetPropertyValue("publishDate")).ThenByDescending(x => x.CreateDate).Take(max))
+                    @foreach (var post in Model.Children.Where(x => x.DocumentTypeAlias == "BlogPost" && x.IsVisible()).OrderByDescending(x => x.GetPropertyValue("publishDate")).ThenByDescending(x => x.CreateDate).Take(max))
                     {
                         var postTitle = post.HasValue("pageHeading") ? post.GetPropertyValue("pageHeading") : post.Name;
                         DateTime publishDate = post.HasValue("publishDate") ? post.GetPropertyValue<DateTime>("publishDate") : post.CreateDate;
