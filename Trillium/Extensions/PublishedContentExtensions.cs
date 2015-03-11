@@ -348,7 +348,7 @@ namespace Trillium.Extensions
                 publishedContent.GetPropertyValue<string>(propertyAlias)
                     .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(int.Parse);
-            List<IPublishedContent> mntpCollection = mntpList.Select(helper.TypedContent).Take(maxItems).ToList();
+            List<IPublishedContent> mntpCollection = mntpList.Select(helper.TypedContent).Where(x => x.IsVisible()).Take(maxItems).ToList();
 
             return mntpCollection.Any() ? mntpCollection : Enumerable.Empty<IPublishedContent>().ToList();
         }
