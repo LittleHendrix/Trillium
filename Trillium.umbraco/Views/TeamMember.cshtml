@@ -7,7 +7,7 @@
 <div class="tf-row">
     <div class="block">
         <h1>@Umbraco.Field("pageHeading", altFieldAlias: "pageName")</h1>
-        @Umbraco.Field("memberTitle", insertBefore: "&lt;h2 class=&quot;subhead&quot;&gt;", insertAfter: "&lt;/h2&gt;")
+        @*@Umbraco.Field("memberTitle", insertBefore: "&lt;h2 class=&quot;subhead&quot;&gt;", insertAfter: "&lt;/h2&gt;")*@
     </div>
     <div class="team-nav-wrap bg-row">
         <div class="block">
@@ -21,12 +21,12 @@
 <div class="tf-row bg-row rw-team">
     <div class="block">
         <article>
-            @if (Model.Content.HasValue("memberQualifications"))
+            @*@if (Model.Content.HasValue("memberQualifications"))
             {
                 <div class="page-meta">
                     <p>@Html.Raw(library.ReplaceLineBreaks(Model.Content.GetPropertyValue<string>("memberQualifications")))</p>
                 </div>
-            }
+            }*@
             <div class="body">
                 @Umbraco.Field("bodyText")
             </div>

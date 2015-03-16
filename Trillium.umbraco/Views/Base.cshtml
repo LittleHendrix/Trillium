@@ -4,6 +4,7 @@
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = null;
+    var settings = Umbraco.GetTypedNodeByAlias("AdminSettings");
 }
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -39,28 +40,36 @@
             </header>
 
             @RenderBody()
-
-            <div class="tf-row bg-row rw-end">
-                <div class="block">
-                    <section class="multi-col">
-                        <div class="tf-row">
-                            <div id="contact">
-                                <h1>Contact us</h1>
-                                <h2 class="subhead">Get in touch</h2>
-                                <p>Thank you kindly for visiting. Here you may leave any enquiry, ask us any question, or simply leave a comment.</p>
-                                <p>For partnership enquiries, please indicate the company and primary contact name.</p>
-                                @{
-                                    Html.RenderAction("RenderContactForm", "ContactSurface");
-                                }
+            
+            @if (!Request.Url.ToString().Contains("thank"))
+            {
+                <div class="tf-row bg-row rw-end">
+                    <div class="block">
+                        <section class="multi-col">
+                            <div class="tf-row">
+                                <div id="contact">
+                                    <h1>Contact us</h1>
+                                    <h2 class="subhead">Get in touch</h2>
+                                    <p>Thank you kindly for visiting. Here you may leave any enquiry, ask us any question, or simply leave a comment.</p>
+                                    <p>For partnership enquiries, please indicate the company and primary contact name.</p>
+                                    @{
+                Html.RenderAction("RenderContactForm", "ContactSurface");
+                                    }
+                                </div>
+                                <div id="infoCol">
+                                    <h2 class="subhead">Contact details</h2>
+                                    @{
+                var siteEmail = settings.GetPropertyValue("siteContactEmail") ?? "hello@trilliumfitness.co.uk";
+                                    }
+                                    <a href="mailto:@(siteEmail)" class="btn">@siteEmail</a><br />
+                                    @Umbraco.Field("contactDetails", recursive: true, convertLineBreaks: true)
+                                </div>
                             </div>
-                            <div id="infoCol">
-                                <h2 class="subhead">Contact details</h2>
-                                @Umbraco.Field("contactDetails", recursive: true, convertLineBreaks: true)
-                            </div>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
-            </div>
+            }
+
             <footer>
                 <p class="meta copyright">&copy;Trillium Fitness @DateTime.Now.Year</p>
             </footer>
@@ -75,7 +84,6 @@
         <![endif]-->
             @Html.Raw(Umbraco.Field("pageTracking"))
             @{
-                var settings = Umbraco.GetTypedNodeByAlias("AdminSettings");
                 if (settings != null)
                 {
                     @Html.Raw(settings.GetPropertyValue("googleAnalytics"))

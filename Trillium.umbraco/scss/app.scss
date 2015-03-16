@@ -150,28 +150,39 @@ h1, h2, h3, h4 {
     font-family: $body-font-family;
     font-weight: bold;
 }
+h3 {
+    line-height: 34px;
+}
+h3, h4 {
+    @extend .alt-heading;
+    a {
+        color: $tridark;
+    }
+}
 .success {
     color: $trigreen;
 }
 .error {
     color: $alert-color;
 }
+.service, .testimo-qna {
+    h3::before {        
+        content: "";
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-color: $tridark;
+        vertical-align: bottom;
+    }
+}
 .service {
      h3 {
-        @extend .alt-heading;
-        line-height: 34px;
         &:before {
-            content: "";
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
-            background-color: $tridark;
             background-image: url(images/service-01.png);
-            vertical-align: bottom;
         }
         &.ser-2:before {
             background-image: url(images/service-02.png);
@@ -192,30 +203,12 @@ h1, h2, h3, h4 {
     max-width: 128px;
     margin: 16px;
 }
-.staff h3, .testimonial h3, .post h3 {
-    @extend .alt-heading;
-    a {
-        color: $tridark;
-    }
-}
 .testimo-qna {
     padding: 0.93745em 0;
     border-bottom: 1px solid $border-color;
     h3 {
-        @extend .alt-heading;
-        line-height: 34px;
         &:before {
-            content: "";
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
-            background-color: $tridark;
             background-image: url(images/ico-doc.png);
-            vertical-align: bottom;
         }
     }
     &.achievement {
@@ -409,7 +402,7 @@ input.btn {
 #teamMedia {
     text-align: center;
     overflow: hidden;
-    margin-bottom: -12%;
+    margin-bottom: -100px;
     img {
     }
 }
@@ -497,6 +490,10 @@ input.btn {
     padding: 0.9375em 0;
     border-bottom: 1px solid $border-color;
     margin-bottom: 1.9375em;
+    .heading {
+        @extend .alt-heading;
+        font-size: 1.125rem;
+    }
 }
 .post {
     padding: 0.9375em 0;
@@ -679,6 +676,33 @@ footer {
             transform: skew(0deg, -8deg);
         }
     }
+    #teamMedia {
+        &:before, &:after {
+            background-color: darken($trimono, 10%);
+            display: block;
+            content: "";
+            position: absolute;
+            bottom: -69px;
+            left: 0;
+            height: 100px;
+            width: 50%;
+            -webkit-transform: skew(0deg, 8deg);
+            -moz-transform: skew(0deg, 8deg);
+            -ms-transform: skew(0deg, 8deg);
+            -o-transform: skew(0deg, 8deg);
+            transform: skew(0deg, 8deg);
+        }
+        &:after {
+            left: inherit;
+            right: 0;
+            width: 50.1%;
+            -webkit-transform: skew(0deg, -8deg);
+            -moz-transform: skew(0deg, -8deg);
+            -ms-transform: skew(0deg, -8deg);
+            -o-transform: skew(0deg, -8deg);
+            transform: skew(0deg, -8deg);
+        }
+    }
     #carousel {
         background-image: url(images/parallax-bg.png);
     }
@@ -784,6 +808,9 @@ footer {
         .affiliates {
             @include grid-column(2);
             text-align: center;
+            padding-top: 65px;
+            padding-bottom: 35px;
+            top: -65px;
         }
         &.service-row {
             @include grid-row($behavior: nest);
@@ -792,7 +819,7 @@ footer {
     .logo {
         display: block;
         position: relative;
-        margin: 16px auto;
+        margin: 32px auto;
     }
     #contact {
         @include grid-column(9);
@@ -891,7 +918,7 @@ footer {
             }
         }
     }
-    #Homepage {
+    #Homepage, #LandingPage {
         .tf-row .service {
             @include grid-column(12);
         }
