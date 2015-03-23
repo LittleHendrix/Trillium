@@ -10,26 +10,28 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>@Umbraco.Field("metaTitle", altFieldAlias: "pageName")</title>
-		<meta name="description" content="@Umbraco.Field("metaDescription")">
-		<meta name="keywords" content="@Umbraco.Field("metaKeywords")">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-        @Html.CanonicalUrl()
-        @{Html.RenderPartial("RssLink", Umbraco.AssignedContentItem);}
-		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	    @{Html.RenderPartial("StylesMain");}
-        @Html.RenderCssHere()
-	    <script src="/bower_components/modernizr/modernizr.min.js"></script>
-	</head>
-	<body id="@Umbraco.Field("nodeTypeAlias")">
-        <div id="skrollr-body">
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+ <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@Umbraco.Field("metaTitle", altFieldAlias: "pageName")</title>
+    <meta name="description" content="@Umbraco.Field("metaDescription")">
+    <meta name="keywords" content="@Umbraco.Field("metaKeywords")">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Html.CanonicalUrl()
+    @{Html.RenderPartial("RssLink", Umbraco.AssignedContentItem);}
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    @{Html.RenderPartial("StylesMain");}
+    @Html.RenderCssHere()
+    <script src="/bower_components/modernizr/modernizr.min.js"></script>
+</head>
+<body id="@Umbraco.Field("nodeTypeAlias")">
+    <div id="skrollr-body">
 
-            @*@Html.Partial("SearchBoxJson", new SearchResultsViewModel())*@
-
+        @*@Html.Partial("SearchBoxJson", new SearchResultsViewModel())*@
+        <div class="wrapper">
             <header>
                 <div class="tf-row">
                     @{
@@ -40,7 +42,7 @@
             </header>
 
             @RenderBody()
-            
+
             @if (!Request.Url.ToString().Contains("thank"))
             {
                 <div class="tf-row bg-row rw-end">
@@ -61,7 +63,7 @@
                                     @{
                 var siteEmail = settings.GetPropertyValue("siteContactEmail") ?? "hello@trilliumfitness.co.uk";
                                     }
-                                    <a href="mailto:@(siteEmail)" class="btn">@siteEmail</a><br />
+                                    <a href="mailto:@(siteEmail)" title="Send an email to hello@trilliumfitness.co.uk">@siteEmail</a><br />
                                     @Umbraco.Field("contactDetails", recursive: true, convertLineBreaks: true)
                                 </div>
                             </div>
@@ -69,26 +71,33 @@
                     </div>
                 </div>
             }
+            else
+            {
+                <div class="tf-row bg-row rw-end">
+                    <div class="block"></div>
+                </div>
+            }
+            <div class="push"></div>
+        </div>
+        <footer>
+            <p class="meta copyright">&copy;Trillium Fitness @DateTime.Now.Year</p>
+        </footer>
+        @{Html.RenderPartial("ScriptsMain");}
 
-            <footer>
-                <p class="meta copyright">&copy;Trillium Fitness @DateTime.Now.Year</p>
-            </footer>
-            @{Html.RenderPartial("ScriptsMain");}
+        @Html.RenderJsHere()
 
-            @Html.RenderJsHere()
-
-            @RenderSection("customScript", false)
-            <!--[if lt IE 9]>
+        @RenderSection("customScript", false)
+        <!--[if lt IE 9]>
             <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
             <script src="/bower_components/skrollr-ie/dist/skrollr.ie.min.js"></script>
         <![endif]-->
-            @Html.Raw(Umbraco.Field("pageTracking"))
-            @{
-                if (settings != null)
-                {
-                    @Html.Raw(settings.GetPropertyValue("googleAnalytics"))
-                }
+        @Html.Raw(Umbraco.Field("pageTracking"))
+        @{
+            if (settings != null)
+            {
+                @Html.Raw(settings.GetPropertyValue("googleAnalytics"))
             }
-        </div>
+        }
+    </div>
 </body>
 </html>

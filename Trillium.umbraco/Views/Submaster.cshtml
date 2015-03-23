@@ -3,10 +3,13 @@
 @{
     Layout = "Base.cshtml";
 }
-<div class="tf-row bg-row">
+<div class="tf-row @(!Request.Url.ToString().Contains("thank") ? "bg-row" : "")">
     <div class="block">
         <article>
-            <h1>@Umbraco.Field("pageHeading", altFieldAlias: "pageName")</h1>
+            @if (!Request.Url.ToString().Contains("thank"))
+            {
+                <h1>@Umbraco.Field("pageHeading", altFieldAlias: "pageName")</h1>
+            }
             @Umbraco.Field("subheading", insertBefore: "&lt;h2 class=&quot;subhead&quot;&gt;", insertAfter: "&lt;/h2&gt;")
             <div class="page-media">
                 @Model.Content.ImagesFor("pageMedia", 1)
@@ -31,6 +34,10 @@
         </article>
     </div>
 </div>
+@if (Request.Url.ToString().Contains("thank"))
+{
+    <div class="tf-row bg-row"><div class="block"></div></div>
+}
 @RenderBody()
 
 @section customScript

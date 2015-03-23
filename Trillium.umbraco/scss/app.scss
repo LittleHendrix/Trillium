@@ -99,6 +99,18 @@ img {
     vertical-align: middle;
     -ms-interpolation-mode: bicubic;
 }
+#skrollr-body {
+    height: 100%;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -100px;
+}
+footer, .push {
+    height: 100px;
+}
 
 /*	TOPBAR
 ----------------------------------------------- */
@@ -567,6 +579,7 @@ footer {
 }
 @media #{$medium-up} {
     .tf-row {
+        min-height: 100px;
         .block {
             @include grid-column(10, $center: true);
             &:first-child {
