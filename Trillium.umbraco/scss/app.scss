@@ -109,7 +109,7 @@ img {
     margin: 0 auto -100px;
 }
 footer, .push {
-    height: 100px;
+    height: 200px;
 }
 
 /*	TOPBAR
@@ -139,6 +139,72 @@ footer, .push {
     color: $secondary-color;
     text-transform: uppercase;
 }
+
+/* FOOTER
+----------------------------------------------- */
+footer {
+    background: $tridark;
+    color: #fff;
+    text-align: center;
+    padding: 0 0 1.25em;
+}
+.social-block {
+    background: $trigrey;
+    margin-bottom: 1.875em;
+}
+.ico-box {
+    margin: -21px 12px 0;
+    border: 1px solid #d9d9d9;
+    background: $trigrey;
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.social-ico {
+    position: relative;
+    top: 7px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100%;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    &.yt {
+        background-image: url(images/ico-youtube.png);
+    }
+    &.tw {
+        background-image: url(images/ico-twitter.png);
+    }
+    &.pi {
+        background-image: url(images/ico-pintrest.png);
+    }
+    &.vm {
+        background-image: url(images/ico-vimeo.png);
+    }
+    &.in {
+        background-image: url(images/ico-instagram.png);
+    }
+}
+@media only screen and (min-width:380px) {
+    .ico-box {
+        width: 84px;
+        height: 84px;
+        margin: -26px 15px 0; 
+    }
+    .social-ico {
+        top: 10px;
+        width: 64px;
+        height: 64px;
+    }
+}
+
 
 /*	TYPOGRAPHY
 ----------------------------------------------- */
@@ -513,15 +579,9 @@ input.btn {
 }
 .post-img {
     margin-bottom: 0.9375em;
-}l
+}
 .post-meta {
     padding: 0.9375em 0;
-}
-footer {
-    background: $tridark;
-    color: #fff;
-    text-align: center;
-    padding: 1.9375em 0;
 }
 .block {
     z-index: 1;
