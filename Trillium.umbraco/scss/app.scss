@@ -109,7 +109,7 @@ img {
     margin: 0 auto -100px;
 }
 footer, .push {
-    height: 200px;
+    height: 400px;
 }
 
 /*	TOPBAR
@@ -148,11 +148,17 @@ footer {
     text-align: center;
     padding: 0 0 1.25em;
 }
+#twitter {
+    background: $tridark;
+    text-align: center;
+    margin-bottom: 80px;
+}
 .social-block {
     background: $trigrey;
     margin-bottom: 1.875em;
 }
 .ico-box {
+    position: relative;
     margin: -21px 12px 0;
     border: 1px solid #d9d9d9;
     background: $trigrey;
@@ -190,6 +196,18 @@ footer {
     }
     &.in {
         background-image: url(images/ico-instagram.png);
+    }
+    &.fb {
+        background-image: url(images/ico-facebook.png);
+    }
+    &.sk {
+        background-image: url(images/ico-skype.png);
+    }
+    &.twitter-btn {
+        background-image: url(images/ico-twitter-green.png);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        margin-bottom: 10px;
     }
 }
 @media only screen and (min-width:380px) {
