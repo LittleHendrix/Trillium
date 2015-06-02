@@ -108,11 +108,11 @@
                 <div class="tf-row">
                     <span class="ico-box"><a href="https://www.youtube.com/channel/UClc9JN6ZkzznoscoGnARTIA" target="_blank" class="social-ico yt">YouTube</a></span>
                     <span class="ico-box"><a href="https://www.facebook.com/TRILLIUMPT?fref=ts" target="_blank" class="social-ico fb">Facebook</a></span>
-                    <!--<span class="ico-box"><a href="https://twitter.com/TrilliumFit?lang=en-gb" target="_blank" class="social-ico tw">Twitter</a></span>-->
+                    <!--<span class="ico-box"><a href="https://twitter.com/TrilliumFit?lang=en-gb" target="_blank" class="social-ico ln">LinkedIn</a></span>-->
                     <br />    
-                    <span class="ico-box"><a href="https://www.pinterest.com/TrilliumFit/" target="_blank" class="social-ico pi">Pintrest</a></span>
-                    <span class="ico-box"><a href="https://instagram.com/trillium.fitness/" target="_blank" class="social-ico in">Instagram</a></span>
-                    <span class="ico-box"><a href="#" title="Skype us &#64;trillium.fitness" target="_blank" class="social-ico sk" onclick="return false;">Skpye</a></span>
+                    <span class="ico-box rw-2"><a href="https://www.pinterest.com/TrilliumFit/" target="_blank" class="social-ico pi">Pintrest</a></span>
+                    <span class="ico-box rw-2"><a href="https://instagram.com/trillium.fitness/" target="_blank" class="social-ico in">Instagram</a></span>
+                    <span class="ico-box rw-2"><a href="#" title="Skype us &#64;trillium.fitness" target="_blank" class="social-ico sk" onclick="return false;">Skpye</a></span>
                 </div>
             </div>
             <p class="meta copyright">&copy;Trillium Fitness @DateTime.Now.Year</p>
@@ -126,6 +126,7 @@
             <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
             <script src="/bower_components/skrollr-ie/dist/skrollr.ie.min.js"></script>
         <![endif]-->
+		@Html.Partial("PageTracker")
         @Html.Raw(Umbraco.Field("pageTracking"))
         @{
             if (settings != null)

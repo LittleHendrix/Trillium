@@ -106,7 +106,7 @@ img {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -100px;
+    margin: 0 auto -400px;
 }
 footer, .push {
     height: 400px;
@@ -172,8 +172,8 @@ footer {
     position: relative;
     top: 7px;
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    width: 54px;
+    height: 54px;
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -182,6 +182,9 @@ footer {
     background-size: 100%;
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
+    &:hover {
+        background-position: 0 -54px;
+    }
     &.yt {
         background-image: url(images/ico-youtube.png);
     }
@@ -203,6 +206,9 @@ footer {
     &.sk {
         background-image: url(images/ico-skype.png);
     }
+    &.ln {
+        background-image: url(images/ico-linkedin.png);
+    }
     &.twitter-btn {
         background-image: url(images/ico-twitter-green.png);
         -webkit-transform: rotate(0deg);
@@ -210,19 +216,31 @@ footer {
         margin-bottom: 10px;
     }
 }
-@media only screen and (min-width:380px) {
+@media only screen and (min-width:480px) {
     .ico-box {
-        width: 84px;
-        height: 84px;
-        margin: -26px 15px 0; 
+        width: 110px;
+        height: 110px;
+        margin: -32px 20px 0; 
+        &.rw-2 {
+            left: -2px;
+        }
     }
     .social-ico {
         top: 10px;
-        width: 64px;
-        height: 64px;
+        width: 94px;
+        height: 94px;
+        &:hover {
+            background-position: 0 -94px;
+        }
     }
     .social-block .tf-row {
         max-width: 468px;
+    }
+    .wrapper {
+        margin-bottom: - 480px;
+    }
+    footer, .push {
+        height: 480px;
     }
 }
 

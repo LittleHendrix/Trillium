@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	var rawUrl = HttpContext.Current.Request.Url;
+    var baseUrl = string.Format("{0}://{1}", rawUrl.Scheme, rawUrl.Host);
+	var url = @baseUrl + @Model.Content.Url;
+}
+<script type="application/ld+json">
+{ "@@context" : "http://schema.org",
+"@@type" : "HealthClub",
+"url" : "@url",
+"contactPoint" : [ { "@@type" : "ContactPoint",
+"telephone" : "+44-7411-478587",
+"contactType" : "customer service",
+"areaServed" : [Edinburgh],
+"name": "Trillium Fitness",
+"description": "Professional personal training service in Edinburgh. We focus on personalised exercise and nutrition programmes so our clients get the very best results.",
+"openingHours": [ "Mo 06.30 - 21.00",
+"Tu 06.30 - 21.00",
+"We 06.30 - 21.00",
+"Th 06.30 - 21.00",
+"Fr 06.30 - 21.00",
+"Sa 06.30 - 21.00",
+"Su 06.30 - 21.00" ],
+"address":
+{
+"@@type": "PostalAddress",
+"streetAddress": "19 North Bridge",
+"postalCode": " EH1 1SD ",
+"addressLocality": "Edinburgh",
+"addressRegion": "Midlothian",
+"addressCountry": "United Kingdom"
+} }
+</script>
