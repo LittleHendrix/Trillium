@@ -9,17 +9,49 @@
 
     foreach (var page in displayNodes.Where(p => p.IsVisible()))
     {
-        var title = page.HasValue("pageHeading") ? page.GetPropertyValue("pageHeading") : page.Name;
+        var heading = page.Name;
+        var subheading = "";
+        HtmlString bodycopy = null;
+
+        if (page.HasValue("widgetHeading"))
+        {
+            heading = page.GetPropertyValue<string>("widgetHeading");
+        } else if (page.HasValue("pageHeading"))
+        {
+            heading = page.GetPropertyValue<string>("pageHeading");
+        }
+
+        if (page.HasValue("widgetSubheading"))
+        {
+            subheading = page.GetPropertyValue<string>("widgetSubheading");
+        } else if (page.HasValue("subheading"))
+        {
+            subheading = page.GetPropertyValue<string>("subheading");
+        }
+
+        if (page.HasValue("widgetCopy"))
+        {
+            bodycopy = page.GetPropertyValue<HtmlString>("widgetCopy");
+        } else if (page.HasValue("bodyText"))
+        {
+            bodycopy = page.GetPropertyValue<HtmlString>("bodyText");
+        }
+        
         <div class="tf-row bg-row rw-@page.Index()">
             <div class="block">
-                <h1>@title</h1>
-                @if (page.HasValue("subheading"))
+                <h1>@heading</h1>
+                @if (!string.IsNullOrEmpty(subheading))
                 {
-                    <h2 class="subhead">@page.GetPropertyValue("subheading")</h2>
+                    <h2 class="subhead">@subheading</h2>
                 }
-                @if (page.HasValue("bodyText"))
+                @if (bodycopy != null)
                 {
-                    <div class="body">@page.GetPropertyValue("bodyText")</div>
+                    <div class="body">
+                        @bodycopy
+                        @if (page.Id == 1121) {
+                            <a href="@page.Url" class="btn" title="read more on @heading">Read more</a>
+                        }
+                    </div>
                 }
                 
                 @{ Html.RenderPartial("ListSubPages", page, new ViewDataDictionary {{"isHomepage", true}}); }

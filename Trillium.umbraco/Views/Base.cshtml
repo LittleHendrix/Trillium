@@ -35,12 +35,16 @@
         @*@Html.Partial("SearchBoxJson", new SearchResultsViewModel())*@
         <div class="wrapper">
             <header>
-                <div class="tf-row">
+                <div class="tf-row @(Model.Content.DocumentTypeAlias != "Homepage" ? "header-row" : "")">
                     @{
                         Html.RenderPartial("Navigation", Umbraco.AssignedContentItem);
                         Html.RenderPartial("ParallaxHeader", Umbraco.AssignedContentItem);
                     }
                 </div>
+                @if (Model.Content.DocumentTypeAlias != "Homepage")
+                {
+                    <div class="tf-row bg-row rw-end"></div>
+                }
             </header>
 
             @RenderBody()
@@ -107,8 +111,8 @@
             <div class="social-block">
                 <div class="tf-row">
                     <span class="ico-box"><a href="https://www.youtube.com/channel/UClc9JN6ZkzznoscoGnARTIA" target="_blank" class="social-ico yt">YouTube</a></span>
-                    <span class="ico-box"><a href="https://www.facebook.com/TRILLIUMPT?fref=ts" target="_blank" class="social-ico fb">Facebook</a></span>
-                    <!--<span class="ico-box"><a href="https://twitter.com/TrilliumFit?lang=en-gb" target="_blank" class="social-ico ln">LinkedIn</a></span>-->
+                    <!--<span class="ico-box"><a href="https://www.facebook.com/TRILLIUMPT?fref=ts" target="_blank" class="social-ico fb">Facebook</a></span>-->
+                    <span class="ico-box"><a href="https://twitter.com/TrilliumFit?lang=en-gb" target="_blank" class="social-ico ln">LinkedIn</a></span>
                     <br />    
                     <span class="ico-box rw-2"><a href="https://www.pinterest.com/TrilliumFit/" target="_blank" class="social-ico pi">Pintrest</a></span>
                     <span class="ico-box rw-2"><a href="https://instagram.com/trillium.fitness/" target="_blank" class="social-ico in">Instagram</a></span>

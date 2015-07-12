@@ -170,10 +170,10 @@ footer {
 }
 .social-ico {
     position: relative;
-    top: 7px;
+    top: 8px;
     display: inline-block;
-    width: 54px;
-    height: 54px;
+    width: 48px;
+    height: 48px;
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -220,17 +220,17 @@ footer {
     .ico-box {
         width: 110px;
         height: 110px;
-        margin: -32px 20px 0; 
+        margin: -34px 20px 0; 
         &.rw-2 {
             left: -2px;
         }
     }
     .social-ico {
-        top: 10px;
-        width: 94px;
-        height: 94px;
+        top: 14px;
+        width: 77px;
+        height: 77px;
         &:hover {
-            background-position: 0 -94px;
+            background-position: 0 -77px;
         }
     }
     .social-block .tf-row {
@@ -835,16 +835,62 @@ input.btn {
 @media #{$tablet-up} {
 /*	TOPBAR
 ----------------------------------------------- */
-    #logo {
-        display: none;
+    #Homepage {
+        #logo {
+            display: none;
+        }
+        .top-bar {
+            background: transparent;
+            height: 40px;
+            .title-area {
+                padding: 0;
+            }
+        }
+        .top-bar-section {
+            ul {
+                background: transparent;
+                li {
+                    background: transparent;
+                    a {
+                        background: transparent;
+                    }
+                    &.active {
+                        &:not(.has-form) a {
+                            &:not(.button), &:not(.button):hover {
+                                background: transparent;
+                                color: $trigreen;
+                                border-color: $trigreen;
+                            }
+                        }
+                    }
+                    &:not(.has-form) a:not(.button) {
+                        background: transparent;
+                        border: 1px solid transparent;
+                        &:hover {
+                            background: transparent;
+                            color: $trigreen;
+                            border-color: $trigreen;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .header-row {
+        max-width: none;
     }
     .top-bar {
-        background: transparent;
         position: absolute;
         width: 100%;
+        height: auto;
+        .title-area {
+            float: none;
+            text-align: center;
+            padding: 9px 0;
+        }
     }
     .top-bar-section {
-        top: 30px;
+        background: $tridark;
         ul {
             background: transparent;
             width: 100%;
@@ -859,9 +905,7 @@ input.btn {
                 &.active {
                     &:not(.has-form) a {
                         &:not(.button), &:not(.button):hover {
-                            background: transparent;
-                            color: $trigreen;
-                            border-color: $trigreen;
+                            background: $trigreen;
                             font-weight: bold;
                         }
                     }
@@ -869,12 +913,9 @@ input.btn {
                 &:not(.has-form) a:not(.button) {
                     background: transparent;
                     border: 1px solid transparent;
-                    padding: 13px;
-                    line-height: normal;
+                    line-height: 40px;
                     &:hover {
-                        background: transparent;
-                        color: $trigreen;
-                        border-color: $trigreen;
+                        background: $trigreen;
                     }
                 }
             }
